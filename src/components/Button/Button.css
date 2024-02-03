@@ -1,0 +1,52 @@
+.primary_button {
+    padding: 0.85rem 8.6rem;
+    background-color: #606DE2;
+    border: 1px solid;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    border-color: #EAEAEA;
+    margin: 1rem 0;
+}
+
+.primary_button:hover {
+    background-color: #373e7c;
+}
+
+.primary_button--outlined {
+    background-color: transparent;
+    padding: 0.75rem 3.5rem;
+    border-color: #FF3417;
+    color: #000000;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.primary_button--save {
+    border-radius: 4px;
+    background-color: #606DE2;
+    border: 1px;
+    font-size: 13px;
+    padding: 0.75rem 3rem;
+}
+
+.primary_button--cancel {
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    border: 1px solid;
+    font-size: 13px;
+    border-color: #000000;
+    color: #D97474;
+    padding: 0.75rem 3rem;
+
+}
+
+.primary_button--update {
+    border-radius: 4px;
+    background-color: #FF780A;
+    border: none;
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 0.75rem 2.5rem;
+}

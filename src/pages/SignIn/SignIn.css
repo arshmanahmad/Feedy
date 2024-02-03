@@ -1,0 +1,39 @@
+.signIn-main-container {
+    width: 100%;
+}
+
+.signIn-inner-box {
+    margin: 0% !important;
+    padding: 0% !important;
+}
+
+.signIn-img-container {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/Images/cart.png);
+
+}
+
+.signIn-p {
+    color: #E0E0E0;
+    font-size: 1.2rem;
+}
+
+.signIn-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20rem 5rem 15rem;
+}
+
+.signIn-label-box {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.signIn-label2 {
+    margin-left: 5rem;
+}

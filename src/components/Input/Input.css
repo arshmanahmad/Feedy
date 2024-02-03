@@ -1,0 +1,54 @@
+.input {
+    font-weight: 500;
+    font-size: 1rem;
+    outline: none;
+    color: #7A86A1;
+    border: none;
+
+}
+
+.input-border {
+    border-color: #EAEAEA;
+    display: flex;
+    align-items: center;
+    color: #7A86A1;
+    border-radius: 3px;
+    border: 0.5px solid;
+    padding: 0.5rem 1rem;
+    width: 20.69rem;
+    height: 3rem;
+
+}
+
+.input-container {
+    display: flex;
+    margin-top: 10px;
+    gap: 0.2rem;
+    flex-direction: column;
+}
+
+.input-container label {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.checkBox {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin: 0%;
+    padding: 0%;
+    margin-right: 1rem;
+
+}
+
+.checkBox div {
+    width: 1.2rem;
+    border: none;
+    padding: 0;
+}
+
+.checkBox input {
+    margin: 0%;
+    height: 1.2rem;
+    width: 1.2rem;
+}

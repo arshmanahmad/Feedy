@@ -1,0 +1,16 @@
+.description-text {
+    color: #7A86A1;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0%;
+}
+
+.description-text span {
+    color: #FF8A07;
+    cursor: pointer;
+}
+
+.blued span {
+    cursor: pointer;
+    color: #606DE2;
+}
