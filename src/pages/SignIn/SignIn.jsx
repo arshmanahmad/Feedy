@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./SignIn.css"
 import H1 from "../../components/H1/H1";
 import Input from '../../components/Input/Input'
 import Label from '../../components/Label/Label';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import iconView from '../../assets/Icons/icon view password.png'
+import hideIcon from '../../assets/Icons/icon view password.png'
+import visibilityIcon from "../../assets/Icons/visibility-icon.png"
 
 const SignIn = () => {
+    const [passwordType, setPasswordType] = useState("password")
+    const [password, setPassword] = useState('')
     const navigate = useNavigate()
     const handleClick = () => {
         navigate("/SignIn/ForgotPassword")
     }
+    const handlePathSignUp = () => {
+        navigate("/")
+
+    }
+    const handleChangePasswordVisibility = () => {
+        if (passwordType === "password") {
+            setPasswordType("text")
+        }
+        else {
+            setPasswordType("password")
+        }
+    }
+
     return (
         <>
             <div className="signIn-main-container">
@@ -25,13 +41,14 @@ const SignIn = () => {
                             <form className="signIn-input-container">
                                 <div className="row">
                                     <Input label="Your Email" type='email' placeholder="Tonynguyen@example.com" />
-                                    <Input label="Password" icon={iconView} type='password' placeholder="******" />
+                                    <Input label="Password" onClick={handleChangePasswordVisibility} onChange={(e) => setPassword(e.target.value)} icon={passwordType === "password" ? visibilityIcon : hideIcon} type={passwordType} placeholder="******" />
                                 </div>
                                 <div className="signIn-label-box">
                                     <Input type="checkBox" /><Label onClick={handleClick} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
                                 </div>
                                 <Button text="Sign in" />
                             </form>
+                            <Label className='SignIn-path-label' text="Want to go back" color="blue" onClick={handlePathSignUp} changeColoredText="for Sign Up?" />
                         </div>
                     </div>
                 </div>

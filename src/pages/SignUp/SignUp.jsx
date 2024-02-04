@@ -5,9 +5,11 @@ import Input from '../../components/Input/Input'
 import Label from '../../components/Label/Label';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import iconView from '../../assets/Icons/icon view password.png'
+import hideIcon from '../../assets/Icons/icon view password.png'
+import visibilityIcon from '../../assets/Icons/visibility-icon.png'
 const SignUp = () => {
     const [inputPassword, setPasswordInput] = useState('');
+    const [isChecked, setIsChecked] = useState('')
     const [inputPasswordType, setPasswordInputType] = useState('password');
     const navigate = useNavigate()
     const handleClick = () => {
@@ -24,6 +26,9 @@ const SignUp = () => {
             setPasswordInputType("password")
         }
     }
+    const handleCheck = () => {
+
+    }
     return (
         <>
             <div className="signUp-main-container">
@@ -38,10 +43,10 @@ const SignUp = () => {
                                     <Input label="Name" type='text' placeholder="Tony Nyugen" />
                                     <Input label="Last Name" type='text' placeholder="Moon Theme" />
                                     <Input label="Your Email" type='email' placeholder="Tonynguyen@example.com" />
-                                    <Input label="Password" id="password" onChange={(e) => setPasswordInput(e.target.value)} onClick={handleShowPassword} icon={iconView} type={inputPasswordType} placeholder="******" />
+                                    <Input label="Password" icon={inputPasswordType === "password" ? visibilityIcon : hideIcon} id="password" onChange={(e) => setPasswordInput(e.target.value)} onClick={handleShowPassword} type={inputPasswordType} placeholder="******" />
                                 </div>
                                 <div className="signUp-label-box">
-                                    <Input type="checkBox" /><Label text="I accept the " className='SignUp-label1' changeColoredText="Terms and Conditions" />
+                                    <Input type="checkBox" onChange={(e) => setIsChecked(e.target.value)} /><Label onClick={handleCheck} text="I accept the " className='SignUp-label1' changeColoredText="Terms and Conditions" />
                                 </div>
                                 <Button onClick={handleClick} text="Sign in" />
                             </form>
