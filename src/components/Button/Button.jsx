@@ -1,11 +1,11 @@
 import React from 'react'
 import './Button.css'
 
-const Button = ({ icon, onclick, text, type, className = '' }) => {
+const Button = ({ icon, onClick, text, type, className = '' }) => {
     return (
         <>
             <button
-                onclick={onclick}
+                onClick={onClick}
                 className={`${className} primary_button 
             ${type === "outlined" ? "primary_button--outlined" : " "}
             ${type === "save" ? "primary_button--save" : " "}

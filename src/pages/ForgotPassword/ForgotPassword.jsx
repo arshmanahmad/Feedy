@@ -3,8 +3,14 @@ import "./ForgotPassword.css"
 import H1 from "../../components/H1/H1";
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import backArrow from './assets/icons/backArrow.png'
 
 const ForgotPassword = () => {
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate("/")
+    }
     return (
         <>
             <div className="forgot-main-container">
@@ -22,7 +28,9 @@ const ForgotPassword = () => {
                                 <Button text="Sign in" />
                             </form>
                         </div>
-                        <span></span><a className='back-link'>Back to sign in</a>
+                        <div className="backLink-box">
+                            <img src={backArrow} alt="" onClick={handleClick} /><a className='back-link' onClick={handleClick}>Back to sign in</a>
+                        </div>
                     </div>
                 </div>
             </div >
