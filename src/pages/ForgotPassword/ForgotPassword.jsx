@@ -29,7 +29,8 @@ const ForgotPassword = () => {
                             </form>
                         </div>
                         <div className="backLink-box">
-                            <img src={backArrow} alt="" onClick={handleClick} /><a className='back-link' onClick={handleClick}>Back to sign in</a>
+                            <img src={backArrow} alt="" onClick={handleClick} />
+                            <a className='back-link' onClick={handleClick}>Back to sign in</a>
                         </div>
                     </div>
                 </div>

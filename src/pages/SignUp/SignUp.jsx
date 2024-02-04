@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './SignUp.css'
 import H1 from "../../components/H1/H1";
 import Input from '../../components/Input/Input'
@@ -7,6 +7,8 @@ import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import iconView from '../../assets/Icons/icon view password.png'
 const SignUp = () => {
+    const [inputPassword, setPasswordInput] = useState('');
+    const [inputPasswordType, setPasswordInputType] = useState('password');
     const navigate = useNavigate()
     const handleClick = () => {
         navigate("/SignUp/SignIn")
@@ -15,8 +17,12 @@ const SignUp = () => {
         navigate("/SignUp/SignIn")
     }
     const handleShowPassword = () => {
-        const inputValue = document.getElementById("password")
-        console.log(inputValue);
+        if (inputPasswordType === "password") {
+            setPasswordInputType("text")
+        }
+        else {
+            setPasswordInputType("password")
+        }
     }
     return (
         <>
@@ -32,7 +38,7 @@ const SignUp = () => {
                                     <Input label="Name" type='text' placeholder="Tony Nyugen" />
                                     <Input label="Last Name" type='text' placeholder="Moon Theme" />
                                     <Input label="Your Email" type='email' placeholder="Tonynguyen@example.com" />
-                                    <Input label="Password" id="password" onClick={handleShowPassword()} icon={iconView} type='password' placeholder="******" />
+                                    <Input label="Password" id="password" onChange={(e) => setPasswordInput(e.target.value)} onClick={handleShowPassword} icon={iconView} type={inputPasswordType} placeholder="******" />
                                 </div>
                                 <div className="signUp-label-box">
                                     <Input type="checkBox" /><Label text="I accept the " className='SignUp-label1' changeColoredText="Terms and Conditions" />
