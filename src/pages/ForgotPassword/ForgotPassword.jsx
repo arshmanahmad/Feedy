@@ -19,11 +19,11 @@ const ForgotPassword = () => {
                     </div>
                     <div className="forgot-content-container flex-box col-sm-6 col-lg-7" >
                         <div className='forgot-inner-content-container'>
-                            <H1 value="ForGot Password?" />
+                            <H1 value="Forgot Password?" />
                             <p className='forgot-p'>Enter the email address you used when you joined and w'll<br /> send you instructions to reset the password.</p>
                             <form className="signIn-input-container">
                                 <div className="row">
-                                    <Input label="Your Email" type='email' placeholder="Tonynguyen@example.com" />
+                                    <Input label="Your Email" type='email' placeholder="email" />
                                 </div>
                                 <Button text="Sign in" />
                             </form>

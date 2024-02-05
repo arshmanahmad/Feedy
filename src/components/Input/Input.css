@@ -21,6 +21,11 @@
 
 }
 
+.input-icon {
+    height: 16px;
+    color: #C0BDCC;
+}
+
 .input-container {
     display: flex;
     margin-top: 10px;
