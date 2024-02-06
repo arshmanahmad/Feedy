@@ -8,28 +8,61 @@ import { useNavigate } from 'react-router-dom';
 import hideIcon from '../../assets/Icons/icon view password.png'
 import visibilityIcon from '../../assets/Icons/visibility-less-weight.png'
 const SignUp = () => {
-    const [inputPassword, setPasswordInput] = useState('');
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [blankFieldError, setBlankFieldError] = useState('')
     const [isChecked, setIsChecked] = useState(false)
+    const [inputPassword, setPasswordInput] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [inputPasswordType, setPasswordInputType] = useState('password');
-    const navigate = useNavigate()
-    const handleClick = () => {
-        if (name && lastName && email && password && false !== " ") {
-            if (password.length < 8) {
-                setBlankFieldError("password must be of 8 characters")
-            }
-            else {
-                navigate("/SignUp/SignIn")
+    const [inputConfirmPassType, setInputConfirmPassType] = useState('password');
 
-            }
-        } else {
-            setBlankFieldError("Please fill in all the fields")
+    const navigate = useNavigate()
+    const [validity, setValidity] = useState({
+        isBlank: false,
+        isShortPass: false,
+        isDifferentPass: false,
+    })
+    const checkValidation = () => {
+        if (name !== "" || lastName !== "" || email !== "" || password !== "") {
+            setValidity(preValidity => ({
+                ...preValidity,
+                isBlank: true
+            }))
+        }
+        if (name === "" && lastName !== "" && email !== "" && password !== "") {
+            setValidity(preValidity => ({
+                ...preValidity,
+                isBlank: false
+            }))
+        }
+        const { isBlank, isShortPass, isDifferentPass } = validity
+
+        // if (password.length < 8) {
+        //     setValidity(preValidity => ({
+        //         ...preValidity,
+        //         isShortPass: true
+        //     }))
+        // }
+        // if (password !== confirmPassword) {
+        //     setValidity(preValidity => ({
+        //         ...preValidity,
+        //         isDifferentPass: true
+        //     }))
+        // }
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        checkValidation()
+        console.log(isBlank);
+        if (isBlank) {
+            setBlankFieldError("blank")
         }
     }
+
     const handleSignIn = () => {
         navigate("/SignUp/SignIn")
     }
@@ -40,6 +73,15 @@ const SignUp = () => {
         else {
             setPasswordInputType("password")
         }
+    }
+    const handleShowConfirmPass = () => {
+        if (inputConfirmPassType === "password") {
+            setInputConfirmPassType("text")
+        }
+        else {
+            setInputConfirmPassType("password")
+        }
+
     }
     const handleCheck = () => {
         setIsChecked(!isChecked)
@@ -62,6 +104,7 @@ const SignUp = () => {
                                     <Input label="Last Name" onChange={(e) => setLastName(e.target.value)} type='text' placeholder="last name" />
                                     <Input label="Your Email" onChange={(e) => setEmail(e.target.value)} type='email' placeholder="email" />
                                     <Input label="Password" onChange={(e) => setPassword(e.target.value)} icon={inputPasswordType === "password" ? visibilityIcon : hideIcon} id="password" onChange={(e) => setPasswordInput(e.target.value)} onClick={handleShowPassword} type={inputPasswordType} placeholder="password" />
+                                    <Input label="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} icon={inputConfirmPassType === "password" ? visibilityIcon : hideIcon} onChange={(e) => setConfirmPassword(e.target.value)} onClick={handleShowConfirmPass} type={inputConfirmPassType} placeholder="confirm password" />
                                 </div>
                                 <p>{blankFieldError}</p>
                                 <div className="signUp-label-box">
