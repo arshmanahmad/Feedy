@@ -25,11 +25,13 @@ const SignUp = () => {
         if (name === "" || lastName === "" || email === "" || password === "" || confirmPassword === "") {
             error = "Please fill in all fields"
         }
+        else if (!new RegExp(/\S+@\S+\.\S+/).test(email)) {
+            error = "Incorrect email format"
+        }
         else if (password.length < 7) {
             error = "Password must be at least 8 characters"
         }
         else if (password !== confirmPassword) {
-
             error = "Password & confirm password is not same"
         }
         else if (isChecked === false) {
@@ -64,7 +66,6 @@ const SignUp = () => {
         else {
             setInputConfirmPassType("password")
         }
-
     }
     const handleCheck = () => {
         setIsChecked(!isChecked)

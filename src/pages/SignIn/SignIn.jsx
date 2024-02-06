@@ -23,6 +23,9 @@ const SignIn = () => {
         else if (password.length < 7) {
             error = "Password must be at least 8 characters"
         }
+        else if (!new RegExp(/\S+@\S+\.\S+/).test(email)) {
+            error = "Incorrect email format"
+        }
         else if (check === false) {
             error = "Check out the box"
         }
@@ -31,7 +34,6 @@ const SignIn = () => {
         }
         setErrorPopUp(error)
     }
-
     const handleFormSubmit = (e) => {
         e.preventDefault();
         validator()
