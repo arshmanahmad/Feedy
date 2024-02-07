@@ -11,8 +11,8 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
-            < Route path="/" element={<SideBar />} />
-            {/* < Route path="/" element={<SignUp />} /> */}
+            {/* < Route path="/" element={<SideBar />} /> */}
+            < Route path="/" element={<SignUp />} />
             < Route path="/SignUp/SignIn" element={<SignIn />} />
             < Route path="/SignIn/ForgotPassword" element={<ForgotPassword />} />
           </Routes>
