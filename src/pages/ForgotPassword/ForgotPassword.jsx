@@ -20,7 +20,7 @@ const ForgotPassword = () => {
             setErrorPop("Incorrect email format")
         }
         else {
-            setErrorPop("Han wara?")
+            setErrorPop("Submitted")
 
         }
     }
@@ -48,10 +48,10 @@ const ForgotPassword = () => {
                                 <ErrorPopup value={errorPop} />
                                 <Button onClick={handleSubmission} text="Sign in" />
                             </form>
-                        </div>
-                        <div className="backLink-box">
-                            <img src={backArrow} alt="" onClick={handleClick} />
-                            <a className='back-link' onClick={handleClick}>Back to sign in</a>
+                            <div className="backLink-box">
+                                <img src={backArrow} alt="" onClick={handleClick} />
+                                <a className='back-link' onClick={handleClick}>Back to sign in</a>
+                            </div>
                         </div>
                     </div>
                 </div>

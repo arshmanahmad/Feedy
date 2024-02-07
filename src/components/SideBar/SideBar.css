@@ -1,3 +1,42 @@
+.side-bar {
+    width: 18%;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+
+}
+
+.sidebar-main-logo {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.sidebar-btn {
+    margin-top: 35rem;
+    margin-bottom: 4rem;
+}
+
 .side-bar-container {
-    height: 100vh;
+    width: 60%;
+}
+
+.sidebar-btn-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-btn-container button {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    height: 3.2rem;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: #FF780A;
+}
+
+.sidebar-btn-container button img {
+    height: 1.7rem;
+    margin-right: 0.55rem;
 }
