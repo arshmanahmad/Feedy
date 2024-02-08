@@ -1,0 +1,26 @@
+.homePage_container {
+    display: flex;
+}
+
+.dashboard-home {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.home-cards-box {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.homepage-box1 {
+    width: 68.5%;
+}
+
+.home-img-box {
+    margin-top: 2rem;
+}
+
+.homepage-graph-img {
+    width: 100%;
+}

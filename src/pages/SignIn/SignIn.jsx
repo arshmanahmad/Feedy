@@ -30,7 +30,7 @@ const SignIn = () => {
             error = "Check out the box"
         }
         else {
-            navigate("/SignIn/ForgotPassword")
+            navigate("/SignUp/HomePage")
         }
         setErrorPopUp(error)
     }

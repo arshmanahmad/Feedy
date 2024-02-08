@@ -20,7 +20,7 @@ const ForgotPassword = () => {
             setErrorPop("Incorrect email format")
         }
         else {
-            setErrorPop("Submitted")
+            navigate("/SignUp/HomePage")
 
         }
     }

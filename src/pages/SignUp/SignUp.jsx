@@ -38,7 +38,7 @@ const SignUp = () => {
             error = "Check out the box"
         }
         else {
-            navigate("/SignUp/SignIn")
+            navigate("/SignUp/HomePage")
         }
         setBlankFieldError(error)
     }

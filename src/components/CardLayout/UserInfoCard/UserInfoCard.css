@@ -1,0 +1,31 @@
+.infoCard-container {
+    background-color: #FFF;
+    padding: 1.5rem;
+    width: 16rem;
+    margin-top: 2rem;
+    /* min-width: 4rem; */
+    border-radius: 5px;
+}
+
+.infoCard-currency-container {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.infoCard-numbers {
+    margin-left: 0.5rem;
+}
+
+.infoCard-currency-container p {
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.infoCard-label {
+    margin-top: 0%;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(178, 176, 176);
+}

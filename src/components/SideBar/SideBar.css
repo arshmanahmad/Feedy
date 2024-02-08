@@ -25,7 +25,7 @@
     flex-direction: column;
 }
 
-.sidebar-btn-container button {
+.btns {
     margin-top: 2rem;
     font-size: 1.2rem;
     height: 3.2rem;
@@ -33,7 +33,20 @@
     border: none;
     display: flex;
     align-items: center;
+    background-color: #FFF;
+}
+
+.active-btn {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    height: 3.2rem;
+    border-radius: 4px;
+    color: #FFF;
+    border: none;
+    display: flex;
+    align-items: center;
     background-color: #FF780A;
+
 }
 
 .sidebar-btn-container button img {
