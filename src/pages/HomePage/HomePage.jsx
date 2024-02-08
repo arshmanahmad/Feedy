@@ -31,7 +31,9 @@ const HomePage = () => {
                                 <img className='homepage-graph-img' src={graph} alt="" />
                             </div>
                         </div>
-                        <div className="homepage-box2"></div>
+                        <div className="homepage-box2">
+
+                        </div>
                     </div>
                 </WrapperCard>
             </div>
