@@ -12,7 +12,7 @@ const HomePage = () => {
     const [hideShow, setHideShow] = useState("")
     const handleShowSideBar = () => {
         if (hideShow === "") {
-            setHideShow("hide")
+            setHideShow("display")
         }
         else {
             setHideShow("")
@@ -26,7 +26,6 @@ const HomePage = () => {
                     <div className="homepage-nav-bar">
                         <p className='show-icon' onClick={handleShowSideBar}>≡</p>
                         <p className='dashboard-home'>Dashboard</p>
-
                     </div>
                     <div className="col-box">
                         <div className="homepage-box1">

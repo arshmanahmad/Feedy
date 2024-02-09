@@ -1,5 +1,5 @@
 .side_bar {
-    width: 345px;
+    width: 25%;
     background-color: #FFFFFF;
     display: flex;
     justify-content: center;
@@ -7,8 +7,14 @@
 }
 
 .sidebar-main-logo {
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-main-logo img {
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
+    /* justify-content: center; */
 }
 
 .sidebar-btn {
@@ -49,10 +55,8 @@
 
 }
 
-
-
-.hide_sidebar {
-    width: -345.6px;
+.side_bar--display {
+    display: none;
 
 }
 
@@ -61,8 +65,30 @@
     margin-right: 0.55rem;
 }
 
-@media(max-width: 1040px) {
+@media(max-width : 1020px) {
     .side_bar {
-        /* width: 0px; */
+        width: 15%;
+    }
+
+    .side-bar-container {
+        width: 90%;
+    }
+
+    .response {
+        font-size: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+
+}
+
+@media(max-width : 505px) {
+    .side_bar {
+        display: none;
+    }
+
+    .side_bar--display {
+        display: block;
     }
 }

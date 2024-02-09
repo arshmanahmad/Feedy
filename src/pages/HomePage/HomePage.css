@@ -8,9 +8,12 @@
 }
 
 .show-icon {
-    font-size: 4rem;
-    margin-right: 2rem;
-    display: none;
+    font-size: 2.5rem;
+    margin-right: 2.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid;
+    border-color: rgb(238, 239, 239);
 
 }
 
@@ -31,14 +34,4 @@
 
 .homepage-graph-img {
     width: 100%;
-}
-
-
-
-@media(max-width: 1040px) {
-    .show-icon {
-        display: block;
-    }
-
-
 }
