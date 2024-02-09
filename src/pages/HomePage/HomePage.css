@@ -2,16 +2,24 @@
     display: flex;
 }
 
+.homepage-nav-bar {
+    display: flex;
+    align-items: center;
+}
+
+.show-icon {
+    font-size: 4rem;
+    margin-right: 2rem;
+    display: none;
+
+}
+
 .dashboard-home {
     font-size: 1.6rem;
     font-weight: 600;
 }
 
-.home-cards-box {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-}
+
 
 .homepage-box1 {
     width: 68.5%;
@@ -23,4 +31,14 @@
 
 .homepage-graph-img {
     width: 100%;
+}
+
+
+
+@media(max-width: 1040px) {
+    .show-icon {
+        display: block;
+    }
+
+
 }

@@ -6,7 +6,7 @@ import Logout from '../SideBar/assets/logo/logout-disable.jpg'
 import { useContext } from 'react'
 import Context from '../Context/Context'
 
-const SideBar = () => {
+const SideBar = ({ className = "" }) => {
     const [activeButton, setActiveButton] = useState(0)
     const { sidebarButtons } = useContext(Context);
     const handleActiveButton = (index) => {
@@ -14,7 +14,7 @@ const SideBar = () => {
     }
     return (
         <>
-            <div className="side-bar">
+            <div className={`${className} side_bar ${className === "hide" ? "hide_sidebar" : ""}`}>
                 <div className='side-bar-container'>
                     <img className='sidebar-main-logo' src={logo} alt="" />
                     <div className="sidebar-btn-container">

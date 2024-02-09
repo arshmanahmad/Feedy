@@ -4,7 +4,9 @@ import './WrapperCard.css'
 const WrapperCard = ({ children, className = "" }) => {
     return (
         <>
-            <div className={`${className} card_layout`}>{children}</div>
+            <div className={`${className} card_layout`}>
+                {children}
+            </div>
         </>
     )
 }

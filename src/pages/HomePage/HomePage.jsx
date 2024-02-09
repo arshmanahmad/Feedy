@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './HomePage.css'
 import SideBar from '../../components/SideBar/SideBar'
 import WrapperCard from "../../components/CardLayout/WrapperCard/WrapperCard"
@@ -9,19 +9,28 @@ import cube from './assets/icons/cube.png'
 import currency from './assets/icons/9.png'
 import graph from './assets/images/Group 1926@2x.png'
 const HomePage = () => {
-
+    const [hideShow, setHideShow] = useState("")
+    const handleShowSideBar = () => {
+        if (hideShow === "") {
+            setHideShow("hide")
+        }
+        else {
+            setHideShow("")
+        }
+    }
     return (
         <>
             <div className='homePage_container'>
-                <SideBar />
+                <SideBar className={hideShow} />
                 <WrapperCard>
                     <div className="homepage-nav-bar">
+                        <p className='show-icon' onClick={handleShowSideBar}>≡</p>
                         <p className='dashboard-home'>Dashboard</p>
 
                     </div>
                     <div className="col-box">
                         <div className="homepage-box1">
-                            <div className="home-cards-box">
+                            <div className="row home-cards-box">
                                 <UserInfoCard icon={currency} numbers="28,000.300" label="Total Income" currency="$" />
                                 <UserInfoCard icon={group} numbers="254" label="Customers" />
                                 <UserInfoCard icon={cube} numbers="30" label="Products" />

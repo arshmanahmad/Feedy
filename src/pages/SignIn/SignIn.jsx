@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import hideIcon from '../../assets/Icons/icon view password.png'
 import visibilityIcon from "../../assets/Icons/visibility-less-weight.png"
 import ErrorPopup from "../../components/ErrorPopup/ErrorPopup"
+import axios from 'axios';
 const SignIn = () => {
     const [passwordType, setPasswordType] = useState("password")
     const [email, setEmail] = useState('')
@@ -34,15 +35,27 @@ const SignIn = () => {
         }
         setErrorPopUp(error)
     }
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        validator()
+
+        await axios.post("https://feedy-server-production.up.railway.app/api/signin", {
+            email,
+            password
+        }).then(response => {
+            console.log(response);
+            if (response.data.token) {
+                navigate("/Signup/HomePage")
+            }
+            else {
+                setErrorPopUp(response.data.message)
+            }
+        })
     }
     const handleClick = () => {
         navigate("/SignIn/ForgotPassword")
     }
     const handlePathSignUp = () => {
-        navigate("/")
+        navigate("/");
 
     }
     const handleChangePasswordVisibility = () => {
