@@ -6,6 +6,7 @@ import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import backArrow from './assets/icons/backArrow.png'
 import ErrorPopup from '../../components/ErrorPopup/ErrorPopup';
+import axios from 'axios';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('')
@@ -24,9 +25,17 @@ const ForgotPassword = () => {
 
         }
     }
-    const handleSubmission = (e) => {
+    // isValidDetail()
+    const handleSubmission = async (e) => {
         e.preventDefault();
-        isValidDetail()
+        await axios.post("https://feedy-server-production.up.railway.app/api/forgetPassword", {
+            email,
+        }).then(
+            response => {
+
+            }
+        )
+
     }
     const handleClick = () => {
         navigate("/")
@@ -46,7 +55,7 @@ const ForgotPassword = () => {
                                     <Input label="Your Email" type='email' onChange={(e) => setEmail(e.target.value)} placeholder="email" />
                                 </div>
                                 <ErrorPopup value={errorPop} />
-                                <Button onClick={handleSubmission} text="Sign in" />
+                                <Button onClick={handleSubmission} text="Reset password" />
                             </form>
                             <div className="backLink-box">
                                 <img src={backArrow} alt="" onClick={handleClick} />

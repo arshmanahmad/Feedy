@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import hideIcon from '../../assets/Icons/icon view password.png'
 import visibilityIcon from '../../assets/Icons/visibility-less-weight.png'
 import ErrorPopup from "../../components/ErrorPopup/ErrorPopup"
+import axios from 'axios';
 const SignUp = () => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -43,9 +44,21 @@ const SignUp = () => {
         setBlankFieldError(error)
     }
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault();
-        checkValidation()
+        await axios.post("https://feedy-server-production.up.railway.app/api/singup", {
+            name,
+            email,
+            password,
+        }).then(response => {
+            console.log(response);
+            // if (!response.data) {
+            //     navigate("/HomePage")
+            // }
+            // else {
+            //     setBlankFieldError(response.data.message)
+            // }
+        })
     }
 
     const handleSignIn = () => {
@@ -94,7 +107,7 @@ const SignUp = () => {
                                 <div className="signUp-label-box">
                                     <Input type="checkBox" onInputClick={handleCheckBox} checked={isChecked} /><Label onClickFirstText={handleCheck} text="I accept the   " className='SignUp-label1' changeColoredText="  Terms and Conditions" />
                                 </div>
-                                <Button onClick={handleClick} text="Sign in" />
+                                <Button onClick={handleClick} text="Sign up" />
                             </form>
                             <Label onClick={handleSignIn} className='SignUp-label2' text=" Already have an account?" color="blue" changeColoredText="Sign in" />
                         </div>

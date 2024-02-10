@@ -10,6 +10,8 @@ import visibilityIcon from "../../assets/Icons/visibility-less-weight.png"
 import ErrorPopup from "../../components/ErrorPopup/ErrorPopup"
 import axios from 'axios';
 const SignIn = () => {
+    const baseUrl = process.env.REACT_APP_BASE_URL
+    console.log(baseUrl)
     const [passwordType, setPasswordType] = useState("password")
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -37,14 +39,13 @@ const SignIn = () => {
     }
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
-        await axios.post("https://feedy-server-production.up.railway.app/api/signin", {
+        await axios.post(baseUrl + "/api/signin", {
             email,
-            password
+            password,
         }).then(response => {
             console.log(response);
             if (response.data.token) {
-                navigate("/Signup/HomePage")
+                navigate("/HomePage")
             }
             else {
                 setErrorPopUp(response.data.message)
