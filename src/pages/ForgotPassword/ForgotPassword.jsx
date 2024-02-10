@@ -9,6 +9,7 @@ import ErrorPopup from '../../components/ErrorPopup/ErrorPopup';
 import axios from 'axios';
 
 const ForgotPassword = () => {
+    const baseUrl = process.env.REACT_APP_BASE_URL
     const [email, setEmail] = useState('')
     const [errorPop, setErrorPop] = useState('')
     const navigate = useNavigate()
@@ -28,11 +29,12 @@ const ForgotPassword = () => {
     // isValidDetail()
     const handleSubmission = async (e) => {
         e.preventDefault();
-        await axios.post("https://feedy-server-production.up.railway.app/api/forgetPassword", {
+        await axios.post(baseUrl + "/api/forgetPassword", {
             email,
         }).then(
             response => {
-
+                console.log(response);
+                setErrorPop(response.data.message)
             }
         )
 
