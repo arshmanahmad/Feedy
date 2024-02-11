@@ -87,7 +87,7 @@ const SignIn = () => {
                             <form className="signIn-input-container">
                                 <div className="row">
                                     <Input label="Your Email" type='email' onChange={(e) => setEmail(e.target.value)} placeholder="email" />
-                                    <Input label="Password" onClick={handleChangePasswordVisibility} onChange={(e) => setPassword(e.target.value)} icon={passwordType === "password" ? visibilityIcon : hideIcon} type={passwordType} placeholder="password" />
+                                    <Input label="Password" onClick={handleChangePasswordVisibility} onChange={(e) => setPassword(e.target.value)} icon={passwordType === "password" ? hideIcon : visibilityIcon} type={passwordType} placeholder="password" />
                                 </div>
                                 <ErrorPopup value={errorPopup} />
                                 <div className="signIn-label-box">

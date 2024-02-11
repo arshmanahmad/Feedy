@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import './SignUp.css'
+import './ResetPassword.css'
 import H1 from "../../components/H1/H1";
 import Input from '../../components/Input/Input'
-import Label from '../../components/Label/Label';
 import Button from '../../components/Button/Button';
+import backIcon from '../../assets/Icons/backArrow.png'
 import { useNavigate } from 'react-router-dom';
 import hideIcon from '../../assets/Icons/icon view password.png'
 import visibilityIcon from '../../assets/Icons/visibility-less-weight.png'
@@ -12,65 +12,28 @@ import axios from 'axios';
 const SignUp = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     console.log(baseUrl)
-    const [name, setName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
+
     const [password, setPassword] = useState('')
     const [blankFieldError, setBlankFieldError] = useState('')
     const [isChecked, setIsChecked] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState('');
     const [inputPasswordType, setPasswordInputType] = useState('password');
     const [inputConfirmPassType, setInputConfirmPassType] = useState('password');
-    const [sendEmail, setSendEmail] = useState(false)
+
     const navigate = useNavigate()
-    const checkValidation = () => {
-        let error = "";
-        if (name === "" || lastName === "" || email === "" || password === "" || confirmPassword === "") {
-            error = "Please fill in all fields"
-        }
-        else if (!new RegExp(/\S+@\S+\.\S+/).test(email)) {
-            error = "Incorrect email format"
-        }
-        else if (password.length < 7) {
-            error = "Password must be at least 8 characters"
-        }
-        else if (password !== confirmPassword) {
-            error = "Password & confirm password is not same"
-        }
-        else if (isChecked === false) {
-            error = "Check out the box"
-        }
-        else {
-            navigate("/SignUp/HomePage")
-        }
-        setBlankFieldError(error)
-    }
 
     const handleClick = async (e) => {
         e.preventDefault();
         await axios.post(baseUrl + "/api/singup", {
-            name,
-            email,
-            password,
+
         }).then(response => {
             console.log(response);
-            if (response.data.success === true) {
-                setSendEmail(!sendEmail)
-                navigate("/otp")
-            }
-            else {
-                setBlankFieldError(response.data.message)
-            }
-        })
-        await axios.post(baseUrl + "/api/generateOTP", {
-            email
-        }).then(response => {
-            console.log(response)
+
         })
     }
 
     const handleSignIn = () => {
-        navigate("/SignIn")
+        navigate("/SignUp/SignIn")
     }
     const handleShowPassword = () => {
         if (inputPasswordType === "password") {
@@ -102,22 +65,20 @@ const SignUp = () => {
                     </div>
                     <div className="signUp-content-container flex-box col-sm-6 col-lg-7" >
                         <div className='content-container'>
-                            <H1 value="Create Your Account" />
+                            <H1 value="Reset password?" />
+                            <p className='otp-p'>Password must be at least 8 characters.</p>
                             <form className="signUp-input-container">
-                                <div className="row">
-                                    <Input label="Name" onChange={(e) => setName(e.target.value)} type='text' placeholder="name" />
-                                    <Input label="Last Name" onChange={(e) => setLastName(e.target.value)} type='text' placeholder="last name" />
-                                    <Input label="Your Email" onChange={(e) => setEmail(e.target.value)} type='email' placeholder="email" />
+                                <div className="row resetPassword-input">
                                     <Input label="Password" onChange={(e) => setPassword(e.target.value)} icon={inputPasswordType === "password" ? hideIcon : visibilityIcon} id="password" onClick={handleShowPassword} type={inputPasswordType} placeholder="password" />
                                     <Input label="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} icon={inputConfirmPassType === "password" ? hideIcon : visibilityIcon} onClick={handleShowConfirmPass} type={inputConfirmPassType} placeholder="confirm password" />
                                 </div>
                                 <ErrorPopup value={blankFieldError} />
-                                <div className="signUp-label-box">
-                                    <Input type="checkBox" onInputClick={handleCheckBox} checked={isChecked} /><Label onClickFirstText={handleCheck} text="I accept the   " className='SignUp-label1' changeColoredText="  Terms and Conditions" />
+                                <Button onClick={handleClick} text="Send" />
+                                <div className="otp-backLink-box">
+                                    <img src={backIcon} alt="" onClick={handleClick} />
+                                    <a className='otp-back-link' onClick={handleClick}>Back to sign up</a>
                                 </div>
-                                <Button onClick={handleClick} text="Sign up" />
                             </form>
-                            <Label onClick={handleSignIn} className='SignUp-label2' text=" Already have an account?" color="blue" changeColoredText="Sign in" />
                         </div>
                     </div>
                 </div>

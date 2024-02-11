@@ -1,0 +1,59 @@
+.otp-main-container {
+    width: 100%;
+}
+
+.otp-inner-box {
+    margin: 0% !important;
+    padding: 0% !important;
+}
+
+.otp-img-container {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/Images/cart.png);
+
+}
+
+.otp-p {
+    color: #E0E0E0;
+    font-size: 1.2rem;
+}
+
+.otp-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20rem 5rem 15rem;
+}
+
+.otp-label2 {
+    margin-left: 5rem;
+}
+
+.otp-inputs {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+
+.otp-back-link {
+    margin-right: 19.5rem;
+    margin-top: 3rem;
+    cursor: pointer;
+    margin-left: 5px;
+    color: #606DE2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.otp-backLink-box img {
+    cursor: pointer;
+}
+
+.otp-backLink-box {
+    display: flex;
+    align-items: baseline;
+}

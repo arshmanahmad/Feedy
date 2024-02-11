@@ -34,7 +34,13 @@ const ForgotPassword = () => {
         }).then(
             response => {
                 console.log(response);
-                setErrorPop(response.data.message)
+                if (response.data.token) {
+                    setErrorPop(response.data.message)
+                }
+                else {
+                    setErrorPop(response.data.message)
+
+                }
             }
         )
 
