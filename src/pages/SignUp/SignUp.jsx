@@ -54,18 +54,13 @@ const SignUp = () => {
             password,
         }).then(response => {
             console.log(response);
-            if (response.data.success === true) {
-                setSendEmail(!sendEmail)
-                navigate("/otp")
-            }
-            else {
-                setBlankFieldError(response.data.message)
-            }
-        })
-        await axios.post(baseUrl + "/api/generateOTP", {
-            email
-        }).then(response => {
-            console.log(response)
+            // if (response.data.success === true) {
+            //     // setSendEmail(!sendEmail)
+            //     // navigate("/otp")
+            // }
+            // else {
+            //     setBlankFieldError(response.data.message)
+            // }
         })
     }
 
