@@ -54,13 +54,13 @@ const SignUp = () => {
             password,
         }).then(response => {
             console.log(response);
-            // if (response.data.success === true) {
-            //     // setSendEmail(!sendEmail)
-            //     // navigate("/otp")
-            // }
-            // else {
-            //     setBlankFieldError(response.data.message)
-            // }
+            if (response.data.success === true) {
+                setSendEmail(!sendEmail)
+                navigate("/otp")
+            }
+            if (response.data.success === false) {
+                setBlankFieldError(response.data.message)
+            }
         })
     }
 
