@@ -1,0 +1,32 @@
+.signUp-main-container {
+    width: 100%;
+}
+
+.inner-box {
+    margin: 0% !important;
+    padding: 0% !important;
+}
+
+.error-popup {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    color: rgb(243, 68, 68);
+}
+
+.signUp-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20rem 5rem 15rem;
+    height: 100vh;
+}
+
+.signUp-label-box {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.SignUp-label2 {
+    margin-left: 5rem;
+}

@@ -1,0 +1,25 @@
+.signIn-p {
+    color: #E0E0E0;
+    font-size: 1.2rem;
+}
+
+.signIn-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20rem 5rem 15rem;
+}
+
+.signIn-label-box {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.signIn-label2 {
+    margin-left: 5rem;
+}
+
+.SignIn-path-label {
+    margin-left: 6rem;
+}
