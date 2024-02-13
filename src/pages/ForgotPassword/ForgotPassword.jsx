@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import backArrow from './assets/icons/backArrow.png'
 import ErrorPopup from '../../components/ErrorPopup/ErrorPopup';
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 
 const ForgotPassword = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [email, setEmail] = useState('')
+    const [forgetLoading, setForgetLoading] = useState(false)
     const [errorPop, setErrorPop] = useState('')
     const navigate = useNavigate()
     const isValidDetail = () => {
@@ -28,22 +30,22 @@ const ForgotPassword = () => {
     }
     // isValidDetail()
     const handleSubmission = async (e) => {
+        setForgetLoading(true)
         e.preventDefault();
         await axios.post(baseUrl + "/api/forgetPassword", {
             email,
         }).then(
             response => {
+                setForgetLoading(false)
                 console.log(response);
-                if (response.data.token) {
+                if (response.data.email) {
                     setErrorPop(response.data.message)
                 }
                 else {
                     setErrorPop(response.data.message)
-
                 }
             }
         )
-
     }
     const handleClick = () => {
         navigate("/")
@@ -63,7 +65,7 @@ const ForgotPassword = () => {
                                     <Input label="Your Email" type='email' onChange={(e) => setEmail(e.target.value)} placeholder="email" />
                                 </div>
                                 <ErrorPopup value={errorPop} />
-                                <Button onClick={handleSubmission} text="Reset password" />
+                                <Button onClick={handleSubmission} text={forgetLoading ? <Loader /> : "Reset password"} />
                             </form>
                             <div className="backLink-box">
                                 <img src={backArrow} alt="" onClick={handleClick} />

@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import hideIcon from '../../assets/Icons/icon view password.png'
 import visibilityIcon from '../../assets/Icons/visibility-less-weight.png'
 import ErrorPopup from "../../components/ErrorPopup/ErrorPopup"
+import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
+import { wait } from '@testing-library/user-event/dist/utils';
 const SignUp = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     console.log(baseUrl)
@@ -22,6 +24,7 @@ const SignUp = () => {
     const [inputPasswordType, setPasswordInputType] = useState('password');
     const [inputConfirmPassType, setInputConfirmPassType] = useState('password');
     const [sendEmail, setSendEmail] = useState(false)
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
     const checkValidation = () => {
         let error = "";
@@ -46,17 +49,27 @@ const SignUp = () => {
         setBlankFieldError(error)
     }
 
+    const generateOtp = async () => {
+        await axios.post(baseUrl + "/api/generateOTP", {
+            email,
+        }).then(response => {
+            navigate("/otp")
+        })
+    }
     const handleClick = async (e) => {
         e.preventDefault();
+        setLoading(!loading)
         await axios.post(baseUrl + "/api/singup", {
             name,
             email,
             password,
         }).then(response => {
             console.log(response);
+            setLoading(false)
             if (response.data.success === true) {
                 setSendEmail(!sendEmail)
-                navigate("/otp")
+                generateOtp()
+                setBlankFieldError(response.data.message)
             }
             if (response.data.success === false) {
                 setBlankFieldError(response.data.message)
@@ -110,7 +123,7 @@ const SignUp = () => {
                                 <div className="signUp-label-box">
                                     <Input type="checkBox" onInputClick={handleCheckBox} checked={isChecked} /><Label onClickFirstText={handleCheck} text="I accept the   " className='SignUp-label1' changeColoredText="  Terms and Conditions" />
                                 </div>
-                                <Button onClick={handleClick} text="Sign up" />
+                                <Button onClick={handleClick} text={loading ? <Loader /> : "Sign Up"} />
                             </form>
                             <Label onClick={handleSignIn} className='SignUp-label2' text=" Already have an account?" color="blue" changeColoredText="Sign in" />
                         </div>

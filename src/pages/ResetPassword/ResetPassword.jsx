@@ -9,6 +9,7 @@ import hideIcon from '../../assets/Icons/icon view password.png'
 import visibilityIcon from '../../assets/Icons/visibility-less-weight.png'
 import ErrorPopup from "../../components/ErrorPopup/ErrorPopup"
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 const SignUp = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     console.log(baseUrl)
@@ -19,19 +20,22 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [inputPasswordType, setPasswordInputType] = useState('password');
     const [inputConfirmPassType, setInputConfirmPassType] = useState('password');
-
+    const [resetLoading, setResetLoading] = useState(false);
     const navigate = useNavigate()
 
     const handleClick = async (e) => {
+        setResetLoading(true)
         e.preventDefault();
-        await axios.post(baseUrl + "/api/singup", {
+        await axios.post(baseUrl + "/api/resetPassword", {
 
         }).then(response => {
-            console.log(response);
+            setResetLoading(false)
 
         })
     }
+    const handleReverse = () => {
 
+    }
     const handleSignIn = () => {
         navigate("/SignUp/SignIn")
     }
@@ -73,10 +77,10 @@ const SignUp = () => {
                                     <Input label="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} icon={inputConfirmPassType === "password" ? hideIcon : visibilityIcon} onClick={handleShowConfirmPass} type={inputConfirmPassType} placeholder="confirm password" />
                                 </div>
                                 <ErrorPopup value={blankFieldError} />
-                                <Button onClick={handleClick} text="Send" />
+                                <Button onClick={handleClick} text={resetLoading ? <Loader /> : "Send"} />
                                 <div className="otp-backLink-box">
-                                    <img src={backIcon} alt="" onClick={handleClick} />
-                                    <a className='otp-back-link' onClick={handleClick}>Back to sign up</a>
+                                    <img src={backIcon} alt="" onClick={handleReverse} />
+                                    <a className='otp-back-link' onClick={handleReverse}>Back to sign up</a>
                                 </div>
                             </form>
                         </div>

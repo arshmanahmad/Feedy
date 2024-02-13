@@ -9,9 +9,11 @@ import hideIcon from '../../assets/Icons/icon view password.png'
 import visibilityIcon from "../../assets/Icons/visibility-less-weight.png"
 import ErrorPopup from "../../components/ErrorPopup/ErrorPopup"
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 const SignIn = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     console.log(baseUrl)
+    const [signInLoading, setSignInLoading] = useState(false)
     const [passwordType, setPasswordType] = useState("password")
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -39,10 +41,12 @@ const SignIn = () => {
     }
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+        setSignInLoading(true)
         await axios.post(baseUrl + "/api/signin", {
             email,
             password,
         }).then(response => {
+            setSignInLoading(false)
             console.log(response);
             if (response.data.token) {
                 navigate("/HomePage")
@@ -93,7 +97,7 @@ const SignIn = () => {
                                 <div className="signIn-label-box">
                                     <Input type="checkBox" onInputClick={handleCheckCheckbox} checked={check} /><Label onClickFirstText={handleCheck} onClick={handleClick} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
                                 </div>
-                                <Button onClick={handleFormSubmit} text="Sign in" />
+                                <Button onClick={handleFormSubmit} text={signInLoading ? <Loader /> : "Sign in"} />
                             </form>
                             <Label className='SignIn-path-label' text="Want to go back" color="blue" onClick={handlePathSignUp} changeColoredText="for Sign Up?" />
                         </div>

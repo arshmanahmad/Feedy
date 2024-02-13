@@ -15,8 +15,8 @@ const App = () => {
         dbbe5ab9b3ecde71d158 */}
         <BrowserRouter>
           <Routes>
-            < Route path="SignIn/resetPassword/:userId/:token" element={<ResetPassword />} />
             < Route path="/" element={<SignUp />} />
+            < Route path="SignIn/resetPassword/:userId/:token" element={<ResetPassword />} />
             < Route path="/otp" element={<OtpVerification />} />
             < Route path="/HomePage" element={<HomePage />} />
             < Route path="/SignIn" element={<SignIn />} />
@@ -27,5 +27,4 @@ const App = () => {
     </>
   )
 }
-
 export default App

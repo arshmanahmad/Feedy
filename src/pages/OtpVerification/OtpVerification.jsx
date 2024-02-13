@@ -8,17 +8,21 @@ import { useNavigate } from 'react-router-dom';
 import backArrow from '../../assets/Icons/backArrow.png'
 
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 const SignUp = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     console.log(baseUrl)
+    const [otpLoading, setOtpLoading] = useState(false)
 
     const navigate = useNavigate()
 
     const handleClick = async (e) => {
+        setOtpLoading(true)
         e.preventDefault();
         await axios.post(baseUrl + "/api/verifyOTP", {
 
         }).then(response => {
+            setOtpLoading(false)
 
         })
     }
@@ -47,7 +51,7 @@ const SignUp = () => {
                                     <Input className="otp" type="number" />
                                     <Input className="otp" type="number" />
                                 </div>
-                                <Button onClick={handleClick} text="Verify" />
+                                <Button onClick={handleClick} text={otpLoading ? <Loader /> : "Verify"} />
                                 <Label onClick={handleSignIn} className='otp-label2' text=" Didn't receive the code?" color="blue" changeColoredText="Resend after 20s" />
                             </form>
                             <div className="otp-backLink-box">
