@@ -58,7 +58,7 @@ const SignUpForm = () => {
             email,
         }).then(response => {
             console.log(response);
-            navigate("/signup/verifyOtp");
+            navigate("/verifyOtp");
         })
     }
 

@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
 import './ResetPassword.css'
-import H1 from "../../components/H1/H1";
-import Input from '../../components/Input/Input'
-import Button from '../../components/Button/Button';
-import backIcon from '../../assets/Icons/backArrow.png'
+import React, { useState } from 'react'
+import H1 from '../../../components/H1/H1';
+import Input from '../../../components/Input/Input';
+import Button from '../../../components/Button/Button';
+import backIcon from "../../../assets/Icons/backArrow.png"
 import { useNavigate } from 'react-router-dom';
-import hideIcon from '../../assets/Icons/icon view password.png'
-import visibilityIcon from '../../assets/Icons/visibility-less-weight.png'
-import ErrorPopup from "../../components/ErrorPopup/ErrorPopup"
+import hideIcon from '../../../assets/Icons/icon view password.png'
+import visibilityIcon from '../../../assets/Icons/visibility-less-weight.png'
+import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
+import Loader from '../../../components/Loader/Loader';
 import axios from 'axios';
-import Loader from '../../components/Loader/Loader';
 const SignUp = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     console.log(baseUrl)

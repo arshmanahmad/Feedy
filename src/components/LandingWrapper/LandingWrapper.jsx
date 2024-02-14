@@ -12,7 +12,7 @@ const LandingWrapper = () => {
                 </div>
                 <Routes>
                     <Route path='/signin/*' element={<SignIn />} />
-                    <Route path='/signUp/*' element={<SignUp />} />
+                    <Route path='/*' element={<SignUp />} />
                 </Routes>
             </div>
         </div>

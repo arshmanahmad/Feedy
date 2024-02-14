@@ -10,6 +10,11 @@ import axios from 'axios';
 import Loader from '../../../components/Loader/Loader';
 
 const OtpVerification = () => {
+    const [firstNumber, setFirstNumber] = useState("");
+    const [secondNumber, setSecondNumber] = useState('');
+    const [thirdNumber, setThirdNumber] = useState('');
+    const [forthNumber, setForthNumber] = useState('');
+    const [totalNumber, setTotalNumbers] = useState('')
     const baseUrl = process.env.REACT_APP_BASE_URL
     console.log(baseUrl)
     const [otpLoading, setOtpLoading] = useState(false)
@@ -19,12 +24,17 @@ const OtpVerification = () => {
     const handleClick = async (e) => {
         setOtpLoading(true)
         e.preventDefault();
-        await axios.post(baseUrl + "/api/verifyOTP", {
-
-        }).then(response => {
-            setOtpLoading(false)
-
-        })
+        setTotalNumbers(firstNumber, secondNumber, thirdNumber, forthNumber);
+        console.log(totalNumber)
+        // await axios.post(baseUrl + "/api/verifyOTP", {
+        //     firstNumber,
+        //     secondNumber,
+        //     thirdNumber,
+        //     forthNumber,
+        // }).then(response => {
+        //     setOtpLoading(false)
+        //     if(response.data.otp)
+        // })
     }
 
     const handleSignIn = () => {
@@ -42,10 +52,10 @@ const OtpVerification = () => {
                     <Label text="We sent a code to  " className='SignUp-label1' changeColoredText="  arshman****@gmail.com" />
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
-                            <Input max="0" className="otp" type="number" />
-                            <Input className="otp" type="number" />
-                            <Input className="otp" type="number" />
-                            <Input className="otp" type="number" />
+                            <Input onChange={(e) => { setFirstNumber(e.target.value) }} max="0" className="otp" type="number" />
+                            <Input onChange={(e) => { setSecondNumber(e.target.value) }} className="otp" type="number" />
+                            <Input onChange={(e) => { setThirdNumber(e.target.value) }} className="otp" type="number" />
+                            <Input onChange={(e) => { setForthNumber(e.target.value) }} className="otp" type="number" />
                         </div>
                         <Button onClick={handleClick} text={otpLoading ? <Loader /> : "Verify"} />
                         <Label onClick={handleSignIn} className='otp-label2' text=" Didn't receive the code?" color="blue" changeColoredText="Resend after 20s" />
