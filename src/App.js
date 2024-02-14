@@ -8,10 +8,10 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/*" element={<LandingWrapper />} /> */}
+            <Route path="/*" element={<LandingWrapper />} />
             {/* <Route path="SignIn/resetPassword/:userId/:token" element={<ResetPassword />} /> */}
             {/* <Route path="/otp" element={<OtpVerification />} /> */}
-            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard/*" element={<HomePage />} />
             {/* <Route path="/" element={<SignIn />} /> */}
             {/* <Route path="/SignIn/ForgotPassword" element={<ForgotPassword />} /> */}
           </Routes>
