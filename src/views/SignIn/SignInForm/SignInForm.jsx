@@ -13,56 +13,65 @@ import Loader from '../../../components/Loader/Loader';
 
 const SignInForm = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
-    console.log(baseUrl)
-    const [signInLoading, setSignInLoading] = useState(false)
-    const [passwordType, setPasswordType] = useState("password")
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [check, setCheck] = useState(false)
-    const [errorPopup, setErrorPopUp] = useState('');
     const navigate = useNavigate()
+    const [check, setCheck] = useState(false)
+    const [passwordType, setPasswordType] = useState("password")
+    const [signInLoading, setSignInLoading] = useState(false)
+    const [errors, setError] = useState({})
+    const [signInForm, setSignInForm] = useState({
+        email: "",
+        password: "",
+    });
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSignInForm({
+            ...signInForm,
+            [e.target.name]: value
+        }
+        )
+    }
+
 
 
     const validator = () => {
-        let error = "";
+        let error = {};
+        const { email, password } = signInForm;
         if (email === "" || password === "") {
-            error = "Please fill in all the fields"
+            error.fillAllFields = true
         }
         else if (password.length < 7) {
-            error = "Password must be at least 8 characters"
+            error.passLength = true;
         }
         else if (!new RegExp(/\S+@\S+\.\S+/).test(email)) {
-            error = "Incorrect email format"
+            error.invalidEmail = true;
         }
         else if (check === false) {
-            error = "Check out the box"
+            error.checked = true;
         }
-        else {
-            navigate("/SignUp/HomePage")
-        }
-        setErrorPopUp(error)
+        setError(error)
 
-        return error !== "";
+        return Object.keys(error).length === 0;
     }
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (validator()) {
-
+            let error = {}
             setSignInLoading(true)
             await axios.post(baseUrl + "/api/signin", {
-                email,
-                password,
+                email: signInForm.email,
+                password: signInForm.password
             }).then(response => {
                 setSignInLoading(false)
                 console.log(response);
-                if (response.data.token) {
+                if (response.data.success === true) {
                     navigate("/HomePage")
                 }
-                else {
-                    setErrorPopUp(response.data.message)
+                else if (response.data.success === false) {
+                    error.popUp = response.data.message;
                 }
             })
+            setError(error)
         }
     }
     const handleClick = () => {
@@ -95,10 +104,10 @@ const SignInForm = () => {
                     <p className='signIn-p'>or sign in using email address</p>
                     <form className="signIn-input-container">
                         <div className="row">
-                            <Input label="Your Email" type='email' onChange={(e) => setEmail(e.target.value)} placeholder="email" />
-                            <Input label="Password" onClick={handleChangePasswordVisibility} onChange={(e) => setPassword(e.target.value)} icon={passwordType === "password" ? hideIcon : visibilityIcon} type={passwordType} placeholder="password" />
+                            <Input label="Your Email" name="email" type='email' onChange={handleChange} placeholder="email" />
+                            <Input label="Password" name="password" onClick={handleChangePasswordVisibility} onChange={handleChange} icon={passwordType === "password" ? hideIcon : visibilityIcon} type={passwordType} placeholder="password" />
                         </div>
-                        <ErrorPopup value={errorPopup} />
+                        <ErrorPopup value={errors} />
                         <div className="signIn-label-box">
                             <Input type="checkBox" onInputClick={handleCheckCheckbox} checked={check} /><Label onClickFirstText={handleCheck} onClick={handleClick} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
                         </div>

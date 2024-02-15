@@ -25,7 +25,6 @@ const SignUpForm = () => {
         lastName: "",
         email: "",
         password: "",
-
         confirmPassword: "",
     });
 
@@ -56,7 +55,6 @@ const SignUpForm = () => {
             error.isAgreed = true;
         }
         setErrors(error)
-
         return Object.keys(error).length === 0;
     }
 
