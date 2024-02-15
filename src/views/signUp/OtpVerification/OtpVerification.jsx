@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './OtpVerification.css'
 import H1 from '../../../components/H1/H1';
 import Input from '../../../components/Input/Input'
-import Label from '../../../components/Label/Label';
+// import Label from '../../../components/Label/Label';
 import Button from '../../../components/Button/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
 import backArrow from '../../../assets/Icons/backArrow.png'
@@ -49,7 +49,7 @@ const OtpVerification = () => {
                 <div className='inner-otp-content-container'>
                     <H1 value="Verify OTP" />
                     <p className='otp-p'>Please Enter 4 Digit OTP to verify your account</p>
-                    <Label text="We sent a code to  " className='SignUp-label1' changeColoredText="  arshman****@gmail.com" />
+                    {/* <Label text="We sent a code to  " className='SignUp-label1' changeColoredText="  arshman****@gmail.com" /> */}
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
                             <Input onChange={(e) => { setFirstNumber(e.target.value) }} max="0" className="otp" type="number" />
@@ -58,7 +58,7 @@ const OtpVerification = () => {
                             <Input onChange={(e) => { setForthNumber(e.target.value) }} className="otp" type="number" />
                         </div>
                         <Button onClick={handleClick} text={otpLoading ? <Loader /> : "Verify"} />
-                        <Label onClick={handleSignIn} className='otp-label2' text=" Didn't receive the code?" color="blue" changeColoredText="Resend after 20s" />
+                        {/* <Label onClick={handleSignIn} className='otp-label2' text=" Didn't receive the code?" color="blue" changeColoredText="Resend after 20s" /> */}
                     </form>
                     <div className="otp-backLink-box">
                         <img src={backArrow} alt="" onClick={handleClick} />

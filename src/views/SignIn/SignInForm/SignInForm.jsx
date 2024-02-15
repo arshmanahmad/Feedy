@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./SigninForm.css"
 import H1 from '../../../components/H1/H1';
 import Input from '../../../components/Input/Input'
-import Label from '../../../components/Label/Label';
+import InfoText from '../../../components/InfoText/InfoText';
 import Button from '../../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import hideIcon from '../../../assets/Icons/icon view password.png'
@@ -30,9 +30,6 @@ const SignInForm = () => {
         }
         )
     }
-
-
-
     const validator = () => {
         let error = {};
         const { email, password } = signInForm;
@@ -74,27 +71,8 @@ const SignInForm = () => {
             setError(error)
         }
     }
-    const handleClick = () => {
-        navigate("/SignIn/ForgotPassword")
-    }
     const handlePathSignUp = () => {
         navigate("/signup");
-
-    }
-    const handleChangePasswordVisibility = () => {
-        if (passwordType === "password") {
-            setPasswordType("text")
-        }
-        else {
-            setPasswordType("password")
-        }
-    }
-    const handleCheck = () => {
-        setCheck(!check)
-    }
-    const handleCheckCheckbox = () => {
-        setCheck(!check)
-
     }
     return (
         <>
@@ -105,15 +83,15 @@ const SignInForm = () => {
                     <form className="signIn-input-container">
                         <div className="row">
                             <Input label="Your Email" name="email" type='email' onChange={handleChange} placeholder="email" />
-                            <Input label="Password" name="password" onClick={handleChangePasswordVisibility} onChange={handleChange} icon={passwordType === "password" ? hideIcon : visibilityIcon} type={passwordType} placeholder="password" />
+                            <Input label="Password" name="password" type={passwordType} onClick={() => setPasswordType(passwordType === "password" ? "text" : "password")} onChange={handleChange} icon={passwordType === "password" ? hideIcon : visibilityIcon} placeholder="password" />
                         </div>
                         <ErrorPopup value={errors} />
                         <div className="signIn-label-box">
-                            <Input type="checkBox" onInputClick={handleCheckCheckbox} checked={check} /><Label onClickFirstText={handleCheck} onClick={handleClick} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
+                            <Input type="checkBox" onInputClick={() => setCheck(!check)} checked={check} /><InfoText onFirstTextClick={() => setCheck(!check)} onSecondTextClick={() => navigate("/ForgotPassword")} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
                         </div>
                         <Button onClick={handleFormSubmit} text={signInLoading ? <Loader /> : "Sign in"} />
                     </form>
-                    <Label className='SignIn-path-label' text="Want to go back" color="blue" onClick={handlePathSignUp} changeColoredText="for Sign Up?" />
+                    <InfoText className='SignIn-path-label' text="Want to go back" color="blue" onSecondTextClick={() => navigate("/")} changeColoredText="for Sign Up?" />
                 </div>
             </div>
         </>

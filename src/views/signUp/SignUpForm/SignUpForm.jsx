@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './SignUpForm.css'
 import H1 from "../../../components/H1/H1";
 import Input from '../../../components/Input/Input'
-import Label from '../../../components/Label/Label';
+import Label from '../../../components/InfoText/InfoText';
 import Button from '../../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import hideIcon from '../../../assets/Icons/icon view password.png'
@@ -87,9 +87,7 @@ const SignUpForm = () => {
         }
     }
 
-    const handleSignIn = () => {
-        navigate("/signin")
-    }
+
 
     return (
         <>
@@ -101,7 +99,7 @@ const SignUpForm = () => {
                             <Input label="First Name" onChange={handleChange} type='text' name="firstName" placeholder="first name" />
                             <Input label="Last Name" onChange={handleChange} type='text' name="lastName" placeholder="last name" />
                             <Input label="Your Email" onChange={handleChange} type='email' name="email" placeholder="email" />
-                            <Input label="Password" onChange={handleChange} name="password" icon={isShowPassword2 ? hideIcon : visibilityIcon} id="password" onClick={() => setIsShowPassword2(!isShowPassword2)} type={isShowPassword2 ? "text" : "password"} placeholder="password" />
+                            <Input label="Password" onChange={handleChange} name="password" icon={isShowPassword2 ? visibilityIcon : hideIcon} id="password" onClick={() => setIsShowPassword2(!isShowPassword2)} type={isShowPassword2 ? "text" : "password"} placeholder="password" />
                             <Input label="Confirm Password" onChange={handleChange} name="confirmPassword" icon={isShowPassword ? visibilityIcon : hideIcon} onClick={() => setIsShowPassword(!isShowPassword)} type={isShowPassword ? "text" : "password"} placeholder="confirm password" />
                         </div>
                         <ErrorPopup value={errors} />
@@ -110,7 +108,7 @@ const SignUpForm = () => {
                         </div>
                         <Button onClick={handleClick} text={loading ? <Loader /> : "Sign Up"} />
                     </form>
-                    <Label onClick={handleSignIn} className='SignUp-label2' text=" Already have an account?" color="blue" changeColoredText="Sign in" />
+                    <Label onSecondTextClick={() => navigate("/signin")} className='SignUp-label2' text=" Already have an account?" color="blue" changeColoredText="Sign in" />
                 </div>
             </div>
         </>
