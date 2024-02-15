@@ -25,6 +25,7 @@ const SignUpForm = () => {
         lastName: "",
         email: "",
         password: "",
+
         confirmPassword: "",
     });
 
