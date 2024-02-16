@@ -71,9 +71,7 @@ const SignInForm = () => {
             setError(error)
         }
     }
-    const handlePathSignUp = () => {
-        navigate("/signup");
-    }
+
     return (
         <>
             <div className="signIn-content-container flex-box col-sm-6 col-lg-7" >
