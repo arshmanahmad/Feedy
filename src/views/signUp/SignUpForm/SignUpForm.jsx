@@ -71,6 +71,7 @@ const SignUpForm = () => {
         e.preventDefault();
         if (checkValidation()) {
             setLoading(!loading);
+            const error = {};
             await axios.post(baseUrl + "/api/singup", {
                 name: `${formData.firstName} ${formData.lastName}`,
                 email: formData.email,
@@ -82,7 +83,9 @@ const SignUpForm = () => {
                     generateOtp()
                 }
                 if (response.data.success === false) {
+                    error.popUp = response.data.message
                 }
+                setErrors(error)
             })
         }
     }

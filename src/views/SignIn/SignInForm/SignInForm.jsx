@@ -46,7 +46,6 @@ const SignInForm = () => {
             error.checked = true;
         }
         setError(error)
-
         return Object.keys(error).length === 0;
     }
 
@@ -85,7 +84,7 @@ const SignInForm = () => {
                         </div>
                         <ErrorPopup value={errors} />
                         <div className="signIn-label-box">
-                            <Input type="checkBox" onInputClick={() => setCheck(!check)} checked={check} /><InfoText onFirstTextClick={() => setCheck(!check)} onSecondTextClick={() => navigate("/ForgotPassword")} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
+                            <Input type="checkBox" onInputClick={() => setCheck(!check)} checked={check} /><InfoText onFirstTextClick={() => setCheck(!check)} onSecondTextClick={() => navigate("/signin/ForgotPassword")} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
                         </div>
                         <Button onClick={handleFormSubmit} text={signInLoading ? <Loader /> : "Sign in"} />
                     </form>
