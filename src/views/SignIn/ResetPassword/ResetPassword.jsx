@@ -4,7 +4,7 @@ import H1 from '../../../components/H1/H1';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import backIcon from "../../../assets/Icons/backArrow.png"
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import hideIcon from '../../../assets/Icons/icon view password.png'
 import visibilityIcon from '../../../assets/Icons/visibility-less-weight.png'
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
@@ -21,6 +21,13 @@ const SignUp = () => {
         password: "",
         confirmPassword: "",
     })
+    const location = useLocation();
+    const parts = location.pathname.split("/")
+    const token = parts[parts.length - 1];
+    const userID = parts[parts.length - 2];
+    console.log(token);
+    console.log(userID);
+
     const handleChange = (e) => {
         const value = e.target.value;
         setForgotPassData({
@@ -47,11 +54,12 @@ const SignUp = () => {
             setResetLoading(true)
             await axios.put(baseUrl + "/api/resetPassword", {
                 password: forgotPassData.password,
-                confirmPassword: forgotPassData.confirmPassword
+                userID,
+                token,
             }).then(response => {
                 setResetLoading(false);
                 if (response.data.success === true) {
-                    navigate("/homepage/*")
+                    navigate("/dashboard")
                     error.popUp = response.data.message;
                 }
                 else if (response.data.success === false) {
