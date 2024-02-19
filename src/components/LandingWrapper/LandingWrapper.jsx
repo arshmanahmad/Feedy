@@ -11,7 +11,7 @@ const LandingWrapper = () => {
                 <div className="signIn-img-container  col-sm-6 col-lg-5">
                 </div>
                 <Routes>
-                    <Route path='/signin/*' element={<SignIn />} />
+                    <Route path='/SignIn/*' element={<SignIn />} />
                     <Route path='/*' element={<SignUp />} />
                 </Routes>
             </div>

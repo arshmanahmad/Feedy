@@ -10,7 +10,7 @@ import visibilityIcon from '../../../assets/Icons/visibility-less-weight.png'
 import ErrorPopup from "../../../components/ErrorPopup/ErrorPopup"
 import Loader from '../../../components/Loader/Loader';
 import axios from 'axios';
-import { Cookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 
 const SignUpForm = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -55,6 +55,7 @@ const SignUpForm = () => {
         else if (isChecked === false) {
             error.isAgreed = true;
         }
+
         setErrors(error)
         return Object.keys(error).length === 0;
     }
@@ -88,8 +89,8 @@ const SignUpForm = () => {
             }).then(response => {
                 setLoading(false)
                 if (response.data.success === true) {
-                    Cookies.set("email", email, { expires: 1 });
-                    Cookies.set("password", password, { expires: 1 });
+                    Cookies.set("email", formData.email, { expires: 1 });
+                    Cookies.set("password", formData.password, { expires: 1 });
                     generateOtp()
                 }
                 if (response.data.success === false) {

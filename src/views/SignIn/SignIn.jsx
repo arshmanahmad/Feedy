@@ -10,7 +10,7 @@ const SignIn = () => {
             <Routes>
                 <Route path='/' element={<SignInForm />} />
                 <Route path='/ForgotPassword' element={<ForgotPassword />} />
-                <Route path='/resetPassword' element={<ResetPassword />} />
+                <Route path='/resetPassword/:userId/:token' element={<ResetPassword />} />
             </Routes>
         </>
     )

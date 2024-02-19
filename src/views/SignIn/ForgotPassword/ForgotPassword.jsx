@@ -59,7 +59,7 @@ const ForgotPassword = () => {
         }
     }
     const handleClick = () => {
-        navigate("/signin")
+        navigate("/SignIn")
     }
     return (
         <>

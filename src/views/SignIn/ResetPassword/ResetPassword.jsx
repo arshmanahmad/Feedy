@@ -64,30 +64,26 @@ const SignUp = () => {
 
     return (
         <>
-            <div className="signUp-main-container">
-                <div className="row inner-box">
-                    <div className="signUp-img-container  col-sm-6 col-lg-5">
-                    </div>
-                    <div className="signUp-content-container flex-box col-sm-6 col-lg-7" >
-                        <div className='content-container'>
-                            <H1 value="Reset password?" />
-                            <p className='otp-p'>Password must be at least 8 characters.</p>
-                            <form className="signUp-input-container">
-                                <div className="row resetPassword-input">
-                                    <Input label="Password" onChange={handleChange} name="password" icon={isShowPassword2 ? visibilityIcon : hideIcon} id="password" onClick={() => setIsShowPassword2(!isShowPassword2)} type={isShowPassword2 ? "text" : "password"} placeholder="password" />
-                                    <Input label="Confirm Password" onChange={handleChange} name="confirmPassword" icon={isShowPassword ? visibilityIcon : hideIcon} onClick={() => setIsShowPassword(!isShowPassword)} type={isShowPassword ? "text" : "password"} placeholder="confirm password" />
-                                </div>
-                                <ErrorPopup value={errors} />
-                                <Button onClick={handleClick} text={resetLoading ? <Loader /> : "Send"} />
-                                <div className="otp-backLink-box">
-                                    <img src={backIcon} alt="" onClick={() => navigate("/*")} />
-                                    <a className='otp-back-link' onClick={() => navigate("/*")}>Back to sign up</a>
-                                </div>
-                            </form>
+
+            <div className="signUp-content-container flex-box col-sm-6 col-lg-7" >
+                <div className='content-container'>
+                    <H1 value="Reset password?" />
+                    <p className='otp-p'>Password must be at least 8 characters.</p>
+                    <form className="signUp-input-container">
+                        <div className="row resetPassword-input">
+                            <Input label="Password" onChange={handleChange} name="password" icon={isShowPassword2 ? visibilityIcon : hideIcon} id="password" onClick={() => setIsShowPassword2(!isShowPassword2)} type={isShowPassword2 ? "text" : "password"} placeholder="password" />
+                            <Input label="Confirm Password" onChange={handleChange} name="confirmPassword" icon={isShowPassword ? visibilityIcon : hideIcon} onClick={() => setIsShowPassword(!isShowPassword)} type={isShowPassword ? "text" : "password"} placeholder="confirm password" />
                         </div>
-                    </div>
+                        <ErrorPopup value={errors} />
+                        <Button onClick={handleClick} text={resetLoading ? <Loader /> : "Send"} />
+                        <div className="otp-backLink-box">
+                            <img src={backIcon} alt="" onClick={() => navigate("/")} />
+                            <a className='otp-back-link' onClick={() => navigate("/")}>Back to sign up</a>
+                        </div>
+                    </form>
                 </div>
             </div>
+
         </>
     )
 }
