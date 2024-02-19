@@ -10,6 +10,7 @@ import visibilityIcon from '../../../assets/Icons/visibility-less-weight.png'
 import ErrorPopup from "../../../components/ErrorPopup/ErrorPopup"
 import Loader from '../../../components/Loader/Loader';
 import axios from 'axios';
+import { Cookies } from 'react-cookie';
 
 const SignUpForm = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -62,8 +63,16 @@ const SignUpForm = () => {
         await axios.get(baseUrl + "/api/generateOTP", {
             email: formData.email,
         }).then(response => {
+            let error = {};
             console.log(response);
-            navigate("/verifyOtp");
+            if (response.data.success === true) {
+                error.popUp = response.data.message;
+                navigate("/verifyOtp");
+            }
+            else if (response.data.success === false) {
+                error.popUp = response.data.message;
+            }
+            setErrors(error)
         })
     }
 
@@ -77,9 +86,10 @@ const SignUpForm = () => {
                 email: formData.email,
                 password: formData.password,
             }).then(response => {
-                console.log(response);
                 setLoading(false)
                 if (response.data.success === true) {
+                    Cookies.set("email", email, { expires: 1 });
+                    Cookies.set("password", password, { expires: 1 });
                     generateOtp()
                 }
                 if (response.data.success === false) {
