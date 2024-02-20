@@ -98,7 +98,9 @@ const SignUpForm = () => {
     useEffect(() => {
         const { email, password } = formData;
         localStorage.setItem("email", JSON.stringify(email))
-    }, [formData.email])
+        localStorage.setItem("password", JSON.stringify(password))
+    }, [formData.email, formData.password])
+
 
 
     return (
