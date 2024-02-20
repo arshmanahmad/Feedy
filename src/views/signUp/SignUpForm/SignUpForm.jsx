@@ -61,16 +61,8 @@ const SignUpForm = () => {
         await axios.get(baseUrl + "/api/generateOTP", {
             email: formData.email,
         }).then(response => {
-            let error = {};
             console.log(response);
-            if (response.data.success === true) {
-                error.popUp = response.data.message;
-                navigate("/verifyOtp");
-            }
-            else if (response.data.success === false) {
-                error.popUp = response.data.message;
-            }
-            setErrors(error)
+            navigate("/verifyOtp");
         })
     }
 
@@ -86,6 +78,9 @@ const SignUpForm = () => {
             }).then(response => {
                 setLoading(false)
                 if (response.data.success === true) {
+                    const { email, password } = formData;
+                    localStorage.setItem("email", JSON.stringify(email))
+                    localStorage.setItem("password", JSON.stringify(password))
                     generateOtp()
                 }
                 if (response.data.success === false) {
@@ -95,13 +90,6 @@ const SignUpForm = () => {
             })
         }
     }
-    useEffect(() => {
-        const { email, password } = formData;
-        localStorage.setItem("email", JSON.stringify(email))
-        localStorage.setItem("password", JSON.stringify(password))
-    }, [formData.email, formData.password])
-
-
 
     return (
         <>

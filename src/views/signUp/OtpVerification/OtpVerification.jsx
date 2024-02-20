@@ -37,6 +37,7 @@ const OtpVerification = () => {
         setErrors(error)
         return Object.keys(error).length === 0;
     }
+    const grabbedEmail = JSON.parse(localStorage.getItem("email"));
     const handleClick = async (e) => {
         e.preventDefault();
         const { firstNumber, secondNumber, thirdNumber, forthNumber } = otpData
@@ -45,6 +46,7 @@ const OtpVerification = () => {
         if (checkValidation()) {
             setOtpLoading(true)
             await axios.post(baseUrl + "/api/verifyOTP", {
+                grabbedEmail,
                 joinedNum,
             }).then(response => {
                 setOtpLoading(false)
@@ -65,7 +67,7 @@ const OtpVerification = () => {
                 <div className='inner-otp-content-container'>
                     <H1 value="Verify OTP" />
                     <p className='otp-p'>Please Enter 4 Digit OTP to verify your account</p>
-                    <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText="  arshman****@gmail.com" />
+                    <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={grabbedEmail} />
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
                             <Input name="firstNumber" onChange={handleChange} className="otp" type="number" />
