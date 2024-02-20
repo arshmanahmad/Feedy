@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './SignUpForm.css'
 import H1 from "../../../components/H1/H1";
 import Input from '../../../components/Input/Input'
@@ -34,7 +34,6 @@ const SignUpForm = () => {
             [event.target.name]: value
         })
     }
-
     const checkValidation = () => {
         let error = {};
         const { name, lastName, email, password, confirmPassword } = formData;
@@ -96,7 +95,10 @@ const SignUpForm = () => {
             })
         }
     }
-
+    useEffect(() => {
+        const { email, password } = formData;
+        localStorage.setItem("email", JSON.stringify(email))
+    }, [formData.email])
 
 
     return (
