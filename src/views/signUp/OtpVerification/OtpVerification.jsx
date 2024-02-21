@@ -14,6 +14,7 @@ const OtpVerification = () => {
     const [errors, setErrors] = useState('')
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [otpLoading, setOtpLoading] = useState(false)
+    const [timer, setTimer] = useState("00")
     const navigate = useNavigate()
     const [otpData, setOtpData] = useState({
         firstNumber: "",
@@ -60,6 +61,21 @@ const OtpVerification = () => {
             })
         }
     }
+    const getTime = (e) => {
+        const total = Date.parse(e) - Date.parse(new Date());
+        const seconds = Math.floor((total / 1000) % 60);
+        return (
+            seconds,
+            total
+        )
+    }
+
+    const handleTimer = (e) => {
+        let { seconds, total } = getTime(e);
+        if (total >= 0) {
+            setTimer((seconds > 9 ? seconds : seconds + 0))
+        }
+    }
     // signUpverification
     return (
         <>
@@ -77,7 +93,7 @@ const OtpVerification = () => {
                         </div>
                         <ErrorPopup value={errors} />
                         <Button onClick={handleClick} text={otpLoading ? <Loader /> : "Verify"} />
-                        <InfoText className='otp-label2' text=" Didn't receive the code?" color="blue" changeColoredText="Resend after 20s" />
+                        <InfoText className='otp-label2' text=" Didn't receive the code?" color="blue" onSecondTextClick={handleTimer} changeColoredText={`Resend after ${timer}s`} />
                     </form>
                     <div className="otp-backLink-box">
                         <img src={backArrow} alt="" onClick={handleClick} />
