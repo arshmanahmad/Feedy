@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './OtpVerification.css'
 import H1 from '../../../components/H1/H1';
 import Input from '../../../components/Input/Input'
@@ -9,12 +9,15 @@ import backArrow from '../../../assets/Icons/backArrow.png'
 import axios from 'axios';
 import Loader from '../../../components/Loader/Loader';
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
-
+import Cookies from 'js-cookie';
 const OtpVerification = () => {
     const [errors, setErrors] = useState('')
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [otpLoading, setOtpLoading] = useState(false)
-    const [timer, setTimer] = useState("00")
+    const grabbedEmail = localStorage.getItem("email");
+    const grabbedPassword = localStorage.getItem("password")
+    const showEmail = JSON.parse(localStorage.getItem("email"));
+    const [timer, setTimer] = useState(50)
     const navigate = useNavigate()
     const [otpData, setOtpData] = useState({
         firstNumber: "",
@@ -38,11 +41,33 @@ const OtpVerification = () => {
         setErrors(error)
         return Object.keys(error).length === 0;
     }
-    const grabbedEmail = JSON.parse(localStorage.getItem("email"));
+    const login = async () => {
+        let error = {}
+        await axios.get(baseUrl + "/api/signin", {
+            grabbedEmail,
+            grabbedPassword,
+
+        }).then(
+            response => {
+                console.log(response);
+                if (response.data.success === true) {
+                    navigate("/dashboard")
+                    Cookies.get(response.data.token)
+                    error.popUp = response.data.message
+                }
+                else if (response.data.success === false) {
+                    error.popUp = response.data.message
+                }
+                setErrors(error)
+            }
+        )
+
+    }
+
     const handleClick = async (e) => {
         e.preventDefault();
         const { firstNumber, secondNumber, thirdNumber, forthNumber } = otpData
-        const joinedNum = [firstNumber, secondNumber, thirdNumber, forthNumber].join('')
+        const joinedNum = `"${firstNumber}${secondNumber}${thirdNumber}${forthNumber}"`;
         let error = {}
         if (checkValidation()) {
             setOtpLoading(true)
@@ -50,9 +75,11 @@ const OtpVerification = () => {
                 grabbedEmail,
                 joinedNum,
             }).then(response => {
+                console.log(response);
                 setOtpLoading(false)
                 if (response.data.success === true) {
-                    navigate("/dashboard")
+                    login()
+                    error.popUp = response.data.message
                 }
                 else if (response.data.success === false) {
                     error.popUp = response.data.message
@@ -61,29 +88,29 @@ const OtpVerification = () => {
             })
         }
     }
-    const getTime = (e) => {
-        const total = Date.parse(e) - Date.parse(new Date());
-        const seconds = Math.floor((total / 1000) % 60);
-        return (
-            seconds,
-            total
-        )
-    }
 
-    const handleTimer = (e) => {
-        let { seconds, total } = getTime(e);
-        if (total >= 0) {
-            setTimer((seconds > 9 ? seconds : seconds + 0))
+
+    useEffect(() => {
+        if (timer > 0) {
+            const timeOut = setTimeout(() => {
+                setTimer(timer - 1)
+            }, 1000);
+            return () => clearTimeout(timeOut)
         }
-    }
+    }, [timer])
     // signUpverification
+    // chat
+    // setTimeOut
+    // parameter(callback,millisecond)
+    // icon favicon change
+    //app name
     return (
         <>
             <div className="otp-content-container flex-box col-sm-6 col-lg-7" >
                 <div className='inner-otp-content-container'>
                     <H1 value="Verify OTP" />
                     <p className='otp-p'>Please Enter 4 Digit OTP to verify your account</p>
-                    <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={grabbedEmail} />
+                    <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={showEmail} />
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
                             <Input name="firstNumber" onChange={handleChange} className="otp" type="number" />
@@ -93,7 +120,7 @@ const OtpVerification = () => {
                         </div>
                         <ErrorPopup value={errors} />
                         <Button onClick={handleClick} text={otpLoading ? <Loader /> : "Verify"} />
-                        <InfoText className='otp-label2' text=" Didn't receive the code?" color="blue" onSecondTextClick={handleTimer} changeColoredText={`Resend after ${timer}s`} />
+                        <InfoText className='otp-label2' text="Didn't receive the code?" color="blue" changeColoredText={`Resend after ${timer}s`} />
                     </form>
                     <div className="otp-backLink-box">
                         <img src={backArrow} alt="" onClick={handleClick} />
