@@ -72,8 +72,8 @@ const OtpVerification = () => {
         if (checkValidation()) {
             setOtpLoading(true)
             await axios.post(baseUrl + "/api/verifyOTP", {
-                grabbedEmail,
-                joinedNum,
+                email: grabbedEmail,
+                otp: joinedNum,
             }).then(response => {
                 console.log(response);
                 setOtpLoading(false)
