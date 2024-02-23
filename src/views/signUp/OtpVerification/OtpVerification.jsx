@@ -14,8 +14,8 @@ import Cookies from 'js-cookie';
 const OtpVerification = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [errors, setErrors] = useState({})
+    const [btnText, setBtnText] = useState("Verify")
     const grabbedData = JSON.parse(localStorage.getItem('credentials'))
-    console.log(grabbedData);
     const [otpLoading, setOtpLoading] = useState(false)
     const [timer, setTimer] = useState(50)
     const [otpData, setOtpData] = useState({
@@ -53,7 +53,7 @@ const OtpVerification = () => {
             response => {
                 if (response.data.success) {
                     navigate("/dashboard")
-                    Cookies.set('token', response.data.token)
+                    Cookies.set('token', response.data.token, { expires: 1 })
                     error.popUp = response.data.message
                 }
                 else {
@@ -68,23 +68,43 @@ const OtpVerification = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         let error = {}
-        if (checkValidation()) {
+        if (btnText === "Verify") {
+            if (checkValidation()) {
+                setOtpLoading(true)
+                await axios.post(baseUrl + "/api/verifyOTP", {
+                    email: grabbedData.email,
+                    otp: joinedNum,
+                }).then(response => {
+                    console.log(response);
+                    setOtpLoading(false)
+                    if (response.data.success === true) {
+                        login()
+                        error.popUp = response.data.message
+                    }
+                    else if (response.data.success === false) {
+                        error.popUp = response.data.message
+                    }
+                    setErrors(error)
+                })
+            }
+        }
+        else {
             setOtpLoading(true)
-            await axios.post(baseUrl + "/api/verifyOTP", {
-                email: grabbedData.email,
-                otp: joinedNum,
+            await axios.get(baseUrl + "/api/generateOTP", {
+                email: grabbedData.email
             }).then(response => {
                 console.log(response);
                 setOtpLoading(false)
-                if (response.data.success === true) {
-                    login()
+                if (response.data.success) {
                     error.popUp = response.data.message
                 }
-                else if (response.data.success === false) {
+                else {
                     error.popUp = response.data.message
                 }
                 setErrors(error)
             })
+            setBtnText("Verify");
+            setTimer(50)
         }
     }
 
@@ -95,6 +115,9 @@ const OtpVerification = () => {
                 setTimer(timer - 1)
             }, 1000);
             return () => clearTimeout(timeOut)
+        }
+        else {
+            setBtnText("Resend OTP")
         }
     }, [timer])
     // signUpverification
@@ -119,8 +142,8 @@ const OtpVerification = () => {
                             <Input name="forthNumber" onChange={handleChange} className="otp" type="number" />
                         </div>
                         <ErrorPopup value={errors} />
-                        <Button onClick={handleClick} text={otpLoading ? <Loader /> : "Verify"} />
-                        <InfoText className='otp-label2' text="Didn't receive the code?" color="blue" changeColoredText={`Resend after ${timer}s`} />
+                        <Button onClick={handleClick} text={otpLoading ? <Loader /> : btnText} />
+                        <InfoText className='otp-label2' text="Didn't receive the code?" color="blue" changeColoredText={timer === 0 ? "Resend OTP" : `Resend after ${timer}s`} />
                     </form>
                     <div className="otp-backLink-box">
                         <img src={backArrow} alt="" onClick={handleClick} />
