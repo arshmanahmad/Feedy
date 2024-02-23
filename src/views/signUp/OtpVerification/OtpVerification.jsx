@@ -103,6 +103,7 @@ const OtpVerification = () => {
     // parameter(callback,millisecond)
     // icon favicon change
     //app name
+    //quetion of double qoute of otp and email
     return (
         <>
             <div className="otp-content-container flex-box col-sm-6 col-lg-7" >
