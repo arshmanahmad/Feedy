@@ -10,15 +10,14 @@ import axios from 'axios';
 import Loader from '../../../components/Loader/Loader';
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
 import Cookies from 'js-cookie';
+
 const OtpVerification = () => {
-    const [errors, setErrors] = useState({})
     const baseUrl = process.env.REACT_APP_BASE_URL
+    const [errors, setErrors] = useState({})
+    const grabbedData = JSON.parse(localStorage.getItem('credentials'))
+    console.log(grabbedData);
     const [otpLoading, setOtpLoading] = useState(false)
-    const grabbedEmail = localStorage.getItem("email");
-    const grabbedPassword = localStorage.getItem("password")
-    const showEmail = JSON.parse(localStorage.getItem("email"));
     const [timer, setTimer] = useState(50)
-    const navigate = useNavigate()
     const [otpData, setOtpData] = useState({
         firstNumber: "",
         secondNumber: "",
@@ -32,9 +31,12 @@ const OtpVerification = () => {
             [e.target.name]: value,
         })
     }
+    const { firstNumber, secondNumber, thirdNumber, forthNumber } = otpData
+    const joinedNum = `${firstNumber}${secondNumber}${thirdNumber}${forthNumber}`;
+
+    const navigate = useNavigate()
     const checkValidation = () => {
         let error = {};
-        const { firstNumber, secondNumber, thirdNumber, forthNumber } = otpData
         if (firstNumber === "" || secondNumber === "" || thirdNumber === "" || forthNumber === "") {
             error.fillAllFields = true;
         }
@@ -42,20 +44,19 @@ const OtpVerification = () => {
         return Object.keys(error).length === 0;
     }
     const login = async () => {
-        let error = {}
-        await axios.get(baseUrl + "/api/signin", {
-            email: grabbedEmail,
-            password: grabbedPassword,
+        let error = {};
+        await axios.post(baseUrl + "/api/signin", {
+            email: grabbedData.email,
+            password: grabbedData.password,
 
         }).then(
             response => {
-                console.log(response);
-                if (response.data.success === true) {
+                if (response.data.success) {
                     navigate("/dashboard")
-                    Cookies.get(response.data.token)
+                    Cookies.set('token', response.data.token)
                     error.popUp = response.data.message
                 }
-                else if (response.data.success === false) {
+                else {
                     error.popUp = response.data.message
                 }
                 setErrors(error)
@@ -66,13 +67,11 @@ const OtpVerification = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        const { firstNumber, secondNumber, thirdNumber, forthNumber } = otpData
-        const joinedNum = `"${firstNumber}${secondNumber}${thirdNumber}${forthNumber}"`;
         let error = {}
         if (checkValidation()) {
             setOtpLoading(true)
             await axios.post(baseUrl + "/api/verifyOTP", {
-                email: grabbedEmail,
+                email: grabbedData.email,
                 otp: joinedNum,
             }).then(response => {
                 console.log(response);
@@ -110,7 +109,7 @@ const OtpVerification = () => {
                 <div className='inner-otp-content-container'>
                     <H1 value="Verify OTP" />
                     <p className='otp-p'>Please Enter 4 Digit OTP to verify your account</p>
-                    <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={showEmail} />
+                    <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={grabbedData.email} />
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
                             <Input name="firstNumber" onChange={handleChange} className="otp" type="number" />

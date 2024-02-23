@@ -34,6 +34,11 @@ const SignUpForm = () => {
             [event.target.name]: value
         })
     }
+    const { email, password } = formData;
+    const credentials = {
+        email,
+        password
+    }
     const checkValidation = () => {
         let error = {};
         const { name, lastName, email, password, confirmPassword } = formData;
@@ -70,9 +75,7 @@ const SignUpForm = () => {
             }).then(response => {
                 setLoading(false)
                 if (response.data.success === true) {
-                    const { email, password } = formData;
-                    localStorage.setItem("email", JSON.stringify(email))
-                    localStorage.setItem("password", JSON.stringify(password))
+                    localStorage.setItem("credentials", JSON.stringify(credentials))
                     navigate("/verifyOtp");
                 }
                 if (response.data.success === false) {
