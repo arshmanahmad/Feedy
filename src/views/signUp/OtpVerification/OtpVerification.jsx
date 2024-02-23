@@ -11,7 +11,7 @@ import Loader from '../../../components/Loader/Loader';
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
 import Cookies from 'js-cookie';
 const OtpVerification = () => {
-    const [errors, setErrors] = useState('')
+    const [errors, setErrors] = useState({})
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [otpLoading, setOtpLoading] = useState(false)
     const grabbedEmail = localStorage.getItem("email");
@@ -44,8 +44,8 @@ const OtpVerification = () => {
     const login = async () => {
         let error = {}
         await axios.get(baseUrl + "/api/signin", {
-            grabbedEmail,
-            grabbedPassword,
+            email: grabbedEmail,
+            password: grabbedPassword,
 
         }).then(
             response => {
