@@ -24,7 +24,7 @@ const SignUp = () => {
     const location = useLocation();
     const parts = location.pathname.split("/")
     const token = parts[parts.length - 1];
-    const userID = parts[parts.length - 2];
+    const userID = parseInt(parts[parts.length - 2]);
     console.log(parts);
     console.log(token);
     console.log(userID);
