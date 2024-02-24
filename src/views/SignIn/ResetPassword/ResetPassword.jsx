@@ -21,14 +21,6 @@ const SignUp = () => {
         password: "",
         confirmPassword: "",
     })
-    const location = useLocation();
-    const parts = location.pathname.split("/")
-    const token = parts[parts.length - 1];
-    const userID = parseInt(parts[parts.length - 2]);
-    console.log(parts);
-    console.log(token);
-    console.log(userID);
-
     const handleChange = (e) => {
         const value = e.target.value;
         setForgotPassData({
@@ -36,6 +28,15 @@ const SignUp = () => {
             [e.target.name]: value
         })
     }
+    const location = useLocation();
+    const parts = location.pathname.split("/")
+    const token = parts[parts.length - 1];
+    const userID = parseInt(parts[parts.length - 2]);
+    console.log(parts);
+    console.log(token);
+    console.log(userID);
+    console.log(forgotPassData.password);
+
     const validator = () => {
         let error = {};
         const { password, confirmPassword } = forgotPassData;
