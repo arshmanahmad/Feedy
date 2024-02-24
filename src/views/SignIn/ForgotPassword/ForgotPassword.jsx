@@ -72,7 +72,7 @@ const ForgotPassword = () => {
                             <Input label="Your Email" name="email" type='email' onChange={onChange} placeholder="email" />
                         </div>
                         <ErrorPopup value={errorPop} />
-                        <Button onClick={handleSubmission} text={forgetLoading ? <Loader /> : "Reset password"} />
+                        <Button disabled={forgetLoading ? "disabled" : ""} onClick={handleSubmission} text={forgetLoading ? <Loader /> : "Reset password"} />
                     </form>
                     <div className="backLink-box">
                         <img src={backArrow} alt="" onClick={handleClick} />

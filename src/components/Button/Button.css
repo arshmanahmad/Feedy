@@ -10,6 +10,16 @@
     margin: 1rem 0;
 }
 
+.primary_button--disabled {
+    cursor: progress;
+    background-color: rgb(131, 129, 126);
+}
+
+.primary_button--disabled:hover {
+    background-color: rgb(131, 129, 126) !important;
+
+}
+
 .primary_button:hover {
     background-color: #373e7c;
 }

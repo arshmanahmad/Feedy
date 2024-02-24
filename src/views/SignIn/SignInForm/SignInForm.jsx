@@ -61,7 +61,7 @@ const SignInForm = () => {
                 setSignInLoading(false)
                 console.log(response);
                 if (response.data.success === true) {
-                    navigate("/HomePage")
+                    navigate("/dashboard")
                 }
                 else if (response.data.success === false) {
                     error.popUp = response.data.message;
@@ -86,7 +86,7 @@ const SignInForm = () => {
                         <div className="signIn-label-box">
                             <Input type="checkBox" onInputClick={() => setCheck(!check)} checked={check} /><InfoText onFirstTextClick={() => setCheck(!check)} onSecondTextClick={() => navigate("/signin/ForgotPassword")} text="Remember me " className='signIn-label1' changeColoredText="Forgot password?" />
                         </div>
-                        <Button onClick={handleFormSubmit} text={signInLoading ? <Loader /> : "Sign in"} />
+                        <Button onClick={handleFormSubmit} disabled={signInLoading ? "disabled" : ""} text={signInLoading ? <Loader /> : "Sign in"} />
                     </form>
                     <InfoText className='SignIn-path-label' text="Want to go back" color="blue" onSecondTextClick={() => navigate("/")} changeColoredText="for Sign Up?" />
                 </div>

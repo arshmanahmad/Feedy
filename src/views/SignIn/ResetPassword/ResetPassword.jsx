@@ -25,7 +25,6 @@ const SignUp = () => {
     const parts = location.pathname.split("/")
     const token = parts[parts.length - 1];
     const userID = parts[parts.length - 2];
-    console.log(token);
     console.log(userID);
 
     const handleChange = (e) => {
@@ -53,16 +52,16 @@ const SignUp = () => {
         if (validator()) {
             setResetLoading(true)
             await axios.put(baseUrl + "/api/resetPassword", {
+                token: token,
+                userId: userID,
                 password: forgotPassData.password,
-                userID,
-                token,
             }).then(response => {
                 setResetLoading(false);
-                if (response.data.success === true) {
+                if (response.data.success) {
                     navigate("/dashboard")
                     error.popUp = response.data.message;
                 }
-                else if (response.data.success === false) {
+                else {
                     error.popUp = response.data.message
                 }
                 setErrors(error)
@@ -83,7 +82,7 @@ const SignUp = () => {
                             <Input label="Confirm Password" onChange={handleChange} name="confirmPassword" icon={isShowPassword ? visibilityIcon : hideIcon} onClick={() => setIsShowPassword(!isShowPassword)} type={isShowPassword ? "text" : "password"} placeholder="confirm password" />
                         </div>
                         <ErrorPopup value={errors} />
-                        <Button onClick={handleClick} text={resetLoading ? <Loader /> : "Send"} />
+                        <Button onClick={handleClick} disabled={resetLoading ? "disabled" : ""} text={resetLoading ? <Loader /> : "Send"} />
                         <div className="otp-backLink-box">
                             <img src={backIcon} alt="" onClick={() => navigate("/")} />
                             <a className='otp-back-link' onClick={() => navigate("/")}>Back to sign up</a>

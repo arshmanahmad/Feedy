@@ -14,7 +14,6 @@ import Cookies from 'js-cookie';
 const OtpVerification = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [errors, setErrors] = useState({})
-    const [btnText, setBtnText] = useState("Verify")
     const grabbedData = JSON.parse(localStorage.getItem('credentials'))
     const [otpLoading, setOtpLoading] = useState(false)
     const [timer, setTimer] = useState(50)
@@ -43,12 +42,30 @@ const OtpVerification = () => {
         setErrors(error)
         return Object.keys(error).length === 0;
     }
+
+    let error = {}
+    const handleResendOtp = async () => {
+        setTimer(50)
+        setOtpLoading(true)
+        await axios.post(baseUrl + "/api/generateOTP", {
+            email: grabbedData.email
+        }).then(response => {
+            console.log(response);
+            setOtpLoading(false)
+            if (response.data.success) {
+                error.popUp = response.data.message
+            }
+            else {
+                error.popUp = response.data.message
+            }
+            setErrors(error)
+        })
+    }
     const login = async () => {
         let error = {};
         await axios.post(baseUrl + "/api/signin", {
             email: grabbedData.email,
             password: grabbedData.password,
-
         }).then(
             response => {
                 if (response.data.success) {
@@ -62,52 +79,28 @@ const OtpVerification = () => {
                 setErrors(error)
             }
         )
-
     }
-
     const handleClick = async (e) => {
         e.preventDefault();
-        let error = {}
-        if (btnText === "Verify") {
-            if (checkValidation()) {
-                setOtpLoading(true)
-                await axios.post(baseUrl + "/api/verifyOTP", {
-                    email: grabbedData.email,
-                    otp: joinedNum,
-                }).then(response => {
-                    console.log(response);
-                    setOtpLoading(false)
-                    if (response.data.success === true) {
-                        login()
-                        error.popUp = response.data.message
-                    }
-                    else if (response.data.success === false) {
-                        error.popUp = response.data.message
-                    }
-                    setErrors(error)
-                })
-            }
-        }
-        else {
+        if (checkValidation()) {
             setOtpLoading(true)
-            await axios.get(baseUrl + "/api/generateOTP", {
-                email: grabbedData.email
+            await axios.post(baseUrl + "/api/verifyOTP", {
+                email: grabbedData.email,
+                otp: joinedNum,
             }).then(response => {
                 console.log(response);
                 setOtpLoading(false)
-                if (response.data.success) {
+                if (response.data.success === true) {
+                    login()
                     error.popUp = response.data.message
                 }
-                else {
+                else if (response.data.success === false) {
                     error.popUp = response.data.message
                 }
                 setErrors(error)
             })
-            setBtnText("Verify");
-            setTimer(50)
         }
     }
-
 
     useEffect(() => {
         if (timer > 0) {
@@ -115,9 +108,6 @@ const OtpVerification = () => {
                 setTimer(timer - 1)
             }, 1000);
             return () => clearTimeout(timeOut)
-        }
-        else {
-            setBtnText("Resend OTP")
         }
     }, [timer])
     // signUpverification
@@ -142,8 +132,8 @@ const OtpVerification = () => {
                             <Input name="forthNumber" onChange={handleChange} className="otp" type="number" />
                         </div>
                         <ErrorPopup value={errors} />
-                        <Button onClick={handleClick} text={otpLoading ? <Loader /> : btnText} />
-                        <InfoText className='otp-label2' text="Didn't receive the code?" color="blue" changeColoredText={timer === 0 ? "Resend OTP" : `Resend after ${timer}s`} />
+                        <Button onClick={handleClick} disabled={otpLoading ? "disabled" : ""} text={otpLoading ? <Loader /> : "Verify"} />
+                        <InfoText className='otp-label2' text="Didn't receive the code?" color="blue" onSecondTextClick={timer === 0 ? handleResendOtp : " "} changeColoredText={timer === 0 ? "Resend OTP" : `Resend after ${timer}s`} />
                     </form>
                     <div className="otp-backLink-box">
                         <img src={backArrow} alt="" onClick={handleClick} />

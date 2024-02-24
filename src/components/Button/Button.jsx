@@ -1,19 +1,17 @@
 import React from 'react'
 import './Button.css'
-
-const Button = ({ icon, onClick, text, type, className = '' }) => {
+const Button = ({ disabled, icon, onClick, text, type, className = '' }) => {
+    const primaryButton = "primary_button"
+    let buttonTypeClass = type ? `${primaryButton}--${type}` : '';
     return (
         <>
             <button
                 onClick={onClick}
-                className={`${className} primary_button 
-            ${type === "outlined" ? "primary_button--outlined" : " "}
-            ${type === "save" ? "primary_button--save" : " "}
-            ${type === "cancel" ? "primary_button--cancel" : " "}  
-            ${type === 'update' ? "primary_button--update" : " "}`}>
+                className={`${className} ${primaryButton} ${buttonTypeClass}
+                ${disabled === "disabled" ? `${primaryButton}--${disabled}` : ""}`}>
                 {icon && <img src={icon} alt={text}></img>}
                 {text && <span>{text}</span>}
-            </button>
+            </button >
         </>
     )
 }

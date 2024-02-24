@@ -96,6 +96,7 @@ const SignUpForm = () => {
                             <Input label="First Name" onChange={handleChange} type='text' name="firstName" placeholder="first name" />
                             <Input label="Last Name" onChange={handleChange} type='text' name="lastName" placeholder="last name" />
                             <Input label="Your Email" onChange={handleChange} type='email' name="email" placeholder="email" />
+                            <Input label="Phone Number" onChange={handleChange} name="phone number" type="number" placeholder="phone number" />
                             <Input label="Password" onChange={handleChange} name="password" icon={isShowPassword2 ? visibilityIcon : hideIcon} id="password" onClick={() => setIsShowPassword2(!isShowPassword2)} type={isShowPassword2 ? "text" : "password"} placeholder="password" />
                             <Input label="Confirm Password" onChange={handleChange} name="confirmPassword" icon={isShowPassword ? visibilityIcon : hideIcon} onClick={() => setIsShowPassword(!isShowPassword)} type={isShowPassword ? "text" : "password"} placeholder="confirm password" />
                         </div>
@@ -103,7 +104,7 @@ const SignUpForm = () => {
                         <div className="signUp-label-box" onClick={() => setIsChecked(!isChecked)} >
                             <Input type="checkBox" name="isChecked" checked={isChecked} /><Label text="I accept the   " className='SignUp-label1' changeColoredText="  Terms and Conditions" />
                         </div>
-                        <Button onClick={handleClick} text={loading ? <Loader /> : "Sign Up"} />
+                        <Button onClick={handleClick} disabled={loading ? "disabled" : ""} text={loading ? <Loader /> : "Sign Up"} />
                     </form>
                     <Label onSecondTextClick={() => navigate("/signin")} className='SignUp-label2' text=" Already have an account?" color="blue" changeColoredText="Sign in" />
                 </div>
