@@ -23,6 +23,7 @@ const SignUpForm = () => {
         firstName: "",
         lastName: "",
         email: "",
+        phoneNumber: "",
         password: "",
         confirmPassword: "",
     });
@@ -41,8 +42,8 @@ const SignUpForm = () => {
     }
     const checkValidation = () => {
         let error = {};
-        const { name, lastName, email, password, confirmPassword } = formData;
-        if (name === "" || lastName === "" || email === "" || password === "" || confirmPassword === "") {
+        const { name, lastName, email, password, confirmPassword, phoneNumber } = formData;
+        if (name === "" || lastName === "" || email === "" || password === "" || confirmPassword === "" || phoneNumber === "") {
             error.fillAllFields = true;
         }
         else if (!new RegExp(/\S+@\S+\.\S+/).test(email)) {
@@ -53,6 +54,9 @@ const SignUpForm = () => {
         }
         else if (password !== confirmPassword) {
             error.passNotMatch = true;
+        }
+        else if (phoneNumber.length !== 11) {
+            error.numLength = true;
         }
         else if (isChecked === false) {
             error.isAgreed = true;
@@ -96,7 +100,7 @@ const SignUpForm = () => {
                             <Input label="First Name" onChange={handleChange} type='text' name="firstName" placeholder="first name" />
                             <Input label="Last Name" onChange={handleChange} type='text' name="lastName" placeholder="last name" />
                             <Input label="Your Email" onChange={handleChange} type='email' name="email" placeholder="email" />
-                            <Input label="Phone Number" onChange={handleChange} name="phone number" type="number" placeholder="phone number" />
+                            <Input label="Phone Number" onChange={handleChange} name="phoneNumber" type="number" placeholder="phone number" />
                             <Input label="Password" onChange={handleChange} name="password" icon={isShowPassword2 ? visibilityIcon : hideIcon} id="password" onClick={() => setIsShowPassword2(!isShowPassword2)} type={isShowPassword2 ? "text" : "password"} placeholder="password" />
                             <Input label="Confirm Password" onChange={handleChange} name="confirmPassword" icon={isShowPassword ? visibilityIcon : hideIcon} onClick={() => setIsShowPassword(!isShowPassword)} type={isShowPassword ? "text" : "password"} placeholder="confirm password" />
                         </div>
