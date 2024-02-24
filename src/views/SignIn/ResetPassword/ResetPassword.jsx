@@ -49,26 +49,45 @@ const SignUp = () => {
         setErrors(error)
         return Object.keys(error).length === 0;
     }
+    let error = {};
+    const verifyToken = async () => {
+        setResetLoading(true)
+        await axios.post(baseUrl + "/api/verifyToken", {
+            token: token,
+            userId: userID
+        }).then(response => {
+            setResetLoading(false);
+            if (response.data.success) {
+                return true
+            }
+            else {
+                error.popUp = response.data.message
+                return false
+            }
+        })
+        setErrors(error)
+    }
     const handleClick = async (e) => {
         e.preventDefault();
-        let error = {};
         if (validator()) {
-            setResetLoading(true)
-            await axios.put(baseUrl + "/api/resetPassword", {
-                token: token,
-                userId: userID,
-                password: forgotPassData.password,
-            }).then(response => {
-                setResetLoading(false);
-                if (response.data.success) {
-                    navigate("/dashboard")
-                    error.popUp = response.data.message;
-                }
-                else {
-                    error.popUp = response.data.message
-                }
-                setErrors(error)
-            })
+            if (verifyToken()) {
+                setResetLoading(true)
+                await axios.put(baseUrl + "/api/resetPassword", {
+                    token: token,
+                    userId: userID,
+                    password: forgotPassData.password,
+                }).then(response => {
+                    setResetLoading(false);
+                    if (response.data.success) {
+                        navigate("/dashboard")
+                        error.popUp = response.data.message;
+                    }
+                    else {
+                        error.popUp = response.data.message
+                    }
+                    setErrors(error)
+                })
+            }
         }
     }
 
