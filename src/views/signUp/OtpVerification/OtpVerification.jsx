@@ -46,12 +46,10 @@ const OtpVerification = () => {
     let error = {}
     const handleResendOtp = async () => {
         setTimer(50)
-        setOtpLoading(true)
         await axios.post(baseUrl + "/api/generateOTP", {
             email: grabbedData.email
         }).then(response => {
             console.log(response);
-            setOtpLoading(false)
             if (response.data.success) {
                 error.popUp = response.data.message
             }
