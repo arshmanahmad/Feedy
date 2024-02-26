@@ -42,7 +42,7 @@ const OtpVerification = () => {
         setErrors(error)
         return Object.keys(error).length === 0;
     }
-
+    ////////////resend otp
     let error = {}
     const handleResendOtp = async () => {
         setTimer(50)
