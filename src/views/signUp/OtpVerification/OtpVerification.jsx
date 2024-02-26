@@ -23,6 +23,7 @@ const OtpVerification = () => {
         thirdNumber: "",
         forthNumber: "",
     })
+    let error = {}
     const handleChange = (e) => {
         const value = e.target.value;
         setOtpData({
@@ -42,8 +43,6 @@ const OtpVerification = () => {
         setErrors(error)
         return Object.keys(error).length === 0;
     }
-    ////////////resend otp
-    let error = {}
     const handleResendOtp = async () => {
         await axios.post(baseUrl + "/api/generateOTP", {
             email: grabbedData.email
@@ -60,7 +59,6 @@ const OtpVerification = () => {
         setTimer(50)
     }
     const login = async () => {
-        let error = {};
         await axios.post(baseUrl + "/api/signin", {
             email: grabbedData.email,
             password: grabbedData.password,
