@@ -45,7 +45,6 @@ const OtpVerification = () => {
     ////////////resend otp
     let error = {}
     const handleResendOtp = async () => {
-        setTimer(50)
         await axios.post(baseUrl + "/api/generateOTP", {
             email: grabbedData.email
         }).then(response => {
@@ -58,6 +57,7 @@ const OtpVerification = () => {
             }
             setErrors(error)
         })
+        setTimer(50)
     }
     const login = async () => {
         let error = {};
