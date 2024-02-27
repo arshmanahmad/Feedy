@@ -70,7 +70,7 @@ const SignUpForm = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         if (checkValidation()) {
-            setLoading(!loading);
+            setLoading(true);
             const error = {};
             await axios.post(baseUrl + "/api/singup", {
                 name: `${formData.firstName} ${formData.lastName}`,

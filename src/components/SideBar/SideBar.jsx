@@ -16,11 +16,15 @@ const SideBar = ({ className = "" }) => {
     return (
         <>
             <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
-                <div className='side-bar-container'>
+                <div className="sidebar-pic-box">
                     <picture className='sidebar-main-logo'>
                         <source media="(max-width: 1215px)" srcset={cuttedLogo} />
                         <img src={logo} alt="logo" />
                     </picture>
+                    <button className='close-icon'>x</button>
+                </div>
+                <div className='side-bar-container'>
+
                     {/* <img className='sidebar-main-logo' src={(window.width > 1215) ? logo : cuttedLogo} alt="" /> */}
                     <div className="sidebar-btn-container">
                         {sidebarButtons.map((buttons, index) => {

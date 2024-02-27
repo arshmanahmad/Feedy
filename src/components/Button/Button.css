@@ -28,6 +28,11 @@
     background-color: transparent;
     padding: 0.75rem 3.5rem;
     border-color: #FF3417;
+    justify-content: center;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
     color: #000000;
     font-size: 12px;
     font-weight: 600;
