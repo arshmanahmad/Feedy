@@ -14,6 +14,7 @@ const SideBar = ({ className = "" }) => {
         setActiveButton(index)
     }
     return (
+        ///////////delimeters
         <>
             <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
                 <div className="sidebar-pic-box">
