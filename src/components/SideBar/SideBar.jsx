@@ -13,6 +13,7 @@ const SideBar = ({ className = "" }) => {
     const handleActiveButton = (index) => {
         setActiveButton(index)
     }
+    //delimeters
     return (
         <>
             <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
