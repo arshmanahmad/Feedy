@@ -9,22 +9,13 @@ import cube from './assets/icons/cube.png'
 import currency from './assets/icons/9.png'
 import graph from './assets/images/Group 1926@2x.png'
 const HomePage = () => {
-    const [hideShow, setHideShow] = useState("")
-    const handleShowSideBar = () => {
-        if (hideShow === "") {
-            setHideShow("display")
-        }
-        else {
-            setHideShow("")
-        }
-    }
     return (
         <>
             <div className='homePage_container'>
-                <SideBar className={hideShow} />
+                <SideBar />
                 <WrapperCard>
                     <div className="homepage-nav-bar">
-                        <p className='show-icon' onClick={handleShowSideBar}>≡</p>
+
                         <p className='dashboard-home'>Dashboard</p>
                     </div>
                     <div className="col-box">

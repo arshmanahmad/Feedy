@@ -15,38 +15,40 @@ const SideBar = ({ className = "" }) => {
     }
     return (
         <>
-            <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
+            <div className="sidebar-outerBox">
                 <div className="sidebar-pic-box">
                     <picture className='sidebar-main-logo'>
                         <source media="(max-width: 1215px)" srcset={cuttedLogo} />
                         <img src={logo} alt="logo" />
                     </picture>
-                    <button className='close-icon'>x</button>
+                    <p className='show-icon'>≡</p>
                 </div>
-                <div className='side-bar-container'>
+                <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
+                    <div className='side-bar-container'>
 
-                    {/* <img className='sidebar-main-logo' src={(window.width > 1215) ? logo : cuttedLogo} alt="" /> */}
-                    <div className="sidebar-btn-container">
-                        {sidebarButtons.map((buttons, index) => {
-                            let active = ""
-                            if (activeButton === 0) {
-                                active = "active-btn response"
-                            }
-                            if (index === activeButton) {
-                                active = "active-btn response"
-                            }
-                            else {
-                                active = "btns response"
-                            }
+                        {/* <img className='sidebar-main-logo' src={(window.width > 1215) ? logo : cuttedLogo} alt="" /> */}
+                        <div className="sidebar-btn-container">
+                            {sidebarButtons.map((buttons, index) => {
+                                let active = ""
+                                if (activeButton === 0) {
+                                    active = "active-btn response"
+                                }
+                                if (index === activeButton) {
+                                    active = "active-btn response"
+                                }
+                                else {
+                                    active = "btns response"
+                                }
 
-                            return (
-                                <button onClick={() => handleActiveButton(index)} className={active}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
-                            )
-                        })}
+                                return (
+                                    <button onClick={() => handleActiveButton(index)} className={active}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
+                                )
+                            })}
+                        </div>
+                        <Button className='sidebar-btn' type="outlined" icon={Logout} text="Logout" />
                     </div>
-                    <Button className='sidebar-btn' type="outlined" icon={Logout} text="Logout" />
-                </div>
-            </div >
+                </div >
+            </div>
         </>
     )
 }

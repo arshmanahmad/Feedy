@@ -7,15 +7,6 @@
     align-items: center;
 }
 
-.show-icon {
-    font-size: 2.5rem;
-    margin-right: 2.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    border: 1px solid;
-    border-color: rgb(238, 239, 239);
-
-}
 
 .dashboard-home {
     font-size: 1.6rem;

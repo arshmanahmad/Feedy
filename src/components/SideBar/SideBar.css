@@ -1,22 +1,29 @@
-.side_bar {
+.sidebar-outerBox {
     width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.side_bar {
     background-color: #FFFFFF;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
 }
+
 
 .sidebar-main-logo {
     display: flex;
     justify-content: center;
+    width: 95%;
 }
 
 .sidebar-pic-box {
     display: flex;
     width: 100%;
     justify-content: center;
+    height: 5rem;
     align-items: center;
 }
 
@@ -26,7 +33,6 @@
     display: flex;
     margin-left: 2rem;
     font-size: 2.5rem;
-    /* display: none; */
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -56,6 +62,16 @@
     flex-direction: column;
 }
 
+.show-icon {
+    font-size: 3.2rem;
+    width: 5%;
+    margin-right: 2.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-color: rgb(238, 239, 239);
+
+}
+
 .btns {
     margin-top: 2rem;
     font-size: 1.2rem;
@@ -80,10 +96,7 @@
 
 }
 
-.side_bar--display {
-    display: none;
 
-}
 
 .sidebar-btn-container button img {
     height: 1.7rem;
@@ -91,9 +104,6 @@
 }
 
 @media(max-width : 1020px) {
-    .side_bar {
-        width: 15%;
-    }
 
     .side-bar-container {
         width: 90%;
@@ -108,12 +118,9 @@
 
 }
 
-@media(max-width : 505px) {
-    .side_bar {
-        display: none;
+@media(max-width : 996px) {
+    .side-bar-container {
+        width: -300;
     }
 
-    .side_bar--display {
-        display: block;
-    }
 }
