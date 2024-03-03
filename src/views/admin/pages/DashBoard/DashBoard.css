@@ -1,0 +1,45 @@
+.homePage_container {
+    display: flex;
+}
+
+.homepage-nav-bar {
+    display: flex;
+    align-items: center;
+}
+
+
+.dashboard-home {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+
+
+.homepage-box1 {
+    width: 68.5%;
+}
+
+.home-img-box {
+    margin-top: 2rem;
+}
+
+.homepage-graph-img {
+    width: 100%;
+}
+
+.col-box {
+    display: flex;
+}
+
+.bigCard_headings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashBoard_bigCard {
+    margin-left: 2rem;
+    height: 40.2rem;
+    width: 100%;
+    background-color: #fff;
+}

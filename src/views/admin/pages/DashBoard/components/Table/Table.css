@@ -1,0 +1,42 @@
+.dashBoard_table--outerBox {
+    padding: 2rem;
+    background-color:
+        #FFFFFF;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    border-radius: 0.4rem;
+}
+
+.dashBoard_table-price {
+    color: #5372E7;
+}
+
+.dashBoard_table--labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashBoard_table thead {
+    background-color:
+        #FAFAFA;
+}
+
+.dashBoard_table thead th {
+    color: #999999;
+
+}
+
+.dashBoard_table--view_btn {
+    font-size: 1.2rem;
+    color:
+        #999999;
+}
+
+.dashBoard_table th,
+td {
+    border-collapse: collapse;
+    height: 3.8rem;
+    font-size: 12px;
+    width: 10.5rem;
+}

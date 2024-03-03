@@ -75,6 +75,7 @@ const SignUpForm = () => {
             await axios.post(baseUrl + "/api/singup", {
                 name: `${formData.firstName} ${formData.lastName}`,
                 email: formData.email,
+                phoneNumber: formData.phoneNumber,
                 password: formData.password,
             }).then(response => {
                 setLoading(false)

@@ -1,0 +1,18 @@
+.complete-btn {
+    height: 2rem;
+    width: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #21BDCA;
+    background-color: #E8FFF8;
+    border-radius: 0.9rem;
+    font-size: 1rem;
+    border: none;
+}
+
+.complete-btn--pending {
+    background-color:
+        #FFEEEE;
+    color: #FF9F24;
+}

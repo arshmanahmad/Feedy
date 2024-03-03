@@ -1,0 +1,7 @@
+.admin_wrapper {
+    display: flex;
+}
+
+.admin_sideBar {
+    width: 25%;
+}
