@@ -3,7 +3,7 @@ import StatusButton from '../../../../components/StatusButton/StatusButton';
 import './Table.css'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-const Table = () => {
+const Table = ({ getToken }) => {
     const token = JSON.parse(localStorage.getItem('token'))
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [tableData, setTableData] = useState([]);
@@ -11,7 +11,7 @@ const Table = () => {
         const fetchData = async () => {
             await axios.get(baseUrl + "/api/lastOrders", {
                 headers: {
-                    "Authorization": `Bearer ${token}`
+                    "Authorization": `Bearer ${getToken}`
                 }
             }).then(response => {
                 console.log(response)
@@ -20,6 +20,7 @@ const Table = () => {
         };
         fetchData();
     }, [])
+    console.log(token);
 
     return (
         <>

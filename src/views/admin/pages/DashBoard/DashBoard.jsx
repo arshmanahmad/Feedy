@@ -10,6 +10,7 @@ import currency from './assets/icons/9.png'
 import graph from './assets/images/Group 1926@2x.png'
 import Table from './components/Table/Table'
 const DashBoard = () => {
+    const token = JSON.parse(localStorage.getItem('token'))
     return (
         <>
             <div className='homePage_container'>
@@ -29,7 +30,7 @@ const DashBoard = () => {
                                 <img className='homepage-graph-img' src={graph} alt="" />
                             </div>
                             <div className="DashBoard_tableBox">
-                                <Table />
+                                <Table getToken={token} />
                             </div>
                         </div>
                         <div className="homepage-box2">
