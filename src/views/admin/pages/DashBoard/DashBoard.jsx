@@ -15,15 +15,15 @@ const DashBoard = () => {
     const token = JSON.parse(localStorage.getItem('token'))
     return (
         <>
-            <div className='homePage_container'>
+            <div className='dashBoard_container'>
                 <WrapperCard>
-                    <div className="homepage-nav-bar">
+                    <div className="'dashBoard-nav-bar">
                         <p className='dashboard-home'>Dashboard</p>
                     </div>
 
                     <div className=" row col-box">
-                        <div className="homepage-box1 col-xl-6 col-lg-12">
-                            <div className="row home-cards-box">
+                        <div className="dashBoard-box1 col-xl-6 col-lg-12">
+                            <div className="row dashBoard-cards-box">
                                 <UserInfoCard icon={currency} numbers="28,000.300" label="Total Income" currency="$" />
                                 <UserInfoCard icon={group} numbers="254" label="Customers" />
                                 <UserInfoCard icon={cube} numbers="30" label="Products" />

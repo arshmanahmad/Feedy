@@ -12,13 +12,11 @@ const SideBar = ({ className = "" }) => {
     const navigate = useNavigate("")
     const [activeButton, setActiveButton] = useState()
     const { sidebarButtons } = useContext(Context);
-    let defaultIndex;
     const handleActiveButton = (index) => {
         setActiveButton(index)
-        defaultIndex = activeButton;
-    }
-    if (defaultIndex) {
-        navigate(`/admin/:defaultIndex`)
+        if (activeButton === 1) {
+            navigate("/admin/store")
+        }
     }
     return (
         <>

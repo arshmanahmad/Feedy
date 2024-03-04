@@ -1,8 +1,8 @@
-.homePage_container {
+.dashBoard_container {
     display: flex;
 }
 
-.homepage-nav-bar {
+.dashBoard-nav-bar {
     display: flex;
     align-items: center;
 }
@@ -15,7 +15,7 @@
 
 
 
-.homepage-box1 {
+.dashBoard-box1 {
     width: 68.5%;
 }
 
@@ -34,7 +34,6 @@
 .bigCard_headings {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
 }
 
 .dashBoard_bigCard {

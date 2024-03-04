@@ -1,11 +1,17 @@
 import React from 'react'
+import WrapperCard from '../../../../components/CardLayout/WrapperCard/WrapperCard'
 
 const Store = () => {
     return (
         <>
-            <div>
+            <WrapperCard>
+                <div>
 
-            </div>
+                </div>
+                <div className="Store_table">
+
+                </div>
+            </WrapperCard>
         </>
     )
 }
