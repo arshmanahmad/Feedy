@@ -6,12 +6,19 @@ import Logout from '../SideBar/assets/logo/logout-disable.jpg'
 import { useContext } from 'react'
 import Context from '../Context/Context'
 import cuttedLogo from './assets/logo/cutted-logo.png'
+import { useNavigate } from 'react-router-dom'
 
 const SideBar = ({ className = "" }) => {
-    const [activeButton, setActiveButton] = useState(0)
+    const navigate = useNavigate("")
+    const [activeButton, setActiveButton] = useState()
     const { sidebarButtons } = useContext(Context);
+    let defaultIndex;
     const handleActiveButton = (index) => {
         setActiveButton(index)
+        defaultIndex = activeButton;
+    }
+    if (defaultIndex) {
+        navigate(`/admin/:defaultIndex`)
     }
     return (
         <>
@@ -25,21 +32,12 @@ const SideBar = ({ className = "" }) => {
                 </div>
                 <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
                     <div className='side-bar-container'>
-                        {/* <img className='sidebar-main-logo' src={(window.width > 1215) ? logo : cuttedLogo} alt="" /> */}
                         <div className="sidebar-btn-container">
                             {sidebarButtons.map((buttons, index) => {
                                 let active = "btns";
-                                // let active = ""
-                                // if (activeButton === 0) {
-                                //     active = "active-btn response"
-                                // }
-                                // if (index === activeButton) {
-                                //     active = "active-btn response"
-                                // }
-                                // else {
-                                //     active = "btns response"
-                                // }
-
+                                if (index === activeButton) {
+                                    active = "active-btn"
+                                }
                                 return (
                                     <button onClick={() => handleActiveButton(index)} className={active}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
                                 )
