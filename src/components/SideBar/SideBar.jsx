@@ -28,16 +28,17 @@ const SideBar = ({ className = "" }) => {
                         {/* <img className='sidebar-main-logo' src={(window.width > 1215) ? logo : cuttedLogo} alt="" /> */}
                         <div className="sidebar-btn-container">
                             {sidebarButtons.map((buttons, index) => {
-                                let active = ""
-                                if (activeButton === 0) {
-                                    active = "active-btn response"
-                                }
-                                if (index === activeButton) {
-                                    active = "active-btn response"
-                                }
-                                else {
-                                    active = "btns response"
-                                }
+                                let active = "btns";
+                                // let active = ""
+                                // if (activeButton === 0) {
+                                //     active = "active-btn response"
+                                // }
+                                // if (index === activeButton) {
+                                //     active = "active-btn response"
+                                // }
+                                // else {
+                                //     active = "btns response"
+                                // }
 
                                 return (
                                     <button onClick={() => handleActiveButton(index)} className={active}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
