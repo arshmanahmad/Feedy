@@ -9,6 +9,8 @@ import cube from './assets/icons/cube.png'
 import currency from './assets/icons/9.png'
 import graph from './assets/images/Group 1926@2x.png'
 import Table from './components/Table/Table'
+import orangeEllipse from './assets/images/Ellipse 177.png'
+import blueEllipse from './assets/images/Ellipse 178.png'
 const DashBoard = () => {
     const token = JSON.parse(localStorage.getItem('token'))
     return (
@@ -18,8 +20,9 @@ const DashBoard = () => {
                     <div className="homepage-nav-bar">
                         <p className='dashboard-home'>Dashboard</p>
                     </div>
-                    <div className="col-box">
-                        <div className="homepage-box1">
+
+                    <div className=" row col-box">
+                        <div className="homepage-box1 col-xl-6 col-lg-12">
                             <div className="row home-cards-box">
                                 <UserInfoCard icon={currency} numbers="28,000.300" label="Total Income" currency="$" />
                                 <UserInfoCard icon={group} numbers="254" label="Customers" />
@@ -33,14 +36,25 @@ const DashBoard = () => {
                                 <Table getToken={token} />
                             </div>
                         </div>
-                        <div className="homepage-box2">
+                        <div className="homepage-box2 col-xl-6 col-lg-12">
                             <div className="dashBoard_bigCard">
                                 <div className="bigCard_headings">
                                     <div>
-                                        <h2>Monthly Profit</h2>
-                                        <p>Total profit growth of 25%</p>
+                                        <p className='bigCard_headings-p1'>Monthly Profit</p>
+                                        <p className='bigCard_headings-p2'>Total profit growth of 25%</p>
                                     </div>
-                                    <div>...</div>
+                                    <div className='bigCard_headings-menu'>...</div>
+                                </div>
+                                <div className="bigCard_graph">
+                                    <img className='ellipse-1' src={blueEllipse} alt="" />
+                                    <div className="ellipse-para">
+                                        <p className='bigCard_headings-p2 p'>Total profit</p>
+                                        <p className='bigCard_headings-p1 p'>$ 200.000</p>
+                                    </div>
+                                    <img src={orangeEllipse} alt="" />
+                                </div>
+                                <div className="dashBoard_label">
+                                    <span className='dasBoard_dot1'>•</span><p>Total income</p><span className='dasBoard_dot2'>•</span><p>Total spending</p>
                                 </div>
                             </div>
                         </div>

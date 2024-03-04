@@ -33,13 +33,83 @@
 
 .bigCard_headings {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    /* align-items: center; */
 }
 
 .dashBoard_bigCard {
-    margin-left: 2rem;
     height: 40.2rem;
-    width: 100%;
+    width: 97%;
     background-color: #fff;
+    padding: 2rem;
+}
+
+.homepage-box2 {
+    display: flex;
+    justify-content: end;
+    margin-top: 2rem;
+    width: 31.5%;
+
+}
+
+.bigCard_headings-p1 {
+    font-size: 1.7rem;
+}
+
+.bigCard_headings-p2 {
+    font-size: 1.4rem;
+    color: #999999;
+}
+
+.bigCard_headings-menu {
+    font-size: 3rem;
+    color: #999999;
+}
+
+.ellipse-1 {
+    position: absolute;
+}
+
+
+
+.ellipse-para {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 6rem;
+}
+
+.bigCard_graph {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.dashBoard_label {
+    width: 100%;
+    display: flex;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.dashBoard_label span {
+    font-size: 2rem;
+}
+
+.dashBoard_label p {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    color: #999999;
+}
+
+.dasBoard_dot1 {
+    color:
+        #5372E7;
+}
+
+.dasBoard_dot2 {
+    color: #FF9F24;
 }

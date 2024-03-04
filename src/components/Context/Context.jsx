@@ -11,7 +11,7 @@ const Context = createContext()
 const Provider = ({ children }) => {
     const [sidebarButtons, setSidebarButton] = useState([
         { img: home, buttonText: "Home" },
-        { img: home, buttonText: "Stores" },
+        { img: store, buttonText: "Stores" },
         { img: order, buttonText: "Order" },
         { img: Categories, buttonText: "Categories" },
         { img: product, buttonText: "Products" },
