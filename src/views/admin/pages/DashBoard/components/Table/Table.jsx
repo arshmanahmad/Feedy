@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import StatusButton from '../../../../components/StatusButton/StatusButton';
 import './Table.css'
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-const Table = ({ getToken }) => {
-    const token = JSON.parse(localStorage.getItem('token'))
+import Cookies from 'js-cookie';
+const Table = () => {
+    const token = Cookies.get("token")
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [tableData, setTableData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             await axios.get(baseUrl + "/api/lastOrders", {
                 headers: {
-                    "Authorization": `Bearer ${getToken}`
+                    "Authorization": `Bearer ${token}`
                 }
             }).then(response => {
                 console.log(response)
-                setTableData(response.data)
+                setTableData(response.data.data)
             })
         };
         fetchData();
     }, [])
-    console.log(token);
-
+    console.log(tableData);
     return (
         <>
             <div className='dashBoard_table--outerBox'>
@@ -39,18 +38,25 @@ const Table = ({ getToken }) => {
                         <th>Price</th>
                     </thead>
                     <tbody>
-                        {/* {tableData.map((item) => {
+                        {tableData.map((item) => {
+                            let date = new Date(item.createdAt);
+                            let day = date.getDate().toString().padStart(2, '0');
+                            let month = (date.getMonth() + 1).toString().padStart(2, '0');
+                            const year = date.getFullYear();
+                            const formattedDate = `${day}-${month}-${year}`
+                            let statusBtn = item.status === "Pending" ? <StatusButton status="Pending" /> : <StatusButton status="Complete" />
+                            const roundOffAmount = item.totalPrice.toFixed(2)
                             return (
                                 <tr>
-                                    <td>{item.IdOrder}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.product}</td>
-                                    <td>{item.date}</td>
-                                    <td>{item.StatusButton}</td>
-                                    <td className='dashBoard_table-price'>{item.price}</td>
+                                    <td>{item.id}</td>
+                                    <td>{item.userName}</td>
+                                    <td>{item.paymentMethod}</td>
+                                    <td>{formattedDate}</td>
+                                    <td>{statusBtn}</td>
+                                    <td className='dashBoard_table-price' >{`${"$"} ${roundOffAmount}`}</td>
                                 </tr>
                             )
-                        })} */}
+                        })}
                     </tbody>
                 </table>
             </div>

@@ -3,7 +3,7 @@ import './StatusButton.css'
 
 const StatusButton = ({ status, className = "" }) => {
     const complete = "complete-btn"
-    const pending = status === "pending" ? `${complete}--${status} ` : ""
+    let pending = status === "Pending" ? `${complete}--${status} ` : ""
     return (
         <>
             <button className={`${className} ${complete} ${pending}`}>

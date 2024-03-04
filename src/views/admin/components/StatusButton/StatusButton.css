@@ -11,8 +11,8 @@
     border: none;
 }
 
-.complete-btn--pending {
+.complete-btn--Pending {
     background-color:
-        #FFEEEE;
-    color: #FF9F24;
+        #FFEEEE !important;
+    color: #FF9F24 !important;
 }

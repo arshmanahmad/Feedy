@@ -61,7 +61,6 @@ const SignUpForm = () => {
         else if (isChecked === false) {
             error.isAgreed = true;
         }
-
         setErrors(error)
         return Object.keys(error).length === 0;
     }

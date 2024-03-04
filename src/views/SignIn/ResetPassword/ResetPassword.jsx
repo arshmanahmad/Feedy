@@ -79,7 +79,7 @@ const SignUp = () => {
                 }).then(response => {
                     setResetLoading(false);
                     if (response.data.success) {
-                        navigate("/dashboard")
+                        navigate("/admin/DashBoard")
                         error.popUp = response.data.message;
                     }
                     else {
