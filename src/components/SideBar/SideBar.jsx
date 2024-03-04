@@ -25,7 +25,6 @@ const SideBar = ({ className = "" }) => {
                 </div>
                 <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
                     <div className='side-bar-container'>
-
                         {/* <img className='sidebar-main-logo' src={(window.width > 1215) ? logo : cuttedLogo} alt="" /> */}
                         <div className="sidebar-btn-container">
                             {sidebarButtons.map((buttons, index) => {
