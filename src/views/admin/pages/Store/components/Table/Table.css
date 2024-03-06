@@ -1,0 +1,8 @@
+.store_table th,
+td {
+    border-collapse: collapse;
+    border: 1px solid;
+    height: 3.8rem;
+    font-size: 12px;
+    width: 10.5rem;
+}

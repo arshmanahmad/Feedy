@@ -14,8 +14,8 @@ const Admin = () => {
                 </div>
                 <div className='admin_routes'>
                     <Routes>
-                        <Route path="/DashBoard" element={<DashBoard />} />
-                        <Route path="/store" element={<Store />} />
+                        <Route path="/home" element={<DashBoard />} />
+                        <Route path="/stores" element={<Store />} />
                     </Routes>
                 </div>
             </div>

@@ -9,14 +9,14 @@ import cuttedLogo from './assets/logo/cutted-logo.png'
 import { useNavigate } from 'react-router-dom'
 
 const SideBar = ({ className = "" }) => {
+    let route = "";
     const navigate = useNavigate("")
     const [activeButton, setActiveButton] = useState()
     const { sidebarButtons } = useContext(Context);
-    const handleActiveButton = (index) => {
+    const handleActiveButton = (index, button) => {
+        route = button.buttonText
         setActiveButton(index)
-        if (activeButton === 1) {
-            navigate("/admin/store")
-        }
+        navigate(`/admin/${route}`)
     }
     return (
         <>
@@ -37,14 +37,16 @@ const SideBar = ({ className = "" }) => {
                                     active = "active-btn"
                                 }
                                 return (
-                                    <button onClick={() => handleActiveButton(index)} className={active}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
+
+                                    < button onClick={() => handleActiveButton(index, buttons)} className={active}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
                                 )
+
                             })}
                         </div>
                         <Button className='sidebar-btn' type="outlined" icon={Logout} text="Logout" />
                     </div>
                 </div >
-            </div>
+            </div >
         </>
     )
 }
