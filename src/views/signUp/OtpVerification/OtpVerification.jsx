@@ -65,7 +65,7 @@ const OtpVerification = () => {
         }).then(
             response => {
                 if (response.data.success) {
-                    navigate("/admin/DashBoard")
+                    navigate("/admin/home")
                     Cookies.set('token', response.data.token, { expires: 1 })
                     error.popUp = response.data.message
                 }

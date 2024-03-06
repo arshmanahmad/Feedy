@@ -61,7 +61,7 @@ const SignInForm = () => {
                 setSignInLoading(false)
                 console.log(response);
                 if (response.data.success === true) {
-                    navigate("/admin/DashBoard")
+                    navigate("/admin/home")
                 }
                 else if (response.data.success === false) {
                     error.popUp = response.data.message;

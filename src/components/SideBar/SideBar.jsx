@@ -10,12 +10,18 @@ import { useNavigate } from 'react-router-dom'
 
 const SideBar = ({ className = "" }) => {
     let route = "";
+    let active = 0;
+    let btn = "btns"
     const navigate = useNavigate("")
-    const [activeButton, setActiveButton] = useState()
+    const [activeButton, setActiveButton] = useState("")
     const { sidebarButtons } = useContext(Context);
     const handleActiveButton = (index, button) => {
         route = button.buttonText
-        setActiveButton(index)
+        active = index
+        btn = false
+        if (active === index) {
+            setActiveButton("active-btn")
+        }
         navigate(`/admin/${route}`)
     }
     return (
@@ -32,13 +38,10 @@ const SideBar = ({ className = "" }) => {
                     <div className='side-bar-container'>
                         <div className="sidebar-btn-container">
                             {sidebarButtons.map((buttons, index) => {
-                                let active = "btns";
-                                if (index === activeButton) {
-                                    active = "active-btn"
-                                }
+
                                 return (
 
-                                    < button onClick={() => handleActiveButton(index, buttons)} className={active}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
+                                    < button onClick={() => handleActiveButton(index, buttons)} className={btn}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
                                 )
 
                             })}
