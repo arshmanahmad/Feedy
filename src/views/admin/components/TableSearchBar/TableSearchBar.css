@@ -1,0 +1,22 @@
+.table_searchBar {
+    width: 22rem;
+    height: 4rem;
+    background-color: #FAFAFA;
+    display: flex;
+    align-items: center;
+    color: #999999;
+    justify-content: center;
+}
+
+.table_searchBar span {
+    font-size: 2.1rem;
+}
+
+.searchBar_input {
+    margin-left: 1rem;
+    width: 70%;
+    border: none;
+    outline: none;
+    color: #999999;
+    background-color: transparent;
+}

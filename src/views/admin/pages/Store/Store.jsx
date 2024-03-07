@@ -3,6 +3,7 @@ import WrapperCard from '../../../../components/CardLayout/WrapperCard/WrapperCa
 import Table from './components/Table/Table'
 import MenuBar from '../../components/MenuBar/MenuBar'
 import Cookies from 'js-cookie'
+import TableSearchBar from '../../components/TableSearchBar/TableSearchBar'
 import axios from 'axios'
 const Store = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
@@ -11,6 +12,12 @@ const Store = () => {
     const [popUp, setPopUp] = useState('')
     const menus = ["Edit Store", "Delete Store", "Deactivate"]
     const [data, setData] = useState([]);
+    const [dummyData, setDummyData] = useState([
+        { name: "arshman", class: "one", skill: "web" },
+        { name: "Hanan", class: "one", skill: "web" },
+        { name: "Shuja", class: "one", skill: "web" },
+        { name: "Afnan", class: "one", skill: "web" },
+    ])
     useEffect(() => {
         const fetchData = async () => {
             await axios.get(baseUrl + "/api/allOrders", {
@@ -28,6 +35,9 @@ const Store = () => {
     const handleClick = () => {
         setPopUp("clicked")
     }
+    const handleChange = (e) => {
+        setData(e.target.value);
+    }
     return (
         <>
             <WrapperCard>
@@ -35,11 +45,12 @@ const Store = () => {
 
                 </div>
                 <div className="Store_table">
-                    <Table array={data} />
+                    <Table array={dummyData} />
                     <MenuBar onClick={handleClick} array={menus} />
+                    <TableSearchBar onChange={handleChange} />
                     {popUp}
                 </div>
-            </WrapperCard>
+            </WrapperCard >
         </>
     )
 }
