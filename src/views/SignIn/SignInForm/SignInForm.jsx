@@ -10,6 +10,7 @@ import visibilityIcon from "../../../assets/Icons/visibility-less-weight.png"
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
 import axios from 'axios';
 import Loader from '../../../components/Loader/Loader';
+import Cookies from 'js-cookie';
 
 const SignInForm = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
@@ -61,6 +62,7 @@ const SignInForm = () => {
                 setSignInLoading(false)
                 console.log(response);
                 if (response.data.success === true) {
+                    Cookies.set("token", response.data.token, { expires: 30 })
                     navigate("/admin/home")
                 }
                 else if (response.data.success === false) {
