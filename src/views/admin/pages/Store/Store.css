@@ -1,0 +1,17 @@
+.store_heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.store_headingText {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-right: 3rem;
+}
+
+.headingPlusBtn_container {
+    display: flex;
+    align-items: center;
+}

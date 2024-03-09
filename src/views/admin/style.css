@@ -1,7 +1,12 @@
 .admin_wrapper {
+    width: 100%;
     display: flex;
 }
 
 .admin_sideBar {
     width: 15%;
+}
+
+.admin_routes {
+    width: 85%;
 }

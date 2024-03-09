@@ -11,14 +11,24 @@ import graph from './assets/images/Group 1926@2x.png'
 import Table from './components/Table/Table'
 import orangeEllipse from './assets/images/Ellipse 177.png'
 import blueEllipse from './assets/images/Ellipse 178.png'
+import TableSearchBar from '../../components/TableSearchBar/TableSearchBar'
+import ProfileBar from '../../components/ProfileBar/ProfileBar'
+import ProfilePic from '../../assets/images/Ellipse 1.png'
+import TableLoader from '../../components/TableLoader/TableLoader'
 const DashBoard = () => {
     const token = JSON.parse(localStorage.getItem('token'))
     return (
         <>
             <div className='dashBoard_container'>
                 <WrapperCard>
-                    <div className="'dashBoard-nav-bar">
+                    <div className="dashBoard-sideBar">
                         <p className='dashboard-home'>Dashboard</p>
+                        <div className="dashBoard_searchProfileBox">
+                            <div className="dashBoard_searchBox">
+                                <TableSearchBar />
+                            </div>
+                            <ProfileBar img={ProfilePic} name="Arshman Ahmad" editText="Edit Profile" />
+                        </div>
                     </div>
 
                     <div className=" row col-box">

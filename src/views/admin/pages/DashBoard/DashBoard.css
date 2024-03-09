@@ -2,11 +2,21 @@
     display: flex;
 }
 
-.dashBoard-nav-bar {
+.dashBoard-sideBar {
+
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
 }
 
+.dashBoard_searchProfileBox {
+    display: flex;
+}
+
+.dashBoard_searchBox {
+    margin-right: 2rem;
+}
 
 .dashboard-home {
     font-size: 1.6rem;

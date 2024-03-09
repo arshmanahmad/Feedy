@@ -66,3 +66,16 @@
     color: #FFFFFF;
     padding: 0.75rem 2.5rem;
 }
+
+.primary_button--action {
+    background-color: #FF780A;
+    width: 9rem;
+    border-radius: 0.5rem;
+
+}
+
+.primary_button--navigation {
+    background-color: #FF780A;
+    border-radius: 0.5rem;
+
+}

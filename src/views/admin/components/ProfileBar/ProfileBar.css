@@ -1,0 +1,32 @@
+.profile_container {
+    display: flex;
+    gap: 0.3rem;
+    max-width: 22rem;
+    background-color:
+        #FFFFFF;
+    align-items: center;
+    padding: 0.8rem;
+    border-radius: 3.3rem;
+}
+
+.profile_namingContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileEdit_text {
+    font-size: 1rem;
+    color:
+        #48A2D4;
+}
+
+.profileName {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.profileSelect_DropDown {
+    border: none;
+    background: transparent;
+    font-weight: lighter !important;
+}
