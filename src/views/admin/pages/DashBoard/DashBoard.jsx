@@ -29,8 +29,7 @@ const DashBoard = () => {
                             <ProfileBar img={ProfilePic} name="Arshman Ahmad" editText="Edit Profile" />
                         </div>
                     </div>
-
-                    <div className=" row col-box">
+                    <div className="col-box">
                         <div className="dashBoard-box1">
                             <div className="row dashBoard-cards-box">
                                 <UserInfoCard icon={currency} numbers="28,000.300" label="Total Income" currency="$" />

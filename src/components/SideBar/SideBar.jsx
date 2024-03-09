@@ -18,7 +18,6 @@ const SideBar = ({ className = "" }) => {
         setActiveButton(index)
         navigate(`/admin/${route}`)
     }
-    console.log(activeButton);
     return (
         <>
             <div className="sidebar-outerBox">
