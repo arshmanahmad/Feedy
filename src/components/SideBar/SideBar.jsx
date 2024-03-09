@@ -10,20 +10,15 @@ import { useNavigate } from 'react-router-dom'
 
 const SideBar = ({ className = "" }) => {
     let route = "";
-    let active = 0;
-    let btn = "btns"
     const navigate = useNavigate("")
-    const [activeButton, setActiveButton] = useState("")
+    const [activeButton, setActiveButton] = useState(0)
     const { sidebarButtons } = useContext(Context);
     const handleActiveButton = (index, button) => {
         route = button.buttonText
-        active = index
-        btn = false
-        if (active === index) {
-            setActiveButton("active-btn")
-        }
+        setActiveButton(index)
         navigate(`/admin/${route}`)
     }
+    console.log(activeButton);
     return (
         <>
             <div className="sidebar-outerBox">
@@ -32,18 +27,15 @@ const SideBar = ({ className = "" }) => {
                         <source media="(max-width: 1215px)" srcset={cuttedLogo} />
                         <img src={logo} alt="logo" />
                     </picture>
-                    <p className='show-icon'>≡</p>
                 </div>
                 <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
                     <div className='side-bar-container'>
                         <div className="sidebar-btn-container">
                             {sidebarButtons.map((buttons, index) => {
-
+                                let btn = "btns"
                                 return (
-
                                     < button onClick={() => handleActiveButton(index, buttons)} className={btn}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
                                 )
-
                             })}
                         </div>
                         <Button className='sidebar-btn' type="outlined" icon={Logout} text="Logout" />
