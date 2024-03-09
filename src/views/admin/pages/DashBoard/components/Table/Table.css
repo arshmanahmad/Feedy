@@ -4,6 +4,7 @@
         #FFFFFF;
     margin-top: 2rem;
     border-radius: 0.4rem;
+    width: 100%;
 }
 
 .dashBoard_table-price {
@@ -16,9 +17,18 @@
     justify-content: space-between;
 }
 
+.loading_alignment {
+    margin-left: 18rem;
+}
+
 .dashBoard_table thead {
     background-color:
         #FAFAFA;
+}
+
+.dashBoard_tableBody {
+    width: 100%;
+
 }
 
 .dashBoard_table thead th {

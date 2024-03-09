@@ -3,11 +3,14 @@ import StatusButton from '../../../../components/StatusButton/StatusButton';
 import './Table.css'
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import TableLoader from '../../../../components/TableLoader/TableLoader';
 const Table = () => {
+    const [loading, setLoading] = useState(false)
     const token = Cookies.get("token")
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [tableData, setTableData] = useState([]);
     useEffect(() => {
+        setLoading(true)
         const fetchData = async () => {
             await axios.get(baseUrl + "/api/lastOrders", {
                 headers: {
@@ -15,6 +18,7 @@ const Table = () => {
                 }
             }).then(response => {
                 console.log(response)
+                setLoading(false)
                 setTableData(response.data.data)
             })
         };
@@ -37,7 +41,7 @@ const Table = () => {
                         <th>Tracking</th>
                         <th>Price</th>
                     </thead>
-                    <tbody>
+                    {loading ? <TableLoader className='loading_alignment' /> : <tbody className='dashBoard_tableBody'>
                         {tableData.map((item) => {
                             let date = new Date(item.createdAt);
                             let day = date.getDate().toString().padStart(2, '0');
@@ -57,7 +61,7 @@ const Table = () => {
                                 </tr>
                             )
                         })}
-                    </tbody>
+                    </tbody>}
                 </table>
             </div>
         </>
