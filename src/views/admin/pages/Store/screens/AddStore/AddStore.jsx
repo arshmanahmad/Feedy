@@ -14,6 +14,9 @@ const AddStore = () => {
                     </div>
                     <label htmlFor="upload">Upload</label>
                 </div>
+
+
+
                 <div className="addStore_inputContainer">
                     <Input type="borderless" placeholder="Enter your Storename" label="Store Name:" />
                     <Input type="borderless" placeholder="Enter your no" label="Store Contact No:" />
