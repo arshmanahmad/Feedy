@@ -1,0 +1,36 @@
+.store_fileExtractorBox {
+    height: 10rem;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-style: dotted;
+    border: 1px solid #999999;
+    border-style: dotted;
+    border-radius: 5px;
+    padding: 2rem;
+}
+
+.addStore_inputContainer {
+    display: inline-block;
+}
+
+.addIcon_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.file_extractorIcon {
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.file_extractorInput {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    height: 6rem;
+    width: 6rem;
+}

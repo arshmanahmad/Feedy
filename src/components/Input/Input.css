@@ -65,6 +65,15 @@ input[type=number] {
     color: #C0BDCC;
 }
 
+.borderless .input-border {
+    border: none !important;
+    background-color: #FAFAFA;
+}
+
+.borderless input {
+    background-color: transparent;
+}
+
 .input-container {
     display: flex;
     margin-top: 10px;
