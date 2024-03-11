@@ -24,6 +24,16 @@ const AddStore = () => {
                     <Input type="borderless" placeholder="Zipcode" label="Zip Code:" />
                     <Input type="borderless" placeholder="Location" label="Enter Your Location:" icon={mapIcon} />
                 </div>
+                <div className="store_daysInputs">
+                    {/* <label htmlFor="Store Days">Store Days</label> */}
+                    <Input type="checkBox" day="Monday" />
+                    <Input type="checkBox" day="Monday" />
+                    <Input type="checkBox" day="Monday" />
+                    <Input type="checkBox" day="Monday" />
+                    <Input type="checkBox" day="Monday" />
+                    <Input type="checkBox" day="Monday" />
+
+                </div>
             </div>
         </>
     )

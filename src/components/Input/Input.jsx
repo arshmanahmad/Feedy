@@ -1,6 +1,6 @@
 import React from "react";
 import './Input.css';
-const Input = ({ maxLength, onInputClick, max, label, checked, onClick, icon, placeholder, type, onChange, name, disabled, className = "" }) => {
+const Input = ({ maxLength, onInputClick, max, label, checked, onClick, icon, placeholder, type, onChange, name, day, disabled, className = "" }) => {
     return (
         <>
             <div className={`${className} input-container col-lg-6 col-md-12 col-sm-12 ${type === "checkBox" ? "checkBox" : " "}
@@ -17,10 +17,10 @@ const Input = ({ maxLength, onInputClick, max, label, checked, onClick, icon, pl
                         disabled={disabled}
                         checked={checked}
                         onClick={onInputClick}
-                    // required
                     />
                     {icon && <img className="input-icon" onClick={onClick} src={icon}></img>}
                 </div>
+                <div className="day_container">{day}</div>
             </div>
         </>
     )
