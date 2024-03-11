@@ -13,7 +13,7 @@ const HomePage = () => {
         <>
             <div className='homePage_container'>
                 <SideBar />
-                <WrapperCard>
+                {/* <WrapperCard>
                     <div className="homepage-nav-bar">
                         <p className='dashboard-home'>Dashboard</p>
                     </div>
@@ -33,7 +33,7 @@ const HomePage = () => {
 
                         </div>
                     </div>
-                </WrapperCard>
+                </WrapperCard> */}
             </div>
         </>
     )

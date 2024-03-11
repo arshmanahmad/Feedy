@@ -6,17 +6,15 @@ import Logout from '../SideBar/assets/logo/logout-disable.jpg'
 import { useContext } from 'react'
 import Context from '../Context/Context'
 import cuttedLogo from './assets/logo/cutted-logo.png'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { adminSideBar } from '../../static/data'
 
 const SideBar = ({ className = "" }) => {
     let btn;
-    let route = "";
     const navigate = useNavigate("")
-    const [activeButton, setActiveButton] = useState(0)
-    const { sidebarButtons } = useContext(Context);
-    const handleActiveButton = (index, button) => {
-        route = button.buttonText
-        setActiveButton(index)
+    const location = useLocation().pathname.split("/")[2];
+
+    const handleActiveButton = (route) => {
         navigate(`/admin/${route}`);
     }
     return (
@@ -31,16 +29,13 @@ const SideBar = ({ className = "" }) => {
                 <div className={`${className} side_bar ${className === "display" ? "side_bar--display" : " "}`}>
                     <div className='side-bar-container'>
                         <div className="sidebar-btn-container">
-                            {sidebarButtons.map((buttons, index) => {
+                            {adminSideBar.map((buttons, index) => {
                                 btn = "btns"
-                                if (index === activeButton) {
-                                    btn = "active-btn"
-                                }
-                                if (buttons.buttonText === route) {
+                                if (buttons.buttonText === location) {
                                     btn = "active-btn"
                                 }
                                 return (
-                                    < button onClick={() => handleActiveButton(index, buttons)} className={btn}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
+                                    <button onClick={() => handleActiveButton(buttons.buttonText)} className={btn}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
                                 )
                             })}
                         </div>
