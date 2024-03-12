@@ -17,6 +17,9 @@ const SideBar = ({ className = "" }) => {
     const handleActiveButton = (route) => {
         navigate(`/admin/${route}`);
     }
+    const capitalization = (text) => {
+        return text[0].toUpperCase() + text.slice(1)
+    }
     return (
         <>
             <div className="sidebar-outerBox">
@@ -35,7 +38,7 @@ const SideBar = ({ className = "" }) => {
                                     btn = "active-btn"
                                 }
                                 return (
-                                    <button onClick={() => handleActiveButton(buttons.buttonText)} className={btn}> <img src={buttons.img} alt="" />{buttons.buttonText}</button>
+                                    <button onClick={() => handleActiveButton(buttons.buttonText)} className={btn}> <img src={buttons.img} alt="" />{capitalization(buttons.buttonText)}</button>
                                 )
                             })}
                         </div>
