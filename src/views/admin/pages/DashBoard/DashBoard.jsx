@@ -29,8 +29,8 @@ const DashBoard = () => {
                             <ProfileBar img={ProfilePic} name="Arshman Ahmad" editText="Edit Profile" />
                         </div>
                     </div>
-                    <div className="col-box">
-                        <div className="dashBoard-box1">
+                    <div className="row col-box">
+                        <div className="dashBoard-box1 col-lg-8 col-md-12">
                             <div className="row dashBoard-cards-box">
                                 <UserInfoCard icon={currency} numbers="28,000.300" label="Total Income" currency="$" />
                                 <UserInfoCard icon={group} numbers="254" label="Customers" />
@@ -44,7 +44,7 @@ const DashBoard = () => {
                                 <Table getToken={token} />
                             </div>
                         </div>
-                        <div className="homepage-box2">
+                        <div className="homepage-box2 col-lg-4 col-md-12">
                             <div className="dashBoard_bigCard">
                                 <div className="bigCard_headings">
                                     <div>

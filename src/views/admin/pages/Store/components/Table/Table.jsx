@@ -9,7 +9,7 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
 
     useEffect(() => {
         setFilteredData(array.filter((obj) => {
-            return searchedData === '' || obj[filters].toLowerCase().includes(searchedData.toLowerCase())
+            return searchedData === '' || obj[filters].toLowerCase().includes(searchedData.toLowerCase());
         }))
     }, [searchedData])
 
@@ -32,11 +32,7 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
                                             keysToDisplay.map((key, index) => {
                                                 return (
                                                     <td className='table_data'>
-                                                        {customBlocks.length > 0 ? (
-                                                            customBlocks[0].index === index ?
-                                                                customBlocks[0].component(obj[key]) :
-                                                                obj[key]
-                                                        ) : obj[key]}
+                                                        {obj[key]}
                                                     </td>
                                                 )
                                             })
@@ -49,6 +45,11 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
                 </table>
 
             </div>
+            {/* {customBlocks.length > 0 ? (
+                customBlocks[0].index === index ?
+                    customBlocks[0].component(obj[key]) :
+                    obj[key]
+            ) : obj[key]} */}
         </>
     )
 }

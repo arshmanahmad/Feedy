@@ -12,14 +12,14 @@ const data = [
         name: "Store 1",
         contactNo: "+052 71788822",
         adminEmail: "store1.admin@str.com",
-        adress: "3D Program , Asholoo, Oboimxs 1192 22190, SW"
+        address: "3D Program , Asholoo, Oboimxs 1192 22190, SW"
     },
     {
         id: 2,
         name: "Store 2",
         contactNo: "+052 72788822",
         adminEmail: "store2.admin@str.com",
-        adress: "3D Program , Asholoo, Oboimxs 1192 22190, SW"
+        address: "3D Program , Asholoo, Oboimxs 1192 22190, SW"
     }
 ];
 
@@ -38,13 +38,13 @@ const Admin = () => {
                 <div className="admin_sideBar">
                     <SideBar />
                 </div>
-                <Table
+                {/* <Table
                     array={data}
                     label={[
                         "ID", "Name", "Admin Email", "Address"]}
                     filters={"adminEmail"}
                     keysToDisplay={[
-                        "id", "name", "adminEmail", "adress"
+                        "id", "name", "adminEmail", "address"
                     ]}
                     customBlocks={[
                         {
@@ -52,13 +52,13 @@ const Admin = () => {
                             component: dropDown
                         }
                     ]}
-                />
-                {/* <div className='admin_routes'>
+                /> */}
+                <div className='admin_routes'>
                     <Routes>
                         <Route path="/home/*" element={<DashBoard />} />
                         <Route path="/stores/*" element={<Store />} />
                     </Routes>
-                </div> */}
+                </div>
             </div>
         </>
     )

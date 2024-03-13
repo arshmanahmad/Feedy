@@ -31,7 +31,7 @@ const Home = () => {
     return (
         <>
             <div>
-                {loading ? <TableLoader /> : <Table array={data} />}
+                {loading ? <TableLoader /> : <Table filters="userName" array={data} keysToDisplay={["userName", "id", "phoneNumber", "dateOfDelivery"]} label={["Name", "Identification", "Phone No", "Date of Delivery"]} />}
             </div>
         </>
     )
