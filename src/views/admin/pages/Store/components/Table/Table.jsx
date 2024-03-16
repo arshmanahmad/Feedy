@@ -47,7 +47,6 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
                         }
                     </tbody>
                 </table>
-
             </div>
         </>
     )

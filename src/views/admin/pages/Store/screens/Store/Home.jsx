@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import TableLoader from '../../../../components/TableLoader/TableLoader';
 import Table from '../../components/Table/Table';
 import { DateFormatForUser } from '../../../../../../utlis/DateFormat';
+import ThreeDotsMenu from '../../../../../../utlis/ThreeDotsMenu';
 
 const Home = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
@@ -15,7 +16,7 @@ const Home = () => {
     const [data, setData] = useState([]);
     const fetchData = async () => {
         setLoading(true)
-        await axios.get(baseUrl + "/api/allOrders", {
+        await axios.get(baseUrl + "/api/stores", {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -39,13 +40,13 @@ const Home = () => {
                 {loading ? <TableLoader /> : <Table
                     filters="userName"
                     array={data}
-                    keysToDisplay={["userName", "id", "phoneNumber", "dateOfDelivery"]}
-                    label={["Name", "Identification", "Phone No", "Date of Delivery"]}
+                    keysToDisplay={["name", "adress", "contactNo", "adminEmail"]}
+                    label={["Store Name", "Address", "Phone No", "Store Admin"]}
                     customBlocks={[
                         {
                             index: 3,
                             component: (value) => {
-                                return DateFormatForUser(value)
+                                return ThreeDotsMenu(value)
                             }
                         }
                     ]}
@@ -56,3 +57,11 @@ const Home = () => {
 }
 
 export default Home
+// customBlocks={[
+//     {
+//         index: 3,
+//         component: (value) => {
+//             return DateFormatForUser(value)
+//         }
+//     }
+// ]}
