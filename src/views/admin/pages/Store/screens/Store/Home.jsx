@@ -36,7 +36,7 @@ const Home = () => {
         <>
             <div>
                 {loading ? <TableLoader /> : <Table
-                    filters="userName"
+                    filters="name"
                     array={data}
                     keysToDisplay={["name", "adress", "contactNo", "adminEmail"]}
                     label={["Store Name", "Address", "Phone No", "Store Admin"]}

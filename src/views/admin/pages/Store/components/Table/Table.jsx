@@ -6,6 +6,7 @@ import MenuBar from '../../../../components/MenuBar/MenuBar'
 
 const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBlocks = [] }) => {
     const [searchedData, setSearchedData] = useState('');
+    const [showMenuBar, setShowMenuBar] = useState(false)
     const [filteredData, setFilteredData] = useState(array);
 
     useEffect(() => {
@@ -14,7 +15,7 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
         }))
     }, [searchedData])
     const handleClick = (obj) => {
-        return <MenuBar array={"Edit Store,Delete Store"} />
+        setShowMenuBar(!showMenuBar)
     }
     return (
         <>
@@ -43,6 +44,7 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
                                                                 customBlocks[0].component(obj[key]) :
                                                                 obj[key]
                                                         ) : obj[key]}
+                                                        {showMenuBar && <MenuBar array={["heelo", "jelli", "bello"]} />}
                                                     </td>
                                                 )
                                             })
