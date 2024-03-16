@@ -1,4 +1,4 @@
-.table_thead,
+.table_th,
 .table_data {
     border-collapse: collapse;
     height: 3.8rem;
@@ -6,7 +6,7 @@
     width: 10.5rem;
 }
 
-.table_thead {
+.table_th {
     background-color:
         #F6F4F4;
 }
@@ -17,12 +17,32 @@
         #E1E1FB;
 }
 
+.table_head {
+    width: 100%;
+}
+
 .table_container {
     width: 100%;
+    display: inline-block;
     margin-top: 1rem;
     background-color: #FFFFFF;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
     padding: 1rem 2rem;
+}
+
+.searchBar_box {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.dotMenu {
+    width: 0;
+    cursor: pointer;
+    margin-left: 5rem;
+    font-weight: 2rem;
+    font-weight: 700;
+    font-size: 2rem;
 }

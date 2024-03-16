@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import TableLoader from '../../../../components/TableLoader/TableLoader';
 import Table from '../../components/Table/Table';
 import { DateFormatForUser } from '../../../../../../utlis/DateFormat';
-import ThreeDotsMenu from '../../../../../../utlis/ThreeDotsMenu';
 
 const Home = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
@@ -29,7 +28,6 @@ const Home = () => {
         fetchData();
     }, [])
     console.log(data);
-
     const showCustomDate = (value) => {
         return DateFormatForUser(value)
     }
@@ -42,14 +40,6 @@ const Home = () => {
                     array={data}
                     keysToDisplay={["name", "adress", "contactNo", "adminEmail"]}
                     label={["Store Name", "Address", "Phone No", "Store Admin"]}
-                    customBlocks={[
-                        {
-                            index: 3,
-                            component: (value) => {
-                                return ThreeDotsMenu(value)
-                            }
-                        }
-                    ]}
                 />}
             </div>
         </>

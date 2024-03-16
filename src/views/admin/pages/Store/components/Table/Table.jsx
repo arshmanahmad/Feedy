@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Table.css';
 import StatusButton from '../../../../components/StatusButton/StatusButton';
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar';
+import MenuBar from '../../../../components/MenuBar/MenuBar'
 
 const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBlocks = [] }) => {
     const [searchedData, setSearchedData] = useState('');
@@ -12,16 +13,21 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
             return searchedData === '' || obj[filters].toLowerCase().includes(searchedData.toLowerCase());
         }))
     }, [searchedData])
-
+    const handleClick = (obj) => {
+        return <MenuBar array={"Edit Store,Delete Store"} />
+    }
     return (
         <>
             <div className='table_container'>
-                <TableSearchBar onChange={(e) => setSearchedData(e.target.value)} />
+                <div className="searchBar_box">
+                    <TableSearchBar onChange={(e) => setSearchedData(e.target.value)} />
+                </div>
                 <table className='store_table'>
-                    <thead>
+                    <thead className='table_head'>
                         {label.map((text, index) => {
-                            return <th className='table_thead'>{text}</th>
-                        })}
+                            return <th className='table_th'>{text}</th>
+                        })
+                        }
                     </thead>
                     <tbody>
                         {
@@ -41,13 +47,14 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
                                                 )
                                             })
                                         }
+                                        <td className='table_data dotMenu' onClick={() => handleClick(obj)}>⋮</td>
                                     </tr>
                                 )
                             })
                         }
                     </tbody>
                 </table>
-            </div>
+            </div >
         </>
     )
 }
