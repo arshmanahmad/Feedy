@@ -5,10 +5,16 @@ import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar
 import MenuBar from '../../../../components/MenuBar/MenuBar'
 import { useNavigate } from 'react-router-dom';
 
-const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBlocks = [] }) => {
+const Table = ({
+    array = [],
+    label = [],
+    keysToDisplay = [],
+    filters,
+    customBlocks = [],
+    extraColumns = []
+}) => {
     const [searchedData, setSearchedData] = useState('');
     const navigate = useNavigate('')
-    const [showMenuBar, setShowMenuBar] = useState(false)
     const [filteredData, setFilteredData] = useState(array);
 
     useEffect(() => {
@@ -16,12 +22,7 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
             return searchedData === '' || obj[filters].toLowerCase().includes(searchedData.toLowerCase());
         }))
     }, [searchedData])
-    const handleClick = (obj) => {
-        setShowMenuBar(!showMenuBar)
-    }
-    const handleEditStore = () => {
-        navigate("/admin/stores/AddStore")
-    }
+
     const handleDeleteStore = (obj) => {
         filteredData.filter((item) => item)
     }
@@ -59,11 +60,11 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
                                                 )
                                             })
                                         }
-                                        {showMenuBar && <MenuBar array={[
-                                            { label: "Edit Store", onClick: handleEditStore },
-                                            { label: "Delete Store", onClick: handleDeleteStore(obj) },
-                                            { label: "Deactivate", onClick: handleDeactivation }]} />}
-                                        <td className='table_data dotMenu' onClick={() => handleClick(obj)}>⋮</td>
+                                        {
+                                            extraColumns.map((item) => {
+                                                return <td className='table_data'>{item}</td>;
+                                            })
+                                        }
                                     </tr>
                                 )
                             })
