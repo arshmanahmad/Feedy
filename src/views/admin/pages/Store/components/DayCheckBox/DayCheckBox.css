@@ -1,0 +1,13 @@
+.day_InputContainer {
+    display: flex;
+    align-items: center;
+    /* margin: 1rem; */
+}
+
+
+.day_checkLabel {
+    margin-left: 1rem;
+    margin-top: 0.59rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+}

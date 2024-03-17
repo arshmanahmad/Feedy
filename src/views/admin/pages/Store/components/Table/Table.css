@@ -28,7 +28,7 @@
     background-color: #FFFFFF;
     border-radius: 4px;
     display: flex;
-    position: relative;
+    /* display: none; */
     flex-direction: column;
     padding: 1rem 2rem;
 }

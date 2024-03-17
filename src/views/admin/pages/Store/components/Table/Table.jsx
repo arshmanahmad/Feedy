@@ -3,9 +3,11 @@ import './Table.css';
 import StatusButton from '../../../../components/StatusButton/StatusButton';
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar';
 import MenuBar from '../../../../components/MenuBar/MenuBar'
+import { useNavigate } from 'react-router-dom';
 
 const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBlocks = [] }) => {
     const [searchedData, setSearchedData] = useState('');
+    const navigate = useNavigate('')
     const [showMenuBar, setShowMenuBar] = useState(false)
     const [filteredData, setFilteredData] = useState(array);
 
@@ -16,6 +18,15 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
     }, [searchedData])
     const handleClick = (obj) => {
         setShowMenuBar(!showMenuBar)
+    }
+    const handleEditStore = () => {
+        navigate("/admin/stores/AddStore")
+    }
+    const handleDeleteStore = (obj) => {
+        filteredData.filter((item) => item)
+    }
+    const handleDeactivation = () => {
+
     }
     return (
         <>
@@ -44,11 +55,14 @@ const Table = ({ array = [], label = [], keysToDisplay = [], filters, customBloc
                                                                 customBlocks[0].component(obj[key]) :
                                                                 obj[key]
                                                         ) : obj[key]}
-                                                        {showMenuBar && <MenuBar array={["heelo", "jelli", "bello"]} />}
                                                     </td>
                                                 )
                                             })
                                         }
+                                        {showMenuBar && <MenuBar array={[
+                                            { label: "Edit Store", onClick: handleEditStore },
+                                            { label: "Delete Store", onClick: handleDeleteStore(obj) },
+                                            { label: "Deactivate", onClick: handleDeactivation }]} />}
                                         <td className='table_data dotMenu' onClick={() => handleClick(obj)}>⋮</td>
                                     </tr>
                                 )

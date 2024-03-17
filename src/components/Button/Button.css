@@ -24,6 +24,51 @@
     background-color: #373e7c;
 }
 
+.primary_button--time {
+    height: 3rem;
+    width: 9rem;
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-color: #d1cdcd;
+    color: #d8d4d4;
+    border-radius: 5px;
+}
+
+.primary_button--time:hover {
+    background-color: rgb(246, 246, 246);
+
+}
+
+.primary_button--blackOutlined {
+    background-color: transparent;
+    border-color: black;
+    justify-content: center;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    max-width: 9rem;
+    color:
+        #D97474;
+    font-size: 12px;
+    margin-left: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.primary_button--blackOutlined:hover {
+    background-color: rgb(246, 246, 246);
+}
+
+.primary_button--primaryNormal {
+    border-radius: 4px;
+    max-width: 9rem;
+    margin-left: 1rem;
+}
+
 .primary_button--outlined {
     background-color: transparent;
     padding: 0.75rem 3.5rem;
@@ -37,6 +82,10 @@
     font-size: 12px;
     font-weight: 600;
     border-radius: 4px;
+}
+
+.primary_button--outlined:hover {
+    background-color: rgb(249, 245, 245);
 }
 
 .primary_button--save {
