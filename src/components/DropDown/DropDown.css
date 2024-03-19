@@ -1,0 +1,45 @@
+.dropdown_box {
+    border: 1px solid;
+    width: 8rem;
+    border-radius: 4px;
+    flex-direction: column;
+    max-height: 33rem;
+    max-width: 20rem;
+}
+
+.dropDown_iconContainer {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown_options {
+    max-height: 55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.flex-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_optionText {
+    width: 100%;
+    border: 1px solid;
+}
+
+.hide_option {
+    display: none;
+}
+
+.dropdown_img {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    height: 1rem;
+}
