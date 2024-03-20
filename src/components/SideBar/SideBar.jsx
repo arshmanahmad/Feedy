@@ -34,7 +34,7 @@ const SideBar = ({ className = "" }) => {
                         <div className="sidebar-btn-container">
                             {adminSideBar.map((buttons, index) => {
                                 btn = "btns"
-                                if (buttons.buttonText === location) {
+                                if (buttons.buttonText.toLowerCase() === location.toLowerCase()) {
                                     btn = "active-btn"
                                 }
                                 return (

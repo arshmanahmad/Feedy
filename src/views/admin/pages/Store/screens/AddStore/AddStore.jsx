@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './AddStore.css'
 import Input from '../../../../../../components/Input/Input'
 import mapIcon from "../../assets/icons/Vector (1).png"
@@ -6,12 +6,15 @@ import DayCheckBox from '../../components/DayCheckBox/DayCheckBox'
 import Button from '../../../../../../components/Button/Button'
 import clockIcon from '../../assets/icons/icons8_clock 2.png'
 import DropDown from '../../../../../../components/DropDown/DropDown';
+import MapPopUp from '../../components/MapPopUp/MapPopUp'
 const AddStore = () => {
+    const [showMap, setShowMap] = useState(false)
     const handleShowMap = () => {
-
+        setShowMap(!showMap)
     }
     return (
         <>
+
             <div className='addStore_container'>
                 <div className="store_fileExtractorBox">
                     <div className='addIcon_container'>
@@ -86,7 +89,6 @@ const AddStore = () => {
                         <Button text="Save" type="primaryNormal" />
                         <Button type="blackOutlined" text="08:00 pm" />
                     </div>
-                    <DropDown option={["Arshman", "Shuja", "Hassan", "Hanan", "Balouch"]} />
                 </div>
             </div>
         </>
