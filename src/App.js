@@ -11,6 +11,7 @@ const App = () => {
         {/* <div>SignIn/resetPassword/:userId/:token */}
         <BrowserRouter>
           <Routes>
+            {/* //wello */}
             <Route path="/*" element={<LandingWrapper />} />
             {/* <Route path="/" element={<ResetPassword />} /> */}
             {/* <Route path="/otp" element={<OtpVerification />} /> */}
