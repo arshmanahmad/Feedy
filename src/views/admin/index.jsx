@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './style.css'
 import SideBar from '../../components/SideBar/SideBar'
 import DashBoard from './pages/DashBoard/DashBoard'
 import { Routes, Route } from 'react-router-dom'
 import Store from './pages/Store/index'
 import Table from './pages/Store/components/Table/Table'
+import MapPopUp from '../admin/pages/Store/components/MapPopUp/MapPopUp'
+import { AppContext } from '../../components/Context/AppData'
 
 const data = [
     {
@@ -32,9 +34,12 @@ const dropDown = (value) => {
 }
 
 const Admin = () => {
+    const { showMap, setShowMap } = useContext(AppContext);
+
     return (
         <>
             <div className="admin_wrapper">
+                {showMap && <MapPopUp />}
                 <div className="admin_sideBar">
                     <SideBar />
                 </div>
@@ -42,14 +47,14 @@ const Admin = () => {
                     array={data}
                     label={[
                         "ID", "Name", "Admin Email", "Address"]}
-                    filters={"adminEmail"}
-                    keysToDisplay={[
-                        "id", "name", "adminEmail", "address"
-                    ]}
-                    customBlocks={[
-                        {
-                            index: 0,
-                            component: dropDown
+                        filters={"adminEmail"}
+                        keysToDisplay={[
+                            "id", "name", "adminEmail", "address"
+                        ]}
+                        customBlocks={[
+                            {
+                                index: 0,
+                                component: dropDown
                         }
                     ]}
                 /> */}

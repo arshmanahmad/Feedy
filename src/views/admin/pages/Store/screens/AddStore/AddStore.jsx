@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './AddStore.css'
 import Input from '../../../../../../components/Input/Input'
 import mapIcon from "../../assets/icons/Vector (1).png"
 import DayCheckBox from '../../components/DayCheckBox/DayCheckBox'
 import Button from '../../../../../../components/Button/Button'
 import clockIcon from '../../assets/icons/icons8_clock 2.png'
-import DropDown from '../../../../../../components/DropDown/DropDown';
-import MapPopUp from '../../components/MapPopUp/MapPopUp'
+import { AppContext } from "../../../../../../components/Context/AppData"
 const AddStore = () => {
-    const [showMap, setShowMap] = useState(false)
+    const { showMap, setShowMap } = useContext(AppContext)
     const handleShowMap = () => {
         setShowMap(!showMap)
     }

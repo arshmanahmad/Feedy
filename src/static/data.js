@@ -6,7 +6,6 @@ import users from '../components/SideBar/assets/logo/icons8_user_account 1.png'
 import Categories from '../components/SideBar/assets/logo/icons8_sorting 1.png'
 import setting from "../components/SideBar/assets/logo/Frame 997.png"
 
-
 export const adminSideBar = [
     { img: home, buttonText: "home" },
     { img: store, buttonText: "stores" },

@@ -1,13 +1,15 @@
 import React from "react";
 import './Input.css';
-const Input = ({ maxLength, onInputClick, max, label, checked, onClick, icon, placeholder, type, onChange, name, day, disabled, className = "" }) => {
+const Input = ({ maxLength, ref, onInputClick, max, label, checked, onClick, icon, placeholder, type, onChange, name, day, disabled, className = "" }) => {
+    let inputRef = React.createRef();
     return (
         <>
             <div className={`${className} input-container col-lg-6 col-md-12 col-sm-12 ${type === "checkBox" ? "checkBox" : " "}
-            ${className === "otp" ? "otp " : ""}${type === "borderless" ? "borderless" : ""}${type === "borderless_fullLength" ? "borderless_fullLength" : ""}`}>
+            ${className === "otp" ? "otp col-lg-4 col-md-6 col-sm-12" : ""}${type === "borderless" ? "borderless" : ""}${type === "borderless_fullLength" ? "borderless_fullLength" : ""}`}>
                 {label && <label>{label}</label>}
                 <div className="input-border">
                     <input className="input"
+                        ref={inputRef}
                         placeholder={placeholder}
                         maxLength={maxLength}
                         type={type}
@@ -20,7 +22,6 @@ const Input = ({ maxLength, onInputClick, max, label, checked, onClick, icon, pl
                     />
                     {icon && <img className="input-icon" onClick={onClick} src={icon}></img>}
                 </div>
-                <div className="day_container">{day}</div>
             </div>
         </>
     )

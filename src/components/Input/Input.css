@@ -1,5 +1,6 @@
 .input {
     font-weight: 500;
+    position: relative;
     font-size: 1rem;
     outline: none;
     color: #7A86A1;
@@ -32,21 +33,20 @@
     border: 0.1px solid;
     border-width: 0.1px;
     padding: 0.5rem 1rem;
-    width: 21.69rem;
-    min-width: 10rem;
+    max-width: 21.69rem;
+    position: relative;
     height: 3rem;
 
 }
 
 .otp {
-    max-width: 4rem;
+    width: 4rem;
     display: flex;
     height: 4rem;
     align-items: center;
-    margin-left: 1.5rem;
 }
 
-.otp div {
+.otp .input-border {
     width: 4rem;
     border: 1px solid;
     border-color: #FF8A07;
@@ -54,6 +54,7 @@
     border-radius: 0.95rem;
     display: flex;
     justify-content: center;
+    margin: 0;
     padding: 0%;
 }
 
@@ -74,6 +75,7 @@ input[type=number] {
         #000000;
     margin-left: 1rem;
     font-size: 1.9rem;
+    /* pointer-events: none; */
 
 }
 
@@ -95,6 +97,7 @@ input[type=number] {
     display: flex;
     margin-top: 10px;
     gap: 0.2rem;
+    position: relative;
     flex-direction: column;
 }
 

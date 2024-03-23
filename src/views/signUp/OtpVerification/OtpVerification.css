@@ -16,9 +16,9 @@
 
 .otp-inputs {
     display: flex;
+    gap: 1.5rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
-
 }
 
 .otp-back-link {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './OtpVerification.css'
 import H1 from '../../../components/H1/H1';
 import Input from '../../../components/Input/Input'
@@ -23,14 +23,41 @@ const OtpVerification = () => {
         thirdNumber: "",
         forthNumber: "",
     })
+    const inputRefs = [useRef(), useRef(), useRef(), useRef()]
+    useEffect(() => {
+        console.log(inputRefs);
+    }, []);
     let error = {}
-    const handleChange = (e) => {
+    const handleChange = (index, e) => {
         const value = e.target.value;
+        let fieldName = e.target.name
+        console.log(index);
         setOtpData({
             ...otpData,
             [e.target.name]: value,
         })
+        if (value && fieldName !== "forthNumber") {
+            const nextFieldName = getNextFieldName(fieldName);
+            const nextInput = document.getElementsByName(nextFieldName)[0];
+            if (nextInput) {
+                nextInput.focus();
+            }
+        }
+    };
+
+    const getNextFieldName = (currentFieldName) => {
+        switch (currentFieldName) {
+            case "firstNumber":
+                return "secondNumber";
+            case "secondNumber":
+                return "thirdNumber";
+            case "thirdNumber":
+                return "forthNumber";
+            default:
+                return "";
+        }
     }
+
     const { firstNumber, secondNumber, thirdNumber, forthNumber } = otpData
     const joinedNum = `${firstNumber}${secondNumber}${thirdNumber}${forthNumber}`;
 
@@ -77,6 +104,7 @@ const OtpVerification = () => {
         )
     }
     const handleClick = async (e) => {
+
         e.preventDefault();
         if (checkValidation()) {
             setOtpLoading(true)
@@ -122,10 +150,10 @@ const OtpVerification = () => {
                     <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={grabbedData.email} />
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
-                            <Input name="firstNumber" onChange={handleChange} className="otp" type="number" />
-                            <Input name="secondNumber" onChange={handleChange} className="otp" type="number" />
-                            <Input name="thirdNumber" onChange={handleChange} className="otp" type="number" />
-                            <Input name="forthNumber" onChange={handleChange} className="otp" type="number" />
+                            <Input ref={inputRefs[0]} name="firstNumber" onChange={(e) => handleChange(0, e)} className="otp" type="number" />
+                            <Input ref={inputRefs[1]} name="secondNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
+                            <Input ref={inputRefs[2]} name="thirdNumber" onChange={(e) => handleChange(2, e)} className="otp" type="number" />
+                            <Input ref={inputRefs[3]} name="forthNumber" onChange={(e) => handleChange(3, e)} className="otp" type="number" />
                         </div>
                         <ErrorPopup value={errors} />
                         <Button onClick={handleClick} disabled={otpLoading ? "disabled" : ""} text={otpLoading ? <Loader /> : "Verify"} />
