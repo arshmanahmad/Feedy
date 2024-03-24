@@ -10,6 +10,7 @@ import axios from 'axios';
 import Loader from '../../../components/Loader/Loader';
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
 import Cookies from 'js-cookie';
+import { current } from '@reduxjs/toolkit';
 
 const OtpVerification = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
@@ -25,8 +26,27 @@ const OtpVerification = () => {
     })
     const inputRefs = [useRef(), useRef(), useRef(), useRef()]
     useEffect(() => {
-        console.log(inputRefs);
+        const handleKeyDown = (event) => {
+            if (event.keyCode === 8 || event.key === "Backspace") {
+                const activeInput = document.activeElement;
+                const activeInputName = activeInput.getAttribute("name")
+                const getPreviousName = getPerviousField(activeInputName)
+                const previousInput = document.getElementsByName(getPreviousName)[0];
+                if (activeInputName === "forthNumber") {
+
+                }
+                if (previousInput) {
+                    previousInput.focus();
+                }
+            }
+        }
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        }
     }, []);
+
     let error = {}
     const handleChange = (index, e) => {
         const value = e.target.value;
@@ -43,6 +63,9 @@ const OtpVerification = () => {
                 nextInput.focus();
             }
         }
+        if (fieldName === "forthNumber") {
+            return value.length !== 2;
+        }
     };
 
     const getNextFieldName = (currentFieldName) => {
@@ -57,7 +80,19 @@ const OtpVerification = () => {
                 return "";
         }
     }
+    const getPerviousField = (currentFieldName) => {
+        switch (currentFieldName) {
+            case "forthNumber":
+                return "thirdNumber"
 
+            case "thirdNumber":
+                return "secondNumber";
+            case "secondNumber":
+                return "firstNumber";
+            default:
+                return "";
+        }
+    }
     const { firstNumber, secondNumber, thirdNumber, forthNumber } = otpData
     const joinedNum = `${firstNumber}${secondNumber}${thirdNumber}${forthNumber}`;
 
@@ -150,10 +185,10 @@ const OtpVerification = () => {
                     <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={grabbedData.email} />
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
-                            <Input ref={inputRefs[0]} name="firstNumber" onChange={(e) => handleChange(0, e)} className="otp" type="number" />
-                            <Input ref={inputRefs[1]} name="secondNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
-                            <Input ref={inputRefs[2]} name="thirdNumber" onChange={(e) => handleChange(2, e)} className="otp" type="number" />
-                            <Input ref={inputRefs[3]} name="forthNumber" onChange={(e) => handleChange(3, e)} className="otp" type="number" />
+                            <Input name="firstNumber" onChange={(e) => handleChange(0, e)} className="otp" type="number" />
+                            <Input name="secondNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
+                            <Input name="thirdNumber" onChange={(e) => handleChange(2, e)} className="otp" type="number" />
+                            <Input name="forthNumber" onChange={(e) => handleChange(3, e)} className="otp" type="number" />
                         </div>
                         <ErrorPopup value={errors} />
                         <Button onClick={handleClick} disabled={otpLoading ? "disabled" : ""} text={otpLoading ? <Loader /> : "Verify"} />

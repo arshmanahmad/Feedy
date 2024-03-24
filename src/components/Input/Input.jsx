@@ -9,7 +9,6 @@ const Input = ({ maxLength, ref, onInputClick, max, label, checked, onClick, ico
                 {label && <label>{label}</label>}
                 <div className="input-border">
                     <input className="input"
-                        ref={inputRef}
                         placeholder={placeholder}
                         maxLength={maxLength}
                         type={type}
