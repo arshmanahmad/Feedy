@@ -29,13 +29,21 @@ const OtpVerification = () => {
             const activeInput = document.activeElement;
             if (event.keyCode === 8 || event.key === "Backspace") {
                 const activeInputName = activeInput.getAttribute("name")
+                const activeValue = activeInput.value
                 const getPreviousName = getPerviousField(activeInputName)
-                const previousInput = document.getElementsByName(getPreviousName)[0];
+                let previousInput;
+                if (activeValue.length === 1) {
+                    previousInput = document.getElementsByName(getPreviousName)[1];
+                }
+                else if (activeValue.length === 0) {
+                    previousInput = document.getElementsByName(getPreviousName)[0];
+                }
                 if (previousInput) {
                     activeInput.value = ""
                     previousInput.focus();
                 }
             }
+
         }
         document.addEventListener("keydown", handleKeyDown);
         return () => {
@@ -44,14 +52,16 @@ const OtpVerification = () => {
     }, []);
 
     let error = {}
-    const handleChange = (index, e) => {
+    const handleChange = (maxLength, e) => {
         const value = e.target.value;
         let fieldName = e.target.name
-        console.log(index);
         setOtpData({
             ...otpData,
             [e.target.name]: value,
         })
+        if (value.length > maxLength) {
+            e.target.value = value.slice(0, maxLength)
+        }
         if (value && fieldName !== "forthNumber") {
             const nextFieldName = getNextFieldName(fieldName);
             const nextInput = document.getElementsByName(nextFieldName)[0];
@@ -59,9 +69,7 @@ const OtpVerification = () => {
                 nextInput.focus();
             }
         }
-        if (fieldName === "forthNumber") {
-            return value.length !== 2;
-        }
+
     };
 
     const getNextFieldName = (currentFieldName) => {
@@ -181,10 +189,10 @@ const OtpVerification = () => {
                     <InfoText text="We sent a code to  " className='SignUp-label1' changeColoredText={grabbedData.email} />
                     <form className="otp-input-container">
                         <div className="row otp-inputs">
-                            <Input name="firstNumber" onChange={(e) => handleChange(0, e)} className="otp" type="number" />
+                            <Input name="firstNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
                             <Input name="secondNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
-                            <Input name="thirdNumber" onChange={(e) => handleChange(2, e)} className="otp" type="number" />
-                            <Input name="forthNumber" onChange={(e) => handleChange(3, e)} className="otp" type="number" />
+                            <Input name="thirdNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
+                            <Input onin name="forthNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
                         </div>
                         <ErrorPopup value={errors} />
                         <Button onClick={handleClick} disabled={otpLoading ? "disabled" : ""} text={otpLoading ? <Loader /> : "Verify"} />
