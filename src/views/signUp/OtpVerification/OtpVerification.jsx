@@ -10,7 +10,6 @@ import axios from 'axios';
 import Loader from '../../../components/Loader/Loader';
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
 import Cookies from 'js-cookie';
-import { current } from '@reduxjs/toolkit';
 
 const OtpVerification = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL
@@ -27,20 +26,17 @@ const OtpVerification = () => {
     const inputRefs = [useRef(), useRef(), useRef(), useRef()]
     useEffect(() => {
         const handleKeyDown = (event) => {
+            const activeInput = document.activeElement;
             if (event.keyCode === 8 || event.key === "Backspace") {
-                const activeInput = document.activeElement;
                 const activeInputName = activeInput.getAttribute("name")
                 const getPreviousName = getPerviousField(activeInputName)
                 const previousInput = document.getElementsByName(getPreviousName)[0];
-                if (activeInputName === "forthNumber") {
-
-                }
                 if (previousInput) {
+                    activeInput.value = ""
                     previousInput.focus();
                 }
             }
         }
-
         document.addEventListener("keydown", handleKeyDown);
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
