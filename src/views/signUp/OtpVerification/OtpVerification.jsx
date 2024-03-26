@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './OtpVerification.css'
 import H1 from '../../../components/H1/H1';
 import Input from '../../../components/Input/Input'
@@ -10,8 +10,10 @@ import axios from 'axios';
 import Loader from '../../../components/Loader/Loader';
 import ErrorPopup from '../../../components/ErrorPopup/ErrorPopup';
 import Cookies from 'js-cookie';
+import { AppContext } from '../../../components/Context/AppData';
 
 const OtpVerification = () => {
+    const { otpVerification, setOtpVerification } = useContext(AppContext)
     const baseUrl = process.env.REACT_APP_BASE_URL
     const [errors, setErrors] = useState({})
     const grabbedData = JSON.parse(localStorage.getItem('credentials'))
@@ -53,6 +55,7 @@ const OtpVerification = () => {
 
     let error = {}
     const handleChange = (maxLength, e) => {
+        setOtpVerification(-1)
         const value = e.target.value;
         let fieldName = e.target.name
         setOtpData({
@@ -156,9 +159,11 @@ const OtpVerification = () => {
                 if (response.data.success === true) {
                     login()
                     error.popUp = response.data.message
+                    setOtpVerification(1)
                 }
                 else if (response.data.success === false) {
                     error.popUp = response.data.message
+                    setOtpVerification(0)
                 }
                 setErrors(error)
             })

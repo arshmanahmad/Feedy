@@ -1,0 +1,64 @@
+.otp_popUp {
+    width: 27rem;
+    height: 4.5rem;
+    background-color: #EBF9EC;
+    display: flex;
+    border-radius: 2rem;
+    z-index: 9999;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    bottom: 0%;
+    position: absolute;
+    padding: 1rem;
+}
+
+.otp_popUp div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.otp_popUp div p {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 0.8rem;
+    margin-left: 1rem;
+}
+
+.otp_circle {
+    position: relative;
+    height: 3rem;
+}
+
+.otp_verifier {
+    position: absolute;
+    height: 1rem;
+}
+
+.invalid_otp {
+    background-color: #FFDCD9;
+}
+
+.otp_closeIcon {
+    height: 1rem;
+    margin-left: 12.5rem;
+    cursor: pointer;
+}
+
+@keyframes SlideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#otp_box {
+    animation: SlideInFromLeft 1s ease forwards;
+}

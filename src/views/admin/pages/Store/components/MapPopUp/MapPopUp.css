@@ -1,6 +1,7 @@
 .map_container {
     width: 100%;
     height: 100%;
+    z-index: 9999;
     position: absolute;
     background-color: rgba(73, 72, 72, 0.5);
     display: flex;
@@ -12,7 +13,76 @@
     height: 35rem;
     width: 30%;
     display: flex;
+    padding: 2rem;
     flex-direction: column;
-    background-color: #fff;
+    background-color: #FFFFFF;
+    position: absolute;
+    z-index: 9999;
 
+}
+
+.map_paraContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input_container {
+    width: 100%;
+    height: 2.5rem;
+    border: 1px solid #eeeaea;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.input_container input {
+    border: none;
+    outline: none;
+    width: 70%;
+}
+
+.map_box {
+    height: 60%;
+    width: 100%;
+    margin-top: 1.3rem;
+    /* border: 1px solid #c0bcbc; */
+    background-color: #c0bcbc;
+}
+
+.map_para {
+    font-size: 1.3rem;
+    font-weight: 700;
+
+}
+
+.map_cross {
+    height: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.map_icon {
+    height: 1.1rem;
+
+}
+
+.map_btn {
+    width: 60%;
+    background-color: transparent;
+    border: 1px solid #e6e2e2;
+    border-radius: 2px;
+    font-size: 1.1rem;
+    color:
+        #EB8029;
+}
+
+.map_btn:hover {
+    background-color: #f4f1f1;
+}
+
+.map_btnBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
