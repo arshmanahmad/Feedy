@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './MapPopUp.css'
 import mapCross from '../../assets/icons/topcoat_cancel.png';
 import mapIcon from '../../assets/icons/Group.svg';
 
 const MapPopUp = () => {
+    const mapWrapper = useRef(null)
+    console.log(mapWrapper.current);
+
+    // useEffect(() => {
+    //     console.log(mapWrapper.current); // Log the value of the ref when the component mounts
+    // }, []);
+
     return (
         <>
-            <div className='map_container'>
-                <div className="map_contentBox">
+            <div ref={mapWrapper} className='map_container' >
+                <div className="map_contentBox" >
                     <div className="map_paraContainer">
                         <p className='map_para'>Is this your location</p><img className='map_cross' src={mapCross} alt="" />
                     </div>
