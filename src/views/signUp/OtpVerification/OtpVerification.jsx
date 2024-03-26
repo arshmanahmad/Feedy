@@ -31,18 +31,20 @@ const OtpVerification = () => {
             const activeInput = document.activeElement;
             if (event.keyCode === 8 || event.key === "Backspace") {
                 const activeInputName = activeInput.getAttribute("name")
-                const activeValue = activeInput.value
-                const getPreviousName = getPerviousField(activeInputName)
-                let previousInput;
-                if (activeValue.length === 1) {
-                    previousInput = document.getElementsByName(getPreviousName)[1];
-                }
-                else if (activeValue.length === 0) {
-                    previousInput = document.getElementsByName(getPreviousName)[0];
-                }
-                if (previousInput) {
-                    activeInput.value = ""
-                    previousInput.focus();
+                if (activeInput.tagName === "INPUT") {
+                    const activeValue = activeInput.value
+                    const getPreviousName = getPerviousField(activeInputName)
+                    let previousInput;
+                    if (activeValue.length === 1) {
+                        previousInput = document.getElementsByName(getPreviousName)[1];
+                    }
+                    else if (activeValue.length === 0) {
+                        previousInput = document.getElementsByName(getPreviousName)[0];
+                    }
+                    if (previousInput) {
+                        activeInput.value = ""
+                        previousInput.focus();
+                    }
                 }
             }
 
