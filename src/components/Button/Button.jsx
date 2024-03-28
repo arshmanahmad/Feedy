@@ -6,7 +6,6 @@ const Button = ({ disabled, icon, onClick, text, type, className = '' }) => {
     const isDisabled = disabled ? `${primaryButton}--${disabled}` : "";
     return (
         <>
-            {/* ... */}
             <button
                 onClick={onClick}
                 className={`${className} ${primaryButton} ${buttonTypeClass} ${isDisabled}`}
