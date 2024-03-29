@@ -1,0 +1,10 @@
+.order_headingText {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-right: 3rem;
+}
+
+.order_profileContainer {
+    display: flex;
+    justify-content: space-between;
+}
