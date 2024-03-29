@@ -7,7 +7,16 @@ const OrderTable = ({ tableHeads, array, keysToDisplay }) => {
                 <thead>{tableHeads.map((item) => {
                     return <th>{item}</th>
                 })}</thead>
-                <tbody><td>asdsad</td></tbody>
+                <tbody>{array.map((items) => {
+
+                    return <tr>{
+                        keysToDisplay.map((dataItems) => {
+                            return <td>{items[dataItems]}</td>
+                        })
+                    }
+                    </tr>
+
+                })}</tbody>
             </table>
         </>
     )
