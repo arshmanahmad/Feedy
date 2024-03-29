@@ -16,3 +16,19 @@
         #FFEEEE !important;
     color: #FF9F24 !important;
 }
+
+.complete-btn--Completed {
+    background-color: #a3e7a9;
+    color:
+        #16A124;
+}
+
+.complete-btn--Processing {
+    background-color: #FBEDD3;
+    color: #F5A70F;
+}
+
+.complete-btn--Cancel {
+    background-color: #FDD7D4;
+    color: #E85448;
+}

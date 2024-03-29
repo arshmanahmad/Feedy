@@ -1,4 +1,38 @@
+.store_tableContainer {
+    width: 100%;
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    padding: 1rem 2rem;
+}
+
 .order_table {
     width: 100%;
-    background-color: #fff;
+}
+
+.order_th,
+.order_thead {
+    border-collapse: collapse;
+    height: 3.8rem;
+    font-size: 12px;
+    width: 10.5rem;
+}
+
+.order_th {
+    background-color:
+        #F6F4F4;
+}
+
+.order_data {
+    border-bottom: 0.5px solid;
+    border-color:
+        #E1E1FB;
+}
+
+.order_thead {
+    width: 100%;
 }
