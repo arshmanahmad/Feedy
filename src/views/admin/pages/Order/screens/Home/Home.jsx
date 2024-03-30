@@ -37,23 +37,27 @@ const Home = () => {
                         tableHeads={["Order ID", "Phone No", "All Dates", "Delivery Dates", "Amount", "Status"]}
                         array={data}
                         keysToDisplay={["id", "phoneNumber", "createdAt", "dateOfDelivery", "totalPrice", "status"]}
-                        ConditionalModifiedColumn={
-                            () => {
-                                return {
-                                    status: (value) => {
-                                        if (value = "Completed") {
-                                            return <StatusButton status="Completed" />
-                                        }
-                                        if (value = "Cancel") {
-                                            return <StatusButton status="Cancel" />
-                                        }
-                                        if (value = "Processing") {
-                                            return <StatusButton status="Processing" />
-                                        }
+                        ConditionalModifiedColumn={[
+                            {
+                                index: 5 || 4,
+                                component: (value) => {
+                                    if (value === "Pending") {
+                                        return <StatusButton status="Pending" />
                                     }
+                                    if (value === "Cancel") {
+                                        return <StatusButton status="Cancel" />
+                                    }
+                                    if (value === "Completed") {
+                                        return <StatusButton status="Completed" />
+                                    }
+                                    if (typeof (value) === "number") {
+                                        return value.toFixed(2)
+                                    }
+
                                 }
                             }
-                        }
+                        ]}
+
                     />
                 </div>
             </div>

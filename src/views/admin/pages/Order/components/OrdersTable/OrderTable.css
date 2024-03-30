@@ -7,12 +7,34 @@
     display: flex;
     flex-direction: column;
     display: inline-block;
+    position: relative;
     padding: 1rem 2rem;
 }
 
 .order_table {
     width: 100%;
 }
+
+.order_para {
+    color:
+
+        #92929D;
+    font-weight: 600;
+
+}
+
+
+
+.order_filterHead {
+    font-weight: 600;
+}
+
+.order_coloredHeading {
+    color:
+        #FF780A;
+    font-weight: 600;
+}
+
 
 .order_th,
 .order_thead {
@@ -35,4 +57,16 @@
 
 .order_thead {
     width: 100%;
+}
+
+.order_firstRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.selectOption_order {
+    display: flex;
+    position: relative;
+    gap: 2rem;
+
 }
