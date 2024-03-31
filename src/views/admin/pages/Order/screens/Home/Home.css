@@ -8,3 +8,12 @@
     display: flex;
     justify-content: space-between;
 }
+
+.orderTable_menuBar {
+    display: flex;
+    justify-content: end;
+    margin-right: 3rem;
+    font-size: 1.9rem;
+    cursor: pointer;
+    font-weight: 700;
+}

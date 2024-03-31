@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './OrderTable.css'
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar'
 import DropDown from '../../../../../../components/DropDown/DropDown'
-const OrderTable = ({ tableHeads, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
+const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
+    const [filteredArray, setFilteredArray] = useState([])
+    const handleFilterObjects = (e) => {
+
+    }
     return (
         <>
 
@@ -15,7 +19,7 @@ const OrderTable = ({ tableHeads, array = [], keysToDisplay = [], modifiedColumn
                         <p className='order_coloredHeading'>Todays's Order</p>
 
                     </div>
-                    <TableSearchBar />
+                    <TableSearchBar onChange={handleFilterObjects} />
                 </div>
                 <table className='order_table'>
                     <thead className='order_thead'>{tableHeads.map((item) => {
@@ -36,6 +40,9 @@ const OrderTable = ({ tableHeads, array = [], keysToDisplay = [], modifiedColumn
                                 );
                             })
                         }
+                            {externalData.map((item) => {
+                                return <td>{item}</td>
+                            })}
                         </tr>
 
                     })}</tbody>

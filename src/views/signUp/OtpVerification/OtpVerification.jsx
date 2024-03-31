@@ -199,7 +199,7 @@ const OtpVerification = () => {
                             <Input name="firstNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
                             <Input name="secondNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
                             <Input name="thirdNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
-                            <Input onin name="forthNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
+                            <Input name="forthNumber" onChange={(e) => handleChange(1, e)} className="otp" type="number" />
                         </div>
                         <ErrorPopup value={errors} />
                         <Button onClick={handleClick} disabled={otpLoading ? "disabled" : ""} text={otpLoading ? <Loader /> : "Verify"} />

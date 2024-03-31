@@ -7,7 +7,9 @@ import StatusButton from '../../../../components/StatusButton/StatusButton'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 const Home = () => {
-    const [data, setData] = useState('');
+    const [getData, setGetData] = useState(false)
+    const [consoleData, setConsoleData] = useState("")
+    const [data, setData] = useState([]);
     const baseUrl = process.env.REACT_APP_BASE_URL
     const token = Cookies.get("token");
     const getAllOrders = async () => {
@@ -17,12 +19,18 @@ const Home = () => {
             }
         }).then(response => {
             setData(response.data.data)
+            setGetData(true)
         })
     }
     useEffect(() => {
         getAllOrders()
     }, [])
-    console.log(data);
+    const handleClick = (e) => {
+        setConsoleData(e.
+            clientX)
+
+    }
+    console.log(consoleData);
     return (
         <>
             <div className="order_homeContainer">
@@ -33,13 +41,13 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="order_TableContainer">
-                    <OrderTable
-                        tableHeads={["Order ID", "Phone No", "All Dates", "Delivery Dates", "Amount", "Status"]}
+                    {getData && <OrderTable
+                        tableHeads={["Order ID", "Phone No", "All Dates", "Delivery Dates", "Amount", "Status", ""]}
                         array={data}
                         keysToDisplay={["id", "phoneNumber", "createdAt", "dateOfDelivery", "totalPrice", "status"]}
                         ConditionalModifiedColumn={[
                             {
-                                index: 5 || 4,
+                                index: 5,
                                 component: (value) => {
                                     if (value === "Pending") {
                                         return <StatusButton status="Pending" />
@@ -53,12 +61,11 @@ const Home = () => {
                                     if (typeof (value) === "number") {
                                         return value.toFixed(2)
                                     }
-
                                 }
                             }
                         ]}
-
-                    />
+                        externalData={[<span className='orderTable_menuBar' onClick={handleClick}>⋮</span>]}
+                    />}
                 </div>
             </div>
         </>
