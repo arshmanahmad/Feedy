@@ -6,6 +6,7 @@ const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysT
     const [pagination, setPagination] = useState([
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
     ])
+    const [defaultPage, setDefaultPage] = useState(0)
     const handleFilterObjects = (e) => {
 
     }
@@ -49,6 +50,7 @@ const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysT
                 <div className="order_paginationBox">
                     {
                         pagination.map((item, index) => {
+                            let defaultPage;
                             let pairs = array.length / lengthOfTable;
                             let RoundOffPairNumber = Math.floor(pairs)
                             let extractedNumbers = RoundOffPairNumber * lengthOfTable;
@@ -61,10 +63,11 @@ const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysT
                                 finalPairs = RoundOffPairNumber;
                             }
                             if (index < finalPairs) {
-                                return <span className='order_paginationNumbers'>{item}</span>
+                                return console.log({ defaultPage });
                             }
 
                         })
+                        // return <span className='order_paginationNumbers'>{item}</span>
                     }
                 </div>
             </div>

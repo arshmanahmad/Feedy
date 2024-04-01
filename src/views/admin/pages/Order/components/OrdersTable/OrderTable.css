@@ -78,5 +78,9 @@
 
 .order_paginationNumbers {
     margin: 1rem 1rem 1rem 1rem;
+    border: 1px solid;
+    width: 2rem;
+    border-color: #FF780A;
+    text-align: center;
     cursor: pointer;
 }
