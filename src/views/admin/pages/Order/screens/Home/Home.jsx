@@ -6,6 +6,7 @@ import OrderTable from '../../components/OrdersTable/OrderTable'
 import StatusButton from '../../../../components/StatusButton/StatusButton'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import customerInfo from '../../../../../../JSON/customer_info.json';
 const Home = () => {
     const [getData, setGetData] = useState(false)
     const [consoleData, setConsoleData] = useState("")
@@ -30,7 +31,8 @@ const Home = () => {
             clientX)
 
     }
-    console.log(consoleData);
+    console.log(customerInfo);
+
     return (
         <>
             <div className="order_homeContainer">
@@ -41,7 +43,13 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="order_TableContainer">
-                    {getData && <OrderTable
+                    <OrderTable
+                        lengthOfTable="18"
+                        array={customerInfo}
+                        tableHeads={["Order ID", "Customer Name", "Item Name", "Price", "Delivery Date"]}
+                        keysToDisplay={["order_id", "customer_name", "item_name", "unit_price", "delivery_date"]}
+                    />
+                    {/* {getData && <OrderTable
                         tableHeads={["Order ID", "Phone No", "All Dates", "Delivery Dates", "Amount", "Status", ""]}
                         array={data}
                         keysToDisplay={["id", "phoneNumber", "createdAt", "dateOfDelivery", "totalPrice", "status"]}
@@ -65,7 +73,7 @@ const Home = () => {
                             }
                         ]}
                         externalData={[<span className='orderTable_menuBar' onClick={handleClick}>⋮</span>]}
-                    />}
+                    />} */}
                 </div>
             </div>
         </>

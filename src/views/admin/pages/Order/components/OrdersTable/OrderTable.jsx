@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import './OrderTable.css'
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar'
 import DropDown from '../../../../../../components/DropDown/DropDown'
-const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
-    const [filteredArray, setFilteredArray] = useState([])
+const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
+    const [pagination, setPagination] = useState([
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+    ])
     const handleFilterObjects = (e) => {
 
     }
+
     return (
         <>
 
@@ -25,34 +28,59 @@ const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], 
                     <thead className='order_thead'>{tableHeads.map((item) => {
                         return <th className='order_th'>{item}</th>
                     })}</thead>
-                    <tbody>{array.map((items) => {
+                    <tbody>
+                        {array.map((items, index) => {
+                            if (index < lengthOfTable) {
+                                return <tr>{
+                                    keysToDisplay.map((dataItems, index) => {
+                                        return (
+                                            <td >
+                                                {items[dataItems]}
+                                            </td>
+                                        );
+                                    })
+                                }
+                                </tr>
 
-                        return <tr>{
-                            keysToDisplay.map((dataItems, index) => {
-                                return (
-                                    <td >
-                                        {ConditionalModifiedColumn.length > 0 ?
-                                            (ConditionalModifiedColumn[0].index === index ?
-                                                ConditionalModifiedColumn[0].component(items[dataItems])
-                                                : items[dataItems]) :
-                                            items[dataItems]}
-                                    </td>
-                                );
-                            })
-                        }
-                            {externalData.map((item) => {
-                                return <td>{item}</td>
-                            })}
-                        </tr>
+                            }
 
-                    })}</tbody>
+                        })}</tbody>
                 </table>
+                <div className="order_paginationBox">
+                    {
+                        pagination.map((item, index) => {
+                            let pairs = array.length / lengthOfTable;
+                            let RoundOffPairNumber = Math.floor(pairs)
+                            let extractedNumbers = RoundOffPairNumber * lengthOfTable;
+                            let remaining = array.length - extractedNumbers
+                            let finalPairs;
+                            if (remaining > 0) {
+                                finalPairs = RoundOffPairNumber + 1;
+                            }
+                            else {
+                                finalPairs = RoundOffPairNumber;
+                            }
+                            if (index < finalPairs) {
+                                return <span className='order_paginationNumbers'>{item}</span>
+                            }
+
+                        })
+                    }
+                </div>
             </div>
         </>
     )
     {/* {ConditionalModifiedColumn[dataItems]
         ? ConditionalModifiedColumn[dataItems](items[dataItems])
-        : items[dataItems]} */}
+    : items[dataItems]} */}
 }
 
 export default OrderTable
+{/* {ConditionalModifiedColumn.length > 0 ?
+    (ConditionalModifiedColumn[0].index === index ?
+        ConditionalModifiedColumn[0].component(items[dataItems])
+        : items[dataItems]) :
+    items[dataItems]} */}
+{/* {externalData.map((item) => {
+        return <td>{item}</td>
+    })} */}

@@ -68,3 +68,15 @@
     gap: 2rem;
 
 }
+
+.order_paginationBox {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+
+}
+
+.order_paginationNumbers {
+    margin: 1rem 1rem 1rem 1rem;
+    cursor: pointer;
+}
