@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './OrderTable.css'
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar'
 import DropDown from '../../../../../../components/DropDown/DropDown'
-const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
-    const [pagination, setPagination] = useState([
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
-    ])
-    const [defaultPage, setDefaultPage] = useState(0)
+import Pagination from './Pagination'
+const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
+    const [length, setLength] = useState('')
+    const [columnGroup, setColumnGroup] = useState("")
+    console.log(length);
     const handleFilterObjects = (e) => {
-
     }
-
     return (
         <>
 
@@ -21,7 +19,6 @@ const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysT
                         <p className='order_para'>Date <select className='order_select' name="" id=""></select></p>
                         <p className='order_para'>Order <select className='order_select' name="" id=""></select></p>
                         <p className='order_coloredHeading'>Todays's Order</p>
-
                     </div>
                     <TableSearchBar onChange={handleFilterObjects} />
                 </div>
@@ -31,7 +28,7 @@ const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysT
                     })}</thead>
                     <tbody>
                         {array.map((items, index) => {
-                            if (index < lengthOfTable) {
+                            if (index < length) {
                                 return <tr>{
                                     keysToDisplay.map((dataItems, index) => {
                                         return (
@@ -42,33 +39,11 @@ const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysT
                                     })
                                 }
                                 </tr>
-
                             }
-
                         })}</tbody>
                 </table>
                 <div className="order_paginationBox">
-                    {
-                        pagination.map((item, index) => {
-                            let defaultPage;
-                            let pairs = array.length / lengthOfTable;
-                            let RoundOffPairNumber = Math.floor(pairs)
-                            let extractedNumbers = RoundOffPairNumber * lengthOfTable;
-                            let remaining = array.length - extractedNumbers
-                            let finalPairs;
-                            if (remaining > 0) {
-                                finalPairs = RoundOffPairNumber + 1;
-                            }
-                            else {
-                                finalPairs = RoundOffPairNumber;
-                            }
-                            if (index < finalPairs) {
-                                return console.log({ defaultPage });
-                            }
-
-                        })
-                        // return <span className='order_paginationNumbers'>{item}</span>
-                    }
+                    <Pagination columnGroupNumber={{ columnGroup, setColumnGroup }} table={array} columnsToDisplay={{ length, setLength }} />
                 </div>
             </div>
         </>

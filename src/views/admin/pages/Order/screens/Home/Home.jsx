@@ -44,7 +44,6 @@ const Home = () => {
                 </div>
                 <div className="order_TableContainer">
                     <OrderTable
-                        lengthOfTable="18"
                         array={customerInfo}
                         tableHeads={["Order ID", "Customer Name", "Item Name", "Price", "Delivery Date"]}
                         keysToDisplay={["order_id", "customer_name", "item_name", "unit_price", "delivery_date"]}
