@@ -11,18 +11,14 @@ const Pagination = ({
     const handleChange = (e) => {
         setValue(e.target.value);
     }
+
     const getPairs = (totalLengthArray, numberOfColumn) => {
         let pairs = totalLengthArray.length / numberOfColumn;
-        let RoundOffPair = Math.floor(pairs)
-        let finalPair;
-        if (pairs > RoundOffPair) {
-            finalPair = RoundOffPair + 1
-        }
-        else {
-            finalPair = RoundOffPair
-        }
-        return finalPair
+        let RoundOffPair = Math.ceil(pairs)
+
+        return RoundOffPair
     }
+
     useEffect(() => {
         const pairs = getPairs(table, value)
         const newPairNumbers = [];
