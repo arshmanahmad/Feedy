@@ -16,6 +16,7 @@ const Home = () => {
     const optionDotsRef = useRef();
     const menuRef = useRef();
 
+    const [recordId, setRecordId] = useState();
     const [showMenuBar, setShowMenuBar] = useState(false)
     const [axis, setAxis] = useState({ x: 0, y: 0 });
     const [loading, setLoading] = useState(false)
@@ -31,10 +32,6 @@ const Home = () => {
             setData(response.data.data)
         })
     };
-    //////good////////
-    // const toggleMenu = () => {
-    //     setShowMenuBar(!showMenuBar);
-    // }
 
     useEffect(() => {
         fetchData();
@@ -44,26 +41,48 @@ const Home = () => {
         return DateFormatForUser(value)
     }
 
-    const handleClickOptions = (e) => {
+    const handleClickOptions = (item, e) => {
         setAxis({
             x: e.clientX,
             y: e.clientY
         });
-
+        console.log(item);
         optionDotsRef.current = e.target;
     }
-
-
 
     return (
         <>
             <div>
                 {loading ? <TableLoader /> : <Table
-                    filters="name"
+                    filters="contactNo"
                     array={data}
-                    keysToDisplay={["name", "adress", "contactNo", "adminEmail"]}
-                    label={["Store Name", "Address", "Phone No", "Store Admin", "Actions"]}
-                    extraColumns={[<span onClick={handleClickOptions} className='actionsDots px-3'>⋮</span>]}
+                    setRecordId={setRecordId}
+                    keysToDisplay={["id", "name", "adress", "contactNo", "adminEmail"]}
+                    label={["ID", "Store Name", "Address", "Phone No", "Store Admin", "Actions", "Delete"]}
+                    customBlocks={[
+                        {
+                            index: 3,
+                            component: (value) => {
+                                return <p style={{ color: 'red' }}>{value}</p>
+                            }
+                        },
+                        {
+                            index: 1,
+                            component: (value) => {
+                                return <p style={{ color: 'blue' }}>{value}</p>
+                            }
+                        },
+                        {
+                            index: 4,
+                            component: (value) => {
+                                return <p style={{ color: 'yellow' }}>{value}</p>
+                            }
+                        }
+                    ]}
+                    extraColumns={[
+                        (item) => <span onClick={(e) => handleClickOptions(item, e)} className='actionsDots px-3'>⋮</span>,
+                        (item) => <span className='actionsDots px-3'>Delete</span>,
+                    ]}
                 />}
             </div>
             <MenuBar

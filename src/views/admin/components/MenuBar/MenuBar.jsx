@@ -5,7 +5,6 @@ const MenuBar = ({ array = [], axis = { x: 0, y: 0 }, setIsOpen, invokerRef, isO
 
     useEffect(() => {
         const handleToggle = (e) => {
-            console.log(invokerRef.current, e.target, isOpen);
             if (invokerRef.current === e.target) {
                 setIsOpen(!isOpen);
             }
