@@ -10,6 +10,7 @@ const Pagination = ({
     const [pairNumbers, setPairNumbers] = useState([])
     const handleChange = (e) => {
         setValue(e.target.value);
+        columnGroupNumber.setColumnGroup(0)
     }
 
     const getPairs = (totalLengthArray, numberOfColumn) => {
@@ -28,8 +29,9 @@ const Pagination = ({
         setPairNumbers(newPairNumbers)
         columnsToDisplay.setLength(value)
     }, [value, table])
+
     const handleGroup = (groupNumber) => {
-        columnGroupNumber.setColumnGroup(groupNumber);
+        columnGroupNumber.setColumnGroup(groupNumber - 1);
     }
     return (
         <>

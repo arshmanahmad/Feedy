@@ -4,11 +4,22 @@ import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar
 import DropDown from '../../../../../../components/DropDown/DropDown'
 import Pagination from './Pagination'
 const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
-    const [length, setLength] = useState('')
-    const [columnGroup, setColumnGroup] = useState("")
+    const [length, setLength] = useState(10)
+    const [columnGroup, setColumnGroup] = useState(0);
+    const [recordsPerPage, setRecordsPerPage] = useState([]);
+
     console.log(length);
     const handleFilterObjects = (e) => {
     }
+
+    useEffect(() => {
+        const startIndex = columnGroup * length;
+        const endIndex = startIndex + length;
+        setRecordsPerPage(array.slice(startIndex, endIndex))
+    }, [length, columnGroup])
+
+
+
     return (
         <>
 
@@ -27,7 +38,7 @@ const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], 
                         return <th className='order_th'>{item}</th>
                     })}</thead>
                     <tbody>
-                        {array.map((items, index) => {
+                        {recordsPerPage.map((items, index) => {
                             if (index < length) {
                                 return <tr>{
                                     keysToDisplay.map((dataItems, index) => {
