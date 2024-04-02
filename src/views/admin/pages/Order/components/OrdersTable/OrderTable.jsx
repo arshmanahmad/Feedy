@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './OrderTable.css'
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar'
 import DropDown from '../../../../../../components/DropDown/DropDown'
+import Pagination from './Pagination'
 const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
-    const [pagination, setPagination] = useState([
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
-    ])
+
     const handleFilterObjects = (e) => {
 
     }
+    const [noOfRecordsPerPage, setNoOfRecordsPerPage] = useState(30);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage, setRecordsPerPage] = useState([]);
+
+
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * noOfRecordsPerPage;
+        const endIndex = startIndex + noOfRecordsPerPage;
+
+        setRecordsPerPage(array.slice(startIndex, endIndex));
+    }, [array, noOfRecordsPerPage, currentPage])
 
     return (
         <>
@@ -29,43 +39,30 @@ const OrderTable = ({ tableHeads, lengthOfTable, externalData, array = [], keysT
                         return <th className='order_th'>{item}</th>
                     })}</thead>
                     <tbody>
-                        {array.map((items, index) => {
-                            if (index < lengthOfTable) {
-                                return <tr>{
-                                    keysToDisplay.map((dataItems, index) => {
-                                        return (
-                                            <td >
-                                                {items[dataItems]}
-                                            </td>
-                                        );
-                                    })
-                                }
-                                </tr>
-
+                        {recordsPerPage.map((items, index) => {
+                            return <tr>{
+                                keysToDisplay.map((dataItems, index) => {
+                                    return (
+                                        <td >
+                                            {items[dataItems]}
+                                        </td>
+                                    );
+                                })
                             }
+                            </tr>
+
+
 
                         })}</tbody>
                 </table>
                 <div className="order_paginationBox">
-                    {
-                        pagination.map((item, index) => {
-                            let pairs = array.length / lengthOfTable;
-                            let RoundOffPairNumber = Math.floor(pairs)
-                            let extractedNumbers = RoundOffPairNumber * lengthOfTable;
-                            let remaining = array.length - extractedNumbers
-                            let finalPairs;
-                            if (remaining > 0) {
-                                finalPairs = RoundOffPairNumber + 1;
-                            }
-                            else {
-                                finalPairs = RoundOffPairNumber;
-                            }
-                            if (index < finalPairs) {
-                                return <span className='order_paginationNumbers'>{item}</span>
-                            }
-
-                        })
-                    }
+                    <Pagination
+                        noOfRecordsPerPage={noOfRecordsPerPage}
+                        setNoOfRecordsPerPage={setNoOfRecordsPerPage}
+                        setCurrentPage={setCurrentPage}
+                        currentPage={currentPage}
+                        noOfTotalRecords={array.length}
+                    />
                 </div>
             </div>
         </>

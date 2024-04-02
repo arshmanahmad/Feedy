@@ -9,7 +9,8 @@ import Cookies from 'js-cookie'
 import customerInfo from '../../../../../../JSON/customer_info.json';
 const Home = () => {
     const [getData, setGetData] = useState(false)
-    const [consoleData, setConsoleData] = useState("")
+    const [consoleData, setConsoleData] = useState("");
+    const [numberOfRecordsToSHow, setnumberOfRecordsToSHow] = useState(10);
     const [data, setData] = useState([]);
     const baseUrl = process.env.REACT_APP_BASE_URL
     const token = Cookies.get("token");
@@ -44,7 +45,7 @@ const Home = () => {
                 </div>
                 <div className="order_TableContainer">
                     <OrderTable
-                        lengthOfTable="18"
+                        lengthOfTable={numberOfRecordsToSHow}
                         array={customerInfo}
                         tableHeads={["Order ID", "Customer Name", "Item Name", "Price", "Delivery Date"]}
                         keysToDisplay={["order_id", "customer_name", "item_name", "unit_price", "delivery_date"]}

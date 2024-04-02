@@ -11,6 +11,12 @@
     padding: 1rem 2rem;
 }
 
+.current_page{
+    background: #FF780A;
+    border-radius: 5px;
+    color: white;
+}
+
 .order_table {
     width: 100%;
 }
@@ -77,6 +83,7 @@
 }
 
 .order_paginationNumbers {
+    padding: 5px 10px;
     margin: 1rem 1rem 1rem 1rem;
     cursor: pointer;
 }
