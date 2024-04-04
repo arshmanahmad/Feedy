@@ -3,20 +3,22 @@ import './OrderTable.css'
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar'
 import DropDown from '../../../../../../components/DropDown/DropDown'
 import Pagination from './Pagination'
-const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
+const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
     const [length, setLength] = useState(10)
     const [columnGroup, setColumnGroup] = useState(0);
     const [recordsPerPage, setRecordsPerPage] = useState([]);
+    const [filteredRecord, setFilteredRecords] = useState("")
 
-    console.log(length);
-    const handleFilterObjects = (e) => {
-    }
+
 
     useEffect(() => {
         const startIndex = columnGroup * length;
         const endIndex = startIndex + length;
         setRecordsPerPage(array.slice(startIndex, endIndex))
-    }, [length, columnGroup])
+        // setRecordsPerPage(array.filter((obj) => {
+        //     return filteredRecord === "" || obj[filters].toLowerCase().includes(filteredRecord.toLowerCase())
+        // }))
+    }, [length, columnGroup, filteredRecord])
 
 
     //////////wpw
@@ -31,7 +33,7 @@ const OrderTable = ({ tableHeads, externalData, array = [], keysToDisplay = [], 
                         <p className='order_para'>Order <select className='order_select' name="" id=""></select></p>
                         <p className='order_coloredHeading'>Todays's Order</p>
                     </div>
-                    <TableSearchBar onChange={handleFilterObjects} />
+                    <TableSearchBar onChange={(e) => { setFilteredRecords(e.target.value) }} />
                 </div>
                 <table className='order_table'>
                     <thead className='order_thead'>{tableHeads.map((item) => {
