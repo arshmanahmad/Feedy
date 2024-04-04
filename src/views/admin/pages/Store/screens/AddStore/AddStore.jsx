@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './AddStore.css'
 import Input from '../../../../../../components/Input/Input'
 import mapIcon from "../../assets/icons/Vector (1).png"
@@ -6,11 +6,20 @@ import DayCheckBox from '../../components/DayCheckBox/DayCheckBox'
 import Button from '../../../../../../components/Button/Button'
 import clockIcon from '../../assets/icons/icons8_clock 2.png'
 import { AppContext } from "../../../../../../components/Context/AppData"
+import AddFilePic from '../../assets/images/Group 2109 (1).png'
 const AddStore = () => {
     const { showMap, setShowMap } = useContext(AppContext)
+    const [extractedFile, setExtractedFile] = useState(null)
+    const { extractedFilePopup, setExtractedFilePopup } = useState(true)
+    const handleChange = (e) => {
+        setExtractedFile(e.target.value)
+        setExtractedFilePopup(true)
+    }
+    console.log(extractedFile);
     const handleShowMap = () => {
         setShowMap(!showMap)
     }
+
     return (
         <>
 
@@ -18,7 +27,8 @@ const AddStore = () => {
                 <div className="store_fileExtractorBox">
                     <div className='addIcon_container'>
                         <p className='file_extractorIcon'>+</p>
-                        <input className='file_extractorInput' type="file" />
+                        <input onChange={handleChange} value={extractedFile} className='file_extractorInput' type="file" />
+                        {extractedFilePopup && <img src={AddFilePic} alt="" className='fileInput_popUp' />}
                     </div>
                     <label htmlFor="upload">Upload</label>
                 </div>

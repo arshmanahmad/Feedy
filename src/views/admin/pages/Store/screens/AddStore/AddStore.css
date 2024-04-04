@@ -24,6 +24,12 @@
     margin-top: 1rem;
 }
 
+.fileInput_popUp {
+    position: absolute;
+    margin-top: 0.85rem;
+    margin-left: 1.7rem;
+}
+
 .store_daysInputs {
     width: 50%;
     display: inline-block;

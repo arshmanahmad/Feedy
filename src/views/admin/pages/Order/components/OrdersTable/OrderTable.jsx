@@ -16,14 +16,11 @@ const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDispl
     useEffect(() => {
         const startIndex = columnGroup * length;
         const endIndex = startIndex + length;
+
         setRecordsPerPage(array.slice(startIndex, endIndex))
-        recordsPerPage.filter((obj) => {
-            return filteredRecord === "" || obj[filters].toLowerCase().includes(filteredRecord.toLowerCase())
-        })
     }, [length, columnGroup, filteredRecord])
 
 
-    //////////wpw
     return (
         <>
 
