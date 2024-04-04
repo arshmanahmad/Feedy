@@ -9,11 +9,15 @@
     justify-content: space-between;
 }
 
-.orderTable_menuBar {
-    display: flex;
-    justify-content: end;
-    margin-right: 3rem;
+.orderTable_threeDotsBar {
     font-size: 1.9rem;
+    margin-right: 2rem;
     cursor: pointer;
     font-weight: 700;
+    width: 1rem;
+}
+
+.orderTable_threeDotsBarContainer {
+    display: flex;
+    justify-content: end;
 }

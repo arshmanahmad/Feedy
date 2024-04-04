@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './SideBar.css'
 import logo from './assets/logo/orignal-logo.png'
 import Button from '../Button/Button'
@@ -8,6 +8,7 @@ import Context from '../Context/AppData'
 import cuttedLogo from './assets/logo/cutted-logo.png'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { adminSideBar } from '../../static/data'
+import { hover } from '@testing-library/user-event/dist/hover'
 
 const SideBar = ({ className = "" }) => {
     let btn;
@@ -20,11 +21,14 @@ const SideBar = ({ className = "" }) => {
     const capitalization = (text) => {
         return text[0].toUpperCase() + text.slice(1)
     }
+    useEffect(() => {
+        document.getElementById("main_sideBarLogo").style.transform = "rotate(360deg)";
+    }, [])
     return (
         <>
             <div className="sidebar-outerBox">
                 <div className="sidebar-pic-box">
-                    <picture className='sidebar-main-logo'>
+                    <picture id="main_sideBarLogo" className='sidebar-main-logo'>
                         <source media="(max-width: 1215px)" srcset={cuttedLogo} />
                         <img src={logo} alt="logo" />
                     </picture>

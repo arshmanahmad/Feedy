@@ -3,11 +3,13 @@ import './OrderTable.css'
 import TableSearchBar from '../../../../components/TableSearchBar/TableSearchBar'
 import DropDown from '../../../../../../components/DropDown/DropDown'
 import Pagination from './Pagination'
+import MenuBar from '../MenuBar/MenuBar'
 const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDisplay = [], modifiedColumn, ConditionalModifiedColumn }) => {
     const [length, setLength] = useState(10)
     const [columnGroup, setColumnGroup] = useState(0);
     const [recordsPerPage, setRecordsPerPage] = useState([]);
     const [filteredRecord, setFilteredRecords] = useState("")
+    const [filteredArray, setFilteredArray] = useState([])
 
 
 
@@ -15,9 +17,9 @@ const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDispl
         const startIndex = columnGroup * length;
         const endIndex = startIndex + length;
         setRecordsPerPage(array.slice(startIndex, endIndex))
-        // setRecordsPerPage(array.filter((obj) => {
-        //     return filteredRecord === "" || obj[filters].toLowerCase().includes(filteredRecord.toLowerCase())
-        // }))
+        recordsPerPage.filter((obj) => {
+            return filteredRecord === "" || obj[filters].toLowerCase().includes(filteredRecord.toLowerCase())
+        })
     }, [length, columnGroup, filteredRecord])
 
 
@@ -51,9 +53,15 @@ const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDispl
                                         );
                                     })
                                 }
+                                    {
+                                        externalData.map((item) => {
+                                            return <span>{item}</span>
+                                        })
+                                    }
                                 </tr>
                             }
                         })}</tbody>
+
                 </table>
                 <div className="order_paginationBox">
                     <Pagination columnGroupNumber={{ columnGroup, setColumnGroup }} table={array} columnsToDisplay={{ length, setLength }} />
