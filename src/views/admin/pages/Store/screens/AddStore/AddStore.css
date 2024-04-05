@@ -25,9 +25,7 @@
 }
 
 .fileInput_popUp {
-    position: absolute;
-    margin-top: 0.85rem;
-    margin-left: 1.7rem;
+    border: none;
 }
 
 .store_daysInputs {
@@ -52,6 +50,7 @@
 
 .store_btnContainer {
     display: flex;
+    margin-top: 1rem;
 }
 
 .pickupDays_container,
