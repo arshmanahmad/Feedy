@@ -32,6 +32,20 @@ const AddStore = () => {
         storeFriday: "",
         storeSaturday: "",
         storeSunday: "",
+        pickupMonday: "",
+        pickupTuesday: "",
+        pickupWednesday: "",
+        pickupThursday: "",
+        pickupFriday: "",
+        pickupSaturday: "",
+        pickupSunday: "",
+        deliveryMonday: "",
+        deliveryTuesday: "",
+        deliveryWednesday: "",
+        deliveryThursday: "",
+        deliveryFriday: "",
+        deliverySaturday: "",
+        deliverySunday: "",
     })
     const handleGetFile = (e) => {
         const file = e.target.files;
@@ -47,39 +61,125 @@ const AddStore = () => {
         setExtractedFile([])
     }
     const handleChange = (e) => {
-        const value = e.target.value;
-        setData({
-            ...data,
-            [e.target.name]: value
-        })
-    }
-    const { storeName, phoneNumber,
-        storeAddress, zipCode, location,
-        storeDaysStartTime, storeDaysCloseTime,
-        pickupDaysStartTime, pickupDaysClosingTime,
-        deliveryDaysStartingTime, deliveryDaysClosingTime,
-        storeWednesday, storeThursday,
-        storeFriday, storeSaturday, storeSunday,
-    } = data;
-    console.log(storeWednesday, storeThursday,
-        storeFriday, storeSaturday, storeSunday);
-    useEffect(() => {
-        const getData = async () => {
-            await axios.post(baseUrl + "/store/createStore", {
-                name: storeName,
-                contactNo: phoneNumber,
-                adress: storeAddress,
-                zipCode: zipCode,
-                location: location
-                // storeTiming: {
-
-                // }
-            }).then(response => {
-
-            })
-
+        const { type, name, value, checked } = e.target;
+        if (type === "checkBox") {
+            setData(prevData => ({
+                ...prevData,
+                [name]: checked ? value : ""
+            }))
         }
-    })
+        else {
+            setData(prevData => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
+    }
+    const { storeName,
+        phoneNumber,
+        storeAddress,
+        zipCode,
+        location,
+        storeDaysStartTime,
+        storeDaysCloseTime,
+        pickupDaysStartTime,
+        pickupDaysClosingTime,
+        deliveryDaysStartingTime,
+        deliveryDaysClosingTime,
+        storeMonday,
+        storeTuesday,
+        storeWednesday,
+        storeThursday,
+        storeFriday,
+        storeSaturday,
+        storeSunday,
+        pickupMonday,
+        pickupTuesday,
+        pickupWednesday,
+        pickupThursday,
+        pickupFriday,
+        pickupSaturday,
+        pickupSunday,
+        deliveryMonday,
+        deliveryTuesday,
+        deliveryWednesday,
+        deliveryThursday,
+        deliveryFriday,
+        deliverySaturday,
+        deliverySunday,
+    } = data;
+    console.log(storeName, phoneNumber,
+        storeAddress, zipCode, location, storeMonday, storeTuesday, storeWednesday, storeThursday,
+        storeFriday, storeSaturday, storeSunday,
+        pickupMonday,
+        pickupTuesday,
+        pickupWednesday,
+        pickupThursday,
+        pickupFriday,
+        pickupSaturday,
+        pickupSunday,
+        deliveryMonday,
+        deliveryTuesday,
+        deliveryWednesday,
+        deliveryThursday,
+        deliveryFriday,
+        deliverySaturday,
+        deliverySunday,
+    );
+
+    const getData = async () => {
+        await axios.post(baseUrl + "/store/createStore", {
+            name: storeName,
+            contactNo: phoneNumber,
+            adress: storeAddress,
+            zipCode: zipCode,
+            location: location,
+            storeTiming: {
+                storeDays: [storeMonday,
+                    storeTuesday,
+                    storeWednesday,
+                    storeThursday,
+                    storeFriday,
+                    storeSaturday,
+                    storeSunday],
+                startTime: storeDaysStartTime,
+                closingTime: storeDaysCloseTime,
+            },
+            deliveryTiming: {
+                deliveryDays: [
+                    deliveryMonday,
+                    deliveryTuesday,
+                    deliveryWednesday,
+                    deliveryThursday,
+                    deliveryFriday,
+                    deliverySaturday,
+                    deliverySunday],
+                startTime: deliveryDaysStartingTime,
+                closingTime: deliveryDaysClosingTime,
+            },
+            pickupTiming: {
+                pickupDays: [
+                    pickupMonday,
+                    pickupTuesday,
+                    pickupWednesday,
+                    pickupThursday,
+                    pickupFriday,
+                    pickupSaturday,
+                    pickupSunday,
+                ],
+                startTime: pickupDaysStartTime,
+                closingTime: pickupDaysClosingTime,
+            }
+
+        }).then(response => {
+            console.log(response);
+        })
+
+    }
+
+    const handleSubmitData = () => {
+        getData()
+    }
 
     return (
         <>
@@ -106,13 +206,13 @@ const AddStore = () => {
                 <div className="store_daysInputs">
                     <label htmlFor="Store Days" className='store_label'>Store Days</label>
                     <div className="days_inputContainer">
-                        <DayCheckBox type="checkBox" name="storeMonday" value="1" label="Monday" />
-                        <DayCheckBox type="checkBox" name="storeTuesday" value="2" label="Tuesday" />
-                        <DayCheckBox type="checkBox" name="storeWednesday" value="3" label="Wednesday" />
-                        <DayCheckBox type="checkBox" name="storeThursday " value="4" label="Thursday" />
-                        <DayCheckBox type="checkBox" name="storeFriday   " value="5" label="Friday" />
-                        <DayCheckBox type="checkBox" name="storeSaturday  " value="6" label="Saturday" />
-                        <DayCheckBox type="checkBox" name="storeSunday   " value="7" label="Sunday" />
+                        <DayCheckBox onChange={handleChange} type="checkBox" name="storeMonday" value="1" label="Monday" />
+                        <DayCheckBox onChange={handleChange} type="checkBox" name="storeTuesday" value="2" label="Tuesday" />
+                        <DayCheckBox onChange={handleChange} type="checkBox" name="storeWednesday" value="3" label="Wednesday" />
+                        <DayCheckBox onChange={handleChange} type="checkBox" name="storeThursday" value="4" label="Thursday" />
+                        <DayCheckBox onChange={handleChange} type="checkBox" name="storeFriday" value="5" label="Friday" />
+                        <DayCheckBox onChange={handleChange} type="checkBox" name="storeSaturday" value="6" label="Saturday" />
+                        <DayCheckBox onChange={handleChange} type="checkBox" name="storeSunday " value="7" label="Sunday" />
                     </div>
                     <div className="store_btnContainer">
                         <Input name="storeDaysStartTime" onChange={handleChange} type="time" />
@@ -125,13 +225,13 @@ const AddStore = () => {
                     <div className="pickupDays_container">
                         <label htmlFor="Store Days" className='store_label'>Pickup Days</label>
                         <div className="days_inputContainer">
-                            <DayCheckBox type="checkBox" value="Monday" label="Monday" />
-                            <DayCheckBox type="checkBox" value="Tuesday" label="Tuesday" />
-                            <DayCheckBox type="checkBox" value="Wednesday" label="Wednesday" />
-                            <DayCheckBox type="checkBox" value="Thursday" label="Thursday" />
-                            <DayCheckBox type="checkBox" value="Friday" label="Friday" />
-                            <DayCheckBox type="checkBox" value="Saturday" label="Saturday" />
-                            <DayCheckBox type="checkBox" value="Sunday" label="Sunday" />
+                            <DayCheckBox onChange={handleChange} name="pickupMonday" type="checkBox" value="1" label="Monday" />
+                            <DayCheckBox onChange={handleChange} name="pickupTuesday" type="checkBox" value="2" label="Tuesday" />
+                            <DayCheckBox onChange={handleChange} name="pickupWednesday" type="checkBox" value="3" label="Wednesday" />
+                            <DayCheckBox onChange={handleChange} name="pickupThursday" type="checkBox" value="4" label="Thursday" />
+                            <DayCheckBox onChange={handleChange} name="pickupFriday" type="checkBox" value="5" label="Friday" />
+                            <DayCheckBox onChange={handleChange} name="pickupSaturday" type="checkBox" value="6" label="Saturday" />
+                            <DayCheckBox onChange={handleChange} name="pickupSunday" type="checkBox" value="7" label="Sunday" />
                         </div>
                         <div className="store_btnContainer">
                             <Input name="pickupDaysStartTime" type="time" />
@@ -141,13 +241,13 @@ const AddStore = () => {
                     <div className="deliveryDays_container">
                         <label htmlFor="Store Days" className='store_label'>Delivery Days</label>
                         <div className="days_inputContainer">
-                            <DayCheckBox type="checkBox" value="Monday" label="Monday" />
-                            <DayCheckBox type="checkBox" value="Tuesday" label="Tuesday" />
-                            <DayCheckBox type="checkBox" value="Wednesday" label="Wednesday" />
-                            <DayCheckBox type="checkBox" value="Thursday" label="Thursday" />
-                            <DayCheckBox type="checkBox" value="Friday" label="Friday" />
-                            <DayCheckBox type="checkBox" value="Saturday" label="Saturday" />
-                            <DayCheckBox type="checkBox" value="Sunday" label="Sunday" />
+                            <DayCheckBox name="deliveryMonday" onChange={handleChange} type="checkBox" value="1" label="Monday" />
+                            <DayCheckBox name="deliveryTuesday" onChange={handleChange} type="checkBox" value="2" label="Tuesday" />
+                            <DayCheckBox name="deliveryWednesday" onChange={handleChange} type="checkBox" value="3" label="Wednesday" />
+                            <DayCheckBox name="deliveryThursday" onChange={handleChange} type="checkBox" value="4" label="Thursday" />
+                            <DayCheckBox name="deliveryFriday" onChange={handleChange} type="checkBox" value="5" label="Friday" />
+                            <DayCheckBox name="deliverySaturday" onChange={handleChange} type="checkBox" value="6" label="Saturday" />
+                            <DayCheckBox name="deliverySunday" onChange={handleChange} type="checkBox" value="7" label="Sunday" />
                         </div>
                         <div className="store_btnContainer">
                             <Input name="deliveryDaysStartingTime" type="time" onChange={handleChange} />
@@ -160,7 +260,7 @@ const AddStore = () => {
                     <label htmlFor="Store Days" className='store_label'>Admin Email</label>
                     <Input onChange={handleChange} type="borderless_fullLength" />
                     <div className="store_btnContainer">
-                        <Button text="Save" type="primaryNormal" />
+                        <Button onClick={handleSubmitData} text="Save" type="primaryNormal" />
                         <Button type="blackOutlined" text="Cancel" />
                     </div>
                 </div>
