@@ -7,7 +7,9 @@ import Button from '../../../../../../components/Button/Button'
 import clockIcon from '../../assets/icons/icons8_clock 2.png'
 import { AppContext } from "../../../../../../components/Context/AppData"
 import AddFilePic from '../../assets/images/Group 2109 (1).png'
+import axios from 'axios'
 const AddStore = () => {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const { showMap, setShowMap } = useContext(AppContext)
     const [extractedFile, setExtractedFile] = useState(null)
     const [extractedFilePopup, setExtractedFilePopup] = useState(false)
@@ -16,7 +18,20 @@ const AddStore = () => {
         phoneNumber: "",
         storeAddress: "",
         zipCode: "",
-        location: ""
+        location: "",
+        storeDaysStartTime: "",
+        storeDaysCloseTime: "",
+        pickupDaysStartTime: "",
+        pickupDaysClosingTime: "",
+        deliveryDaysStartingTime: "",
+        deliveryDaysClosingTime: "",
+        storeMonday: "",
+        storeTuesday: "",
+        storeWednesday: "",
+        storeThursday: "",
+        storeFriday: "",
+        storeSaturday: "",
+        storeSunday: "",
     })
     const handleGetFile = (e) => {
         const file = e.target.files;
@@ -38,8 +53,33 @@ const AddStore = () => {
             [e.target.name]: value
         })
     }
-    const { storeName, phoneNumber, storeAddress, zipCode, location } = data;
-    console.log(storeName, phoneNumber, storeAddress, zipCode, location);
+    const { storeName, phoneNumber,
+        storeAddress, zipCode, location,
+        storeDaysStartTime, storeDaysCloseTime,
+        pickupDaysStartTime, pickupDaysClosingTime,
+        deliveryDaysStartingTime, deliveryDaysClosingTime,
+        storeWednesday, storeThursday,
+        storeFriday, storeSaturday, storeSunday,
+    } = data;
+    console.log(storeWednesday, storeThursday,
+        storeFriday, storeSaturday, storeSunday);
+    useEffect(() => {
+        const getData = async () => {
+            await axios.post(baseUrl + "/store/createStore", {
+                name: storeName,
+                contactNo: phoneNumber,
+                adress: storeAddress,
+                zipCode: zipCode,
+                location: location
+                // storeTiming: {
+
+                // }
+            }).then(response => {
+
+            })
+
+        }
+    })
 
     return (
         <>
@@ -66,17 +106,17 @@ const AddStore = () => {
                 <div className="store_daysInputs">
                     <label htmlFor="Store Days" className='store_label'>Store Days</label>
                     <div className="days_inputContainer">
-                        <DayCheckBox type="checkBox" value="Monday" label="Monday" />
-                        <DayCheckBox type="checkBox" value="Tuesday" label="Tuesday" />
-                        <DayCheckBox type="checkBox" value="Wednesday" label="Wednesday" />
-                        <DayCheckBox type="checkBox" value="Thursday" label="Thursday" />
-                        <DayCheckBox type="checkBox" value="Friday" label="Friday" />
-                        <DayCheckBox type="checkBox" value="Saturday" label="Saturday" />
-                        <DayCheckBox type="checkBox" value="Sunday" label="Sunday" />
+                        <DayCheckBox type="checkBox" name="storeMonday" value="1" label="Monday" />
+                        <DayCheckBox type="checkBox" name="storeTuesday" value="2" label="Tuesday" />
+                        <DayCheckBox type="checkBox" name="storeWednesday" value="3" label="Wednesday" />
+                        <DayCheckBox type="checkBox" name="storeThursday " value="4" label="Thursday" />
+                        <DayCheckBox type="checkBox" name="storeFriday   " value="5" label="Friday" />
+                        <DayCheckBox type="checkBox" name="storeSaturday  " value="6" label="Saturday" />
+                        <DayCheckBox type="checkBox" name="storeSunday   " value="7" label="Sunday" />
                     </div>
                     <div className="store_btnContainer">
-                        <Input onChange={handleChange} type="time" />
-                        <Input onChange={handleChange} type="time" />
+                        <Input name="storeDaysStartTime" onChange={handleChange} type="time" />
+                        <Input name="storeDaysCloseTime" onChange={handleChange} type="time" />
 
                     </div>
                 </div>
@@ -94,8 +134,8 @@ const AddStore = () => {
                             <DayCheckBox type="checkBox" value="Sunday" label="Sunday" />
                         </div>
                         <div className="store_btnContainer">
-                            <Input type="time" />
-                            <Input type="time" />
+                            <Input name="pickupDaysStartTime" type="time" />
+                            <Input name="pickupDaysClosingTime" type="time" />
                         </div>
                     </div>
                     <div className="deliveryDays_container">
@@ -110,8 +150,8 @@ const AddStore = () => {
                             <DayCheckBox type="checkBox" value="Sunday" label="Sunday" />
                         </div>
                         <div className="store_btnContainer">
-                            <Input type="time" onChange={handleChange} />
-                            <Input type="time" />
+                            <Input name="deliveryDaysStartingTime" type="time" onChange={handleChange} />
+                            <Input name="deliveryDaysClosingTime" type="time" />
                         </div>
                     </div>
                 </div>
