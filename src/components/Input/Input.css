@@ -105,6 +105,23 @@ input[type=number] {
     background-color: transparent;
 }
 
+.border_fullLength {
+    margin-top: 4rem !important;
+    width: 80%;
+    padding: 0;
+}
+
+.border_fullLength .input-border {
+    max-width: 100%;
+    border: 1px solid;
+    border-color:
+        #EAEAEA;
+}
+
+.border_fullLength .input-border input {
+    width: 80%;
+}
+
 .input-container {
     display: flex;
     margin-top: 10px;

@@ -8,7 +8,7 @@ import Table from './pages/Store/components/Table/Table'
 import MapPopUp from '../admin/pages/Store/components/MapPopUp/MapPopUp'
 import { AppContext } from '../../components/Context/AppData'
 import Order from './pages/Order/index'
-
+import Categories from './pages/Categories/index'
 const data = [
     {
         id: 1,
@@ -64,6 +64,7 @@ const Admin = () => {
                         <Route path="/home/*" element={<DashBoard />} />
                         <Route path="/stores/*" element={<Store />} />
                         <Route path="/order/*" element={<Order />} />
+                        <Route path="/categories/*" element={<Categories />} />
                     </Routes>
                 </div>
             </div>

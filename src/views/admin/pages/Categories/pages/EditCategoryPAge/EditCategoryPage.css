@@ -1,0 +1,109 @@
+.editText_headingText {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-right: 3rem;
+}
+
+.editText_headingBtnBox {
+    display: flex;
+    align-items: center;
+}
+
+.editText_firstRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editText_secondRow {
+    width: 100%;
+    min-height: 85vh;
+    background-color: #fff;
+    margin-top: 2rem;
+    border-radius: 0.3rem;
+    padding: 4rem;
+}
+
+.editText_secondRow {
+    display: flex;
+}
+
+.categories_firstColumn {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.editText_fileExtractorBox {
+    height: 10rem;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-style: dotted;
+    border: 1px solid #999999;
+    border-style: dotted;
+    border-radius: 5px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.editText_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.editText_extractorIcon {
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.editText_extractorInput {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    height: 6rem;
+    width: 6rem;
+}
+
+
+.categories_secondColumn {
+
+    margin-top: 4rem;
+}
+
+.categories_heightyColumn {
+    width: 2px;
+    height: 22rem;
+    background-color: #f0e9e9;
+    margin-top: 4rem;
+    margin-right: 1rem;
+
+}
+
+.categories_lengthyLine {
+    width: 80%;
+    margin-top: 1rem;
+    height: 2px;
+    background-color: #f0e9e9;
+
+}
+
+.editText_textarea {
+    height: 10rem;
+    width: 80%;
+    border: 1px solid;
+    outline: none;
+    border-color: #f0e9e9;
+}
+
+.textarea_label {
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.editText_btnContainer {
+    display: flex;
+    margin-top: 1rem;
+}

@@ -89,11 +89,37 @@
 }
 
 .pair_numbers {
+    color: #999999;
+    background-color: transparent;
     margin: 1rem 0.5rem 1rem 0.5rem;
-    border: 1px solid;
     padding: 0 0.4rem 0 0.4rem;
-    border-color: #FF780A;
     text-align: center;
+    border-radius: 0.3rem;
     font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+.pair_numbers_selected_page {
+    margin: 1rem 0.5rem 1rem 0.5rem;
+    padding: 0 0.4rem 0 0.4rem;
+    text-align: center;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    background-color: #FF780A;
+    color: #fff;
+
+}
+
+.pair_numberBox {
+    display: flex;
+    align-items: center;
+}
+
+.table_arrow {
+    font-size: 1.8rem;
+    margin: 0;
     cursor: pointer;
 }

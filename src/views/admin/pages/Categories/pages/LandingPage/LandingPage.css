@@ -1,0 +1,15 @@
+.categories_headingText {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-right: 3rem;
+}
+
+.categories_headingBtnBox {
+    display: flex;
+    align-items: center;
+}
+
+.categories_firstRow {
+    display: flex;
+    justify-content: space-between;
+}

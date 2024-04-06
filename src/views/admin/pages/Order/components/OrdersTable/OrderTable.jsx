@@ -9,16 +9,13 @@ const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDispl
     const [columnGroup, setColumnGroup] = useState(0);
     const [recordsPerPage, setRecordsPerPage] = useState([]);
     const [filteredRecord, setFilteredRecords] = useState("")
-    const [filteredArray, setFilteredArray] = useState([])
-
-
+    const [filteredArray, setFilteredArray] = useState([]);
 
     useEffect(() => {
         const startIndex = columnGroup * length;
         const endIndex = startIndex + length;
-
         setRecordsPerPage(array.slice(startIndex, endIndex))
-    }, [length, columnGroup, filteredRecord])
+    }, [length, columnGroup])
 
 
     return (
@@ -32,32 +29,42 @@ const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDispl
                         <p className='order_para'>Order <select className='order_select' name="" id=""></select></p>
                         <p className='order_coloredHeading'>Todays's Order</p>
                     </div>
-                    <TableSearchBar onChange={(e) => { setFilteredRecords(e.target.value) }} />
+                    <TableSearchBar onChange={(e) => setFilteredRecords(e.target.value)} />
                 </div>
                 <table className='order_table'>
                     <thead className='order_thead'>{tableHeads.map((item) => {
                         return <th className='order_th'>{item}</th>
                     })}</thead>
                     <tbody>
-                        {recordsPerPage.map((items, index) => {
-                            if (index < length) {
-                                return <tr>{
-                                    keysToDisplay.map((dataItems, index) => {
-                                        return (
-                                            <td >
-                                                {items[dataItems]}
-                                            </td>
-                                        );
-                                    })
+                        {recordsPerPage
+                            .filter((items, index) => {
+                                if (!filteredRecord) {
+                                    return true; // Include all items if filteredRecord is falsy
                                 }
-                                    {
-                                        externalData.map((item) => {
-                                            return <span>{item}</span>
+                                return items[filters].toLowerCase().includes(filteredRecord.toLowerCase());
+
+                            })
+
+                            .map((items, index) => {
+                                if (index < length) {
+                                    return <tr>{
+                                        keysToDisplay.map((dataItems, index) => {
+                                            return (
+                                                <td >
+                                                    {items[dataItems]}
+                                                </td>
+                                            );
                                         })
                                     }
-                                </tr>
-                            }
-                        })}</tbody>
+                                        {
+                                            externalData.map((item) => {
+                                                return <span>{item}</span>
+                                            })
+                                        }
+                                    </tr>
+                                }
+                            })
+                        }</tbody>
 
                 </table>
                 <div className="order_paginationBox">

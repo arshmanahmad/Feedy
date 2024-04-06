@@ -7,6 +7,7 @@ const Input = ({ maxLength, ref, onInputClick, max, label, checked, onClick, ico
             <div className={`${className} input-container col-lg-6 col-md-12 col-sm-12 ${type === "checkBox" ? "checkBox" : " "}
             ${className === "otp" ? "otp col-lg-4 col-md-6 col-sm-12" : ""}${type === "borderless" ? "borderless" : ""}
             ${type === "borderless_fullLength" ? "borderless_fullLength" : ""}
+            ${type === "border_fullLength" ? "border_fullLength" : ""}
             ${type === "time" ? "time" : ""}
             `}>
                 {label && <label>{label}</label>}

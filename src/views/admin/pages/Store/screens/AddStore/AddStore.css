@@ -13,6 +13,25 @@
     padding: 2rem;
 }
 
+.addIcon_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.file_extractorIcon {
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.file_extractorInput {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    height: 6rem;
+    width: 6rem;
+}
+
 .addStore_inputContainer {
     display: inline-block;
 }
@@ -60,24 +79,7 @@
 }
 
 
-.addIcon_container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
 
-.file_extractorIcon {
-    font-size: 4rem;
-    cursor: pointer;
-}
-
-.file_extractorInput {
-    opacity: 0;
-    cursor: pointer;
-    position: absolute;
-    height: 6rem;
-    width: 6rem;
-}
 
 .full_widthDayContainer {
     width: 100%;
