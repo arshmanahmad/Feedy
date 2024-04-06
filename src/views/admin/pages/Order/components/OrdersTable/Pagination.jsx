@@ -30,27 +30,37 @@ const Pagination = ({
         }
         setPairNumbers(newPairNumbers)
         columnsToDisplay.setLength(value)
+        setCurrentPage(0)
     }, [value, table])
-
     const handleGroup = (groupNumber) => {
         columnGroupNumber.setColumnGroup(groupNumber - 1);
     }
+    const modifier = (number) => {
+        number = number + 2;
+        handleGroup(number)
+    }
+
     const handlePreviousPage = () => {
-        setCurrentPage(currentPage - 1)
-        handleGroup(group)
-        setGroup(group - 1)
+        if (currentPage >= 1) {
+            setCurrentPage(currentPage - 1)
+            handleGroup(currentPage)
+        }
     }
+    console.log(pairNumbers.length, currentPage);
     const handleNextPage = () => {
-        setCurrentPage(currentPage + 1)
-        handleGroup(group)
-        setGroup(group + 1)
+        if (currentPage < pairNumbers.length - 1) {
+            setCurrentPage(currentPage + 1)
+            modifier(currentPage)
+        }
     }
-    const handleClick = (item, index) => {
+
+    const handleClick = (item, index, length) => {
+        console.log(item);
         setGroup(item)
         handleGroup(item)
         setCurrentPage(index)
-        console.log(item);
     }
+
     return (
         <>
             <div className='order_paginationBox'>
