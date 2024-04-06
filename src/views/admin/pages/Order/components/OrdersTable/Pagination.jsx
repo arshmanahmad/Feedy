@@ -10,6 +10,7 @@ const Pagination = ({
     const [pairNumbers, setPairNumbers] = useState([])
     const [currentPage, setCurrentPage] = useState(0)
     const [group, setGroup] = useState(2)
+    const [activeArrow, setActiveArrow] = useState("active_arrow")
     const handleChange = (e) => {
         setValue(e.target.value);
         columnGroupNumber.setColumnGroup(0)
@@ -31,7 +32,11 @@ const Pagination = ({
         setPairNumbers(newPairNumbers)
         columnsToDisplay.setLength(value)
         setCurrentPage(0)
+
     }, [value, table])
+    useEffect(() => {
+    }, [])
+    console.log(currentPage, pairNumbers.length - 1);
     const handleGroup = (groupNumber) => {
         columnGroupNumber.setColumnGroup(groupNumber - 1);
     }
@@ -40,18 +45,30 @@ const Pagination = ({
         handleGroup(number)
     }
 
-    const handlePreviousPage = () => {
+    const handlePreviousPage = (e) => {
         if (currentPage >= 1) {
             setCurrentPage(currentPage - 1)
             handleGroup(currentPage)
         }
+        if (currentPage === pairNumbers.length - 2) {
+            setActiveArrow("table_arrow")
+
+        }
+
     }
-    console.log(pairNumbers.length, currentPage);
-    const handleNextPage = () => {
+    const handleNextPage = (e) => {
         if (currentPage < pairNumbers.length - 1) {
             setCurrentPage(currentPage + 1)
             modifier(currentPage)
+
         }
+        if (currentPage === pairNumbers.length - 2) {
+            setActiveArrow("table_arrow")
+        }
+        else {
+            setActiveArrow("active_arrow")
+        }
+
     }
 
     const handleClick = (item, index, length) => {
@@ -82,7 +99,7 @@ const Pagination = ({
                             <span onClick={() => handleClick(item, index)} className={currentPageClass}>{item}</span>
                         </>
                     })}
-                    <p className='table_arrow' onClick={handleNextPage}>{">"}</p>
+                    <p className={activeArrow} onClick={(e) => handleNextPage(e)}>{">"}</p>
                 </div>
             </div>
         </>
