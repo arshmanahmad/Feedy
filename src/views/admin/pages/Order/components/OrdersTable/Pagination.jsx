@@ -44,7 +44,7 @@ const Pagination = ({
             setActiveArrow("active_arrow")
             setPreviousActiveArrow("table_arrow")
         }
-
+        //comment
     }, [group])
     console.log(currentPage, pairNumbers.length - 1);
     const handleGroup = (groupNumber) => {
