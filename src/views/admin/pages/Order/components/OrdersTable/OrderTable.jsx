@@ -42,9 +42,7 @@ const OrderTable = ({ tableHeads, externalData, filters, array = [], keysToDispl
                                     return true; // Include all items if filteredRecord is falsy
                                 }
                                 return items[filters].toLowerCase().includes(filteredRecord.toLowerCase());
-
                             })
-
                             .map((items, index) => {
                                 if (index < length) {
                                     return <tr>{

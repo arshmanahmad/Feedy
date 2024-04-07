@@ -10,6 +10,7 @@ const Pagination = ({
     const [pairNumbers, setPairNumbers] = useState([])
     const [currentPage, setCurrentPage] = useState(0)
     const [group, setGroup] = useState(2)
+    const [previousActiveArrow, setPreviousActiveArrow] = useState("table_arrow")
     const [activeArrow, setActiveArrow] = useState("active_arrow")
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -32,10 +33,19 @@ const Pagination = ({
         setPairNumbers(newPairNumbers)
         columnsToDisplay.setLength(value)
         setCurrentPage(0)
-
     }, [value, table])
     useEffect(() => {
-    }, [])
+
+        if (currentPage === pairNumbers.length - 1) {
+            setActiveArrow("table_arrow")
+            setPreviousActiveArrow("active_arrow")
+        }
+        if (currentPage === 0) {
+            setActiveArrow("active_arrow")
+            setPreviousActiveArrow("table_arrow")
+        }
+
+    }, [group])
     console.log(currentPage, pairNumbers.length - 1);
     const handleGroup = (groupNumber) => {
         columnGroupNumber.setColumnGroup(groupNumber - 1);
@@ -46,13 +56,14 @@ const Pagination = ({
     }
 
     const handlePreviousPage = (e) => {
+        let classIdentifier = e.target.className;
         if (currentPage >= 1) {
             setCurrentPage(currentPage - 1)
             handleGroup(currentPage)
         }
-        if (currentPage === pairNumbers.length - 2) {
-            setActiveArrow("table_arrow")
-
+        if (currentPage === 1) {
+            setActiveArrow("active_arrow")
+            setPreviousActiveArrow("table_arrow")
         }
 
     }
@@ -64,15 +75,11 @@ const Pagination = ({
         }
         if (currentPage === pairNumbers.length - 2) {
             setActiveArrow("table_arrow")
+            setPreviousActiveArrow("active_arrow")
         }
-        else {
-            setActiveArrow("active_arrow")
-        }
-
     }
 
     const handleClick = (item, index, length) => {
-        console.log(item);
         setGroup(item)
         handleGroup(item)
         setCurrentPage(index)
@@ -89,7 +96,7 @@ const Pagination = ({
                     <option value="50">50</option>
                 </select>
                 <div className='pair_numberBox'>
-                    <p className='table_arrow' onClick={handlePreviousPage}>{"<"}</p>
+                    <p className={previousActiveArrow} onClick={handlePreviousPage}>{"<"}</p>
                     {pairNumbers.map((item, index) => {
                         let currentPageClass = "pair_numbers"
                         if (index === currentPage) {
