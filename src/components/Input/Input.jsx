@@ -21,6 +21,7 @@ const Input = ({ maxLength, ref, onInputClick, max, label, checked, onClick, ico
                         name={name}
                         disabled={disabled}
                         checked={checked}
+                        //onClick
                         onClick={onInputClick}
                     />
                     {icon && <img className="input-icon" onClick={onClick} src={icon}></img>}
