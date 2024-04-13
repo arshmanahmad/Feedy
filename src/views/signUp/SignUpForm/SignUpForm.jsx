@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './SignUpForm.css'
 import H1 from "../../../components/H1/H1";
 import Input from '../../../components/Input/Input'
@@ -9,9 +9,13 @@ import hideIcon from '../../../assets/Icons/icon view password.png'
 import visibilityIcon from '../../../assets/Icons/visibility-less-weight.png'
 import ErrorPopup from "../../../components/ErrorPopup/ErrorPopup"
 import Loader from '../../../components/Loader/Loader';
+import IntroForm from '../../../components/IntroModel/IntroModel';
 import axios from 'axios';
+import IntroModel from '../../../components/IntroModel/IntroModel';
+import AppData, { AppContext } from '../../../components/Context/AppData';
 
 const SignUpForm = () => {
+    const { intro, setIntro } = useContext(AppContext)
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
@@ -65,7 +69,13 @@ const SignUpForm = () => {
         return Object.keys(error).length === 0;
     }
 
-
+    useEffect(() => {
+        setIntro(true)
+        const timer = setTimeout(() => {
+            setIntro(false)
+        }, 3000);
+        return () => clearTimeout(timer)
+    }, [])
     const handleClick = async (e) => {
         e.preventDefault();
         if (checkValidation()) {
@@ -93,6 +103,7 @@ const SignUpForm = () => {
     return (
         <>
             <div className="signUp-content-container flex-box col-sm-6 col-lg-7" >
+
                 <div className='content-container'>
                     <H1 value="Create Your Account" />
                     <form className="signUp-input-container">

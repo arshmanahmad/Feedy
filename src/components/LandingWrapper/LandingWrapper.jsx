@@ -6,9 +6,11 @@ import SignUp from '../../views/signUp/SignUp'
 import { AppContext } from '../Context/AppData'
 import OtpVerification from '../../views/signUp/OtpVerification/OtpVerification'
 import OtpVerificationPopup from '../OtpVerificactionPopup/OtpVerificationPopup'
+import IntroModel from '../../components/IntroModel/IntroModel'
 
 const LandingWrapper = () => {
-    const { otpVerification, setOtpVerification } = useContext(AppContext);
+
+    const { otpVerification, intro, setIntro, setOtpVerification } = useContext(AppContext);
     return (
         <div className="signIn-main-container">
             <div className="row signIn-inner-box">
@@ -16,6 +18,7 @@ const LandingWrapper = () => {
                     {otpVerification === 1 ? <OtpVerificationPopup /> : ""}
                     {otpVerification === 0 ? <OtpVerificationPopup type="invalid_otp" /> : ""}
                 </div>
+                {intro ? <IntroModel /> : ""}
                 <Routes>
                     <Route path='/SignIn/*' element={<SignIn />} />
                     <Route path='/*' element={<SignUp />} />

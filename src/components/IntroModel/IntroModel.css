@@ -1,0 +1,36 @@
+.intro_container {
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.intro_heading {
+
+    position: absolute;
+    z-index: 9999;
+    font-size: 6rem;
+    color: orangered;
+    font-weight: 700;
+    margin-bottom: 10rem;
+}
+
+@keyframes SlideInFromTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.intro_container {
+    animation: SlideInFromTop 1s ease forwards;
+}
