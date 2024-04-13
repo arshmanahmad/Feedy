@@ -75,7 +75,7 @@ const SignUpForm = () => {
             setIntro(false)
         }, 3000);
         return () => clearTimeout(timer)
-    }, [])
+    }, [setIntro])
     const handleClick = async (e) => {
         e.preventDefault();
         if (checkValidation()) {

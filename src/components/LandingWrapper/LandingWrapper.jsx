@@ -13,12 +13,12 @@ const LandingWrapper = () => {
     const { otpVerification, intro, setIntro, setOtpVerification } = useContext(AppContext);
     return (
         <div className="signIn-main-container">
+            {intro ? <IntroModel /> : ""}
             <div className="row signIn-inner-box">
                 <div className="signIn-img-container  col-sm-6 col-lg-5">
                     {otpVerification === 1 ? <OtpVerificationPopup /> : ""}
                     {otpVerification === 0 ? <OtpVerificationPopup type="invalid_otp" /> : ""}
                 </div>
-                {intro ? <IntroModel /> : ""}
                 <Routes>
                     <Route path='/SignIn/*' element={<SignIn />} />
                     <Route path='/*' element={<SignUp />} />
