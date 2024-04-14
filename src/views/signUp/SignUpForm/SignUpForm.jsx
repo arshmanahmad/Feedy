@@ -16,6 +16,7 @@ import AppData, { AppContext } from '../../../components/Context/AppData';
 
 const SignUpForm = () => {
     const { intro, setIntro } = useContext(AppContext)
+    const [show, setShow] = useState(false);
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
@@ -30,6 +31,7 @@ const SignUpForm = () => {
         phoneNumber: "",
         password: "",
         confirmPassword: "",
+        //this is to be empty
     });
 
     const handleChange = (event) => {
