@@ -31,7 +31,7 @@ const SignUpForm = () => {
         phoneNumber: "",
         password: "",
         confirmPassword: "",
-        //this is to be empty good things yes
+        //this is to be empty good things yes kahs
     });
 
     const handleChange = (event) => {
