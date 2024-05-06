@@ -47,7 +47,7 @@ const OtpVerification = () => {
                     }
                 }
             }
-            //aaasasadadsadp';';sdfsfnnsasdaszx\zasdasd
+            //aaasasadadsadp';';sdfsfnnsasdaszx\zasdasdsadasds
         }
         document.addEventListener("keydown", handleKeyDown);
         return () => {
